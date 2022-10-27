@@ -1,4 +1,3 @@
-﻿# Easy-Kitchen
 
   [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -30,6 +29,6 @@
 
   ## Questions
 
-  For questions, please reach out to me at: <br>
-    - [Email] (karamelmannai@gmail.com) <br>
+  For questions, please reach out to me at:
+    - [Email] (karamelmannai@gmail.com)
     - [GitHub] (https://github.com/kvrae)

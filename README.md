@@ -30,6 +30,6 @@
 
   ## Questions
 
-  For questions, please reach out to me at:
-    - [Email] (karamelmannai@gmail.com)
+  For questions, please reach out to me at: <br>
+    - [Email] (karamelmannai@gmail.com) <br>
     - [GitHub] (https://github.com/kvrae)

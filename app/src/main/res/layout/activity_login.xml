@@ -50,7 +50,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/PasswordInputLayoutLog"
+        android:id="@+id/PasswordInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,6 +58,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="40dp"
         android:hint="@string/PasswordTxt"
+        app:errorTextAppearance="@color/rosybrown"
         app:boxCornerRadiusBottomEnd="20dp"
         app:boxCornerRadiusBottomStart="20dp"
         app:boxCornerRadiusTopEnd="20dp"
@@ -73,7 +74,7 @@
         app:startIconDrawable="@drawable/ic_baseline_lock_24">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/PasswordInputEditText"
+            android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -88,14 +89,14 @@
         android:text="@string/loginTxt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PasswordInputLayoutLog" />
+        app:layout_constraintTop_toBottomOf="@+id/PasswordInputLayout" />
 
     <TextView
         android:id="@+id/RegisterTV"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="Create account!"
+        android:text="@string/registerTV"
         android:textAlignment="center"
         android:textSize="16sp"
         android:textStyle="bold"

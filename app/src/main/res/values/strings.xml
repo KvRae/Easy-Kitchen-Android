@@ -14,4 +14,5 @@
     <string name="RepeatPasswordTxt">Repeat Password</string>
     <string name="DescGuide">This is a guide to help you get started with the app</string>
     <string name="TitleGuide">Welcome to Kitchen Easy</string>
+    <string name="registerTV">Create account!</string>
 </resources>

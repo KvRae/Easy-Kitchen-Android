@@ -3,23 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GuidePageOneFragment">
+    android:background="@color/rosybrown"
+    tools:context=".fragments.GuidePageOneFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <Button
-        android:id="@+id/nextBtn"
+    <TextView
+        android:id="@+id/Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="70dp"
-        android:text="@string/nextBtn" />
-    <Button
+        android:gravity="top|center"
+        android:text="@string/TitleGuide"/>
+
+    <TextView
+        android:id="@+id/Description"
+        android:textColor="@color/white"
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|start"
-        android:layout_marginStart="70dp"
-        android:text="@string/SkipBtn" />
-
+        android:text="@string/DescGuide" />
 
 </FrameLayout>

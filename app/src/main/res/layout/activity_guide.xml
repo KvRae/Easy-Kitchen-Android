@@ -9,12 +9,13 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="300dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/mekla" />
+        app:srcCompat="@drawable/mekla"
+        tools:ignore="ImageContrastCheck" />
 
     <FrameLayout
         android:layout_width="0dp"

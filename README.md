@@ -2,7 +2,7 @@
 
   ## Description
 
-"Roses are Red, Violets are Blue, I'm Hungry and I Don't Know What to Do!"
+"Roses are Red, Violets are Blue, so you're Hungry and you Don't Know What to Do!"
 
   ## Table of Contents
   - [Description](#description)

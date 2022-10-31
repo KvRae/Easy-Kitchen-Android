@@ -13,10 +13,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        val usernameLayout = findViewById<TextInputLayout>(R.id.LoginInputLayout)
-        val passwordLayout = findViewById<TextInputLayout>(R.id.PasswordInputLayout)
-        val usernameEditText = findViewById<TextView>(R.id.loginEditText)
-        val passwordEditText = findViewById<TextView>(R.id.passwordEditText)
+
 
         val registerBtn = findViewById<TextView>(R.id.RegisterTV)
 
@@ -28,6 +25,12 @@ class LoginActivity : AppCompatActivity() {
 
         val loginBtn = findViewById<Button>(R.id.LoginBtn)
         loginBtn.setOnClickListener() {
+
+            val usernameLayout = findViewById<TextInputLayout>(R.id.LoginInputLayout)
+            val passwordLayout = findViewById<TextInputLayout>(R.id.PasswordInputLayout)
+            val usernameEditText = findViewById<TextView>(R.id.loginEditText)
+            val passwordEditText = findViewById<TextView>(R.id.passwordEditText)
+
             if (validateLogin(usernameEditText, passwordEditText,passwordLayout)) {
                 val intent = Intent(this, MainMenuActivity::class.java)
                 intent.putExtra("username", usernameEditText.text.toString())

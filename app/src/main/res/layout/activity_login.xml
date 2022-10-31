@@ -65,7 +65,7 @@
 
         app:boxCornerRadiusTopStart="20dp"
         app:counterEnabled="true"
-        app:endIconMode="password_toggle"
+
         app:helperText="required*"
         app:helperTextTextColor="@color/rosybrown"
         app:layout_constraintEnd_toEndOf="parent"
@@ -86,6 +86,10 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="40dp"
+        app:boxCornerRadiusBottomEnd="40dp"
+        app:boxCornerRadiusBottomStart="40dp"
+        app:boxCornerRadiusTopEnd="40dp"
+        app:boxCornerRadiusTopStart="40dp"
         android:text="@string/loginTxt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

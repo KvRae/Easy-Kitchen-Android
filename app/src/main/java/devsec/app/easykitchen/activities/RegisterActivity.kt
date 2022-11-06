@@ -32,6 +32,11 @@ class RegisterActivity : AppCompatActivity() {
                 toast.show()
             }
         }
+        val loginbtn = findViewById<Button>(R.id.loginBtn)
+        loginbtn.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 

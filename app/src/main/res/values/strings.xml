@@ -15,4 +15,6 @@
     <string name="DescGuide">Roses are Red, Violets are Blue, so youre Hungry and you Dont Know What to Do ?</string>
     <string name="TitleGuide">Welcome to Kitchen Easy</string>
     <string name="registerTV">Create account!</string>
+    <string name="todo">TODO</string>
+    <string name="addTxt">Add</string>
 </resources>

@@ -23,6 +23,7 @@
         </activity>
         <activity
             android:name=".activities.LoginActivity"
+            android:theme="@style/Theme.EasyKitchenNoAB"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

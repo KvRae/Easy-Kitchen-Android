@@ -30,4 +30,15 @@
         android:textSize="16sp"
         tools:ignore="TextContrastCheck" />
 
+    <TextView
+        android:id="@+id/nextTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/nextBtn"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
 </FrameLayout>

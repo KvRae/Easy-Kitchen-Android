@@ -32,7 +32,7 @@ class LoginActivity : AppCompatActivity() {
             val passwordEditText = findViewById<TextView>(R.id.passwordEditText)
 
             if (validateLogin(usernameEditText, passwordEditText,passwordLayout)) {
-                val intent = Intent(this, MainMenuActivity::class.java)
+                val intent = Intent(this, HomeActivity::class.java)
                 intent.putExtra("username", usernameEditText.text.toString())
                 startActivity(intent)
             }else{

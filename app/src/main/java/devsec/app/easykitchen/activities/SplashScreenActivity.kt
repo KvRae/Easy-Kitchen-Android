@@ -18,6 +18,8 @@ class SplashScreenActivity : AppCompatActivity() {
         val logo = findViewById<ImageView>(R.id.LogoIV)
         logo.animate().apply {
             alpha(1f).duration = 3000
+            scaleX(1.1f).duration = 4000
+            scaleY(1.1f).duration = 4000
         }.start()
 
         handler = Handler()

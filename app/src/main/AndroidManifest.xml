@@ -19,7 +19,7 @@
             android:name=".activities.HomeActivity"
             android:exported="false"
             android:label="@string/title_activity_home"
-            android:theme="@style/Theme.EasyKitchen.NoActionBar">
+            android:theme="@style/Theme.EasyKitchenNoAB">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

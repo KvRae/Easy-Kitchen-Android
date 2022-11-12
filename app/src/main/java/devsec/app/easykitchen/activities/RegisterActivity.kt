@@ -8,7 +8,9 @@ import android.widget.EditText
 import android.widget.Toast
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.google.gson.Gson
 import devsec.app.easykitchen.R
+import devsec.app.easykitchen.models.Response
 
 class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,34 +28,7 @@ class RegisterActivity : AppCompatActivity() {
             val phone = findViewById<EditText>(R.id.phoneEditText)
 
             if (validateRegister(username, password, verifPass, email, phone)) {
-                registerbtn.isEnabled =false
-
-                val queue = Volley.newRequestQueue(this)
-                val url = "http://192.168.1.15:3000/api/register"
-
-                val requestBody = "username=${username.text}&password=${password.text}" +
-                        "&email=${email.text}&phone=${phone.text}"
-
-                val stringReq: StringRequest = object : StringRequest(Method.POST, url,
-                    { response ->
-                        Toast.makeText(this, response, Toast.LENGTH_SHORT).show()
-                        registerbtn.isEnabled =true
-                        val intent = Intent(this, LoginActivity::class.java)
-                        startActivity(intent)
-                    },
-                    { error ->
-                        Toast.makeText(this, error.toString(), Toast.LENGTH_SHORT).show()
-                        registerbtn.isEnabled =true
-                    }) {
-                    override fun getBodyContentType(): String {
-                        return "application/x-www-form-urlencoded; charset=UTF-8"
-                    }
-
-                    override fun getBody(): ByteArray {
-                        return requestBody.toByteArray()
-                    }
-                }
-                queue.add(stringReq)
+                register(username.text.toString(), password.text.toString(), email.text.toString(), phone.text.toString())
             } else {
                 val toast = Toast.makeText(this, "Register Failed", Toast.LENGTH_SHORT)
                 toast.show()
@@ -100,4 +75,35 @@ class RegisterActivity : AppCompatActivity() {
         }
         return true
     }
+
+    private fun register(username: String, password: String, email: String, phone: String) {
+        val queue = Volley.newRequestQueue(this)
+        val url = "http://192.168.1.15:3000/api/register"
+
+        val requestBody = "username=" + username + "&password=" + password + "&email=" + email + "&phone=" + phone
+        val stringReq: StringRequest = object : StringRequest(Method.POST, url,
+                { response ->
+                    val toast = Toast.makeText(this, "Register Success", Toast.LENGTH_SHORT)
+                    toast.show()
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                },
+                { error ->
+                    val toast = Toast.makeText(this, "Register Failed", Toast.LENGTH_SHORT)
+                    toast.show()
+                }) {
+            override fun getBodyContentType(): String {
+                return "application/x-www-form-urlencoded; charset=UTF-8"
+            }
+
+            override fun getBody(): ByteArray {
+                return requestBody.toByteArray()
+            }
+        }
+        queue.add(stringReq)
+
+
+
+    }
+
 }

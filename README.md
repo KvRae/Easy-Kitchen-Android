@@ -29,7 +29,7 @@
 
   ## Questions
 
-  For questions, please reach out to me at: <br>
+  For questions, please reach out to us at: <br>
     - [Email] (karamelmannai@gmail.com) <br>
     - [GitHub] (https://github.com/kvrae) <br>
     - [GitHub] (https://github.com/medyassin-khabthani)

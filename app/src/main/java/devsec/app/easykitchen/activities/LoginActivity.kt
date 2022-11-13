@@ -7,15 +7,18 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import com.google.android.material.textfield.TextInputLayout
 import devsec.app.easykitchen.R
 import devsec.app.easykitchen.api.RestApiService
+import devsec.app.easykitchen.api.RetrofitInstance
+import devsec.app.easykitchen.models.User
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.net.URLEncoder
 import java.nio.charset.Charset
 
@@ -28,11 +31,6 @@ class LoginActivity : AppCompatActivity() {
     lateinit var usernameEditText: EditText
     lateinit var passwordEditText: EditText
 
-
-    override fun onStop() {
-        compositeDisposable.clear()
-        super.onStop()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,44 +88,32 @@ class LoginActivity : AppCompatActivity() {
             return false
 
         }
-        if (username.text.toString() != "admin" && password.text.toString() != "admin") {
-            return false
-        }
 
         return true
     }
 
     private fun login(username: String, password: String) {
-        val queue = Volley.newRequestQueue(this)
-        val url = "http://192.168.1.15:3000/api/login"
-
-        val requestBody =
-            "username=" + URLEncoder.encode(
-                username,
-                "UTF-8"
-            ) + "&password=" + password
-        val stringReq: StringRequest =
-            object : StringRequest(
-                Method.POST, url,
-                Response.Listener { response ->
-                    if (response == "true") {
-                        val intent = Intent(this, MainMenuActivity::class.java)
+            val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
+            val signInInfo = User(username, password)
+            retIn.loginUser(signInInfo).enqueue(object : Callback<ResponseBody> {
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                    Toast.makeText(
+                        this@LoginActivity,
+                        t.message,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                    if (response.code() == 200) {
+                        Toast.makeText(this@LoginActivity, "Welcome!", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this@LoginActivity, MainMenuActivity::class.java)
                         startActivity(intent)
                     } else {
-                        val toast = Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT)
-                        toast.show()
+                        Toast.makeText(this@LoginActivity, response.message(), Toast.LENGTH_SHORT).show()
                     }
-                },
-                Response.ErrorListener { error ->
-                    val toast = Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT)
-                    toast.show()
                 }
-            ) {
-                override fun getBody(): ByteArray {
-                    return requestBody.toByteArray(Charset.defaultCharset())
-                }
-            }
-        queue.add(stringReq)
-    }
+            })
+        }
 
-}
+
+    }

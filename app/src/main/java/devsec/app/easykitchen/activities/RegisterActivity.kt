@@ -6,11 +6,14 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
-import com.google.gson.Gson
 import devsec.app.easykitchen.R
-import devsec.app.easykitchen.models.Response
+import devsec.app.easykitchen.api.RestApiService
+import devsec.app.easykitchen.api.RetrofitInstance
+import devsec.app.easykitchen.models.User
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+
 
 class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,11 +31,7 @@ class RegisterActivity : AppCompatActivity() {
             val phone = findViewById<EditText>(R.id.phoneEditText)
 
             if (validateRegister(username, password, verifPass, email, phone)) {
-                register(username.text.toString(), password.text.toString(), email.text.toString(), phone.text.toString())
-            } else {
-                val toast = Toast.makeText(this, "Register Failed", Toast.LENGTH_SHORT)
-                toast.show()
-            }
+                register(username.text.toString(), password.text.toString(), email.text.toString(), phone.text.toString())}
         }
         val loginbtn = findViewById<Button>(R.id.loginBtn)
         loginbtn.setOnClickListener {
@@ -48,62 +47,99 @@ class RegisterActivity : AppCompatActivity() {
             if (phone.text.isEmpty()) {
                 phone.error = "Phone is required"
                 phone.requestFocus()
+                return false
             }
 
             if (email.text.isEmpty()) {
                 email.error = "Email is required"
                 email.requestFocus()
+                return false
             }
 
 
-            if (verifPass.text.isEmpty() || password.text.toString() != verifPass.text.toString()) {
+            if (verifPass.text.isEmpty()) {
                 verifPass.error = "Password does not match"
                 verifPass.requestFocus()
+
             }
 
             if (password.text.isEmpty()) {
                 password.error = "Password is required"
                 password.requestFocus()
+
             }
 
             if (username.text.isEmpty()) {
                 username.error = "Username is required"
                 username.requestFocus()
+
             }
 
             return false
         }
+
+        //Patterns // Regex // Length
+        if (password.text.length < 6){
+            password.error = "Password must be at least 6 characters"
+            password.requestFocus()
+            return false
+        }
+        if(phone.text.length != 10){
+            phone.error = "Phone number must be 10 digits"
+            phone.requestFocus()
+            return false
+        }
+        if (password.text.toString() != verifPass.text.toString()){
+            verifPass.error = "Password does not match"
+            verifPass.requestFocus()
+            return false
+        }
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email.text).matches()){
+            email.error = "Email unvalid"
+            email.requestFocus()
+            return false
+        }
+
+        if(phone.text.toString().matches(Regex("[0-9]+"))){
+            phone.error = "Phone number must be digits"
+            phone.requestFocus()
+            return false
+        }
+
         return true
     }
 
     private fun register(username: String, password: String, email: String, phone: String) {
-        val queue = Volley.newRequestQueue(this)
-        val url = "http://192.168.1.15:3000/api/register"
+            val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
+            val id : String = ""
+            val registerInfo = User(id, username, password, email, phone)
 
-        val requestBody = "username=" + username + "&password=" + password + "&email=" + email + "&phone=" + phone
-        val stringReq: StringRequest = object : StringRequest(Method.POST, url,
-                { response ->
-                    val toast = Toast.makeText(this, "Register Success", Toast.LENGTH_SHORT)
-                    toast.show()
-                    val intent = Intent(this, LoginActivity::class.java)
+        retIn.registerUser(registerInfo).enqueue(object :
+            Callback<ResponseBody> {
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                Toast.makeText(
+                    this@RegisterActivity,
+                    t.message,
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            override fun onResponse(
+                call: Call<ResponseBody>,
+                response: retrofit2.Response<ResponseBody>
+            ) {
+                if (response.code() == 201) {
+                    Toast.makeText(this@RegisterActivity, "Registration success!", Toast.LENGTH_SHORT)
+                        .show()
+                    val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                     startActivity(intent)
-                },
-                { error ->
-                    val toast = Toast.makeText(this, "Register Failed", Toast.LENGTH_SHORT)
-                    toast.show()
-                }) {
-            override fun getBodyContentType(): String {
-                return "application/x-www-form-urlencoded; charset=UTF-8"
+
+                }
+                else{
+                    Toast.makeText(this@RegisterActivity, response.message(), Toast.LENGTH_SHORT)
+                        .show()
+                }
             }
-
-            override fun getBody(): ByteArray {
-                return requestBody.toByteArray()
-            }
-        }
-        queue.add(stringReq)
-
-
-
+        })
     }
 
 }

@@ -16,11 +16,13 @@ import retrofit2.Callback
 
 
 class RegisterActivity : AppCompatActivity() {
+    lateinit var loginbtn : Button
+    lateinit var registerbtn : Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        val registerbtn = findViewById<Button>(R.id.RegisterBTN)
+         registerbtn = findViewById<Button>(R.id.RegisterBTN)
 
         registerbtn.setOnClickListener {
 
@@ -32,8 +34,9 @@ class RegisterActivity : AppCompatActivity() {
 
             if (validateRegister(username, password, verifPass, email, phone)) {
                 register(username.text.toString(), password.text.toString(), email.text.toString(), phone.text.toString())}
-        }
-        val loginbtn = findViewById<Button>(R.id.loginBtn)
+            }
+
+        loginbtn = findViewById<Button>(R.id.loginBtn)
         loginbtn.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
@@ -47,13 +50,12 @@ class RegisterActivity : AppCompatActivity() {
             if (phone.text.isEmpty()) {
                 phone.error = "Phone is required"
                 phone.requestFocus()
-                return false
             }
 
             if (email.text.isEmpty()) {
                 email.error = "Email is required"
                 email.requestFocus()
-                return false
+
             }
 
 
@@ -84,23 +86,26 @@ class RegisterActivity : AppCompatActivity() {
             password.requestFocus()
             return false
         }
-        if(phone.text.length != 10){
-            phone.error = "Phone number must be 10 digits"
-            phone.requestFocus()
-            return false
-        }
+
         if (password.text.toString() != verifPass.text.toString()){
             verifPass.error = "Password does not match"
             verifPass.requestFocus()
             return false
         }
+
         if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email.text).matches()){
             email.error = "Email unvalid"
             email.requestFocus()
             return false
         }
 
-        if(phone.text.toString().matches(Regex("[0-9]+"))){
+        if(phone.text.length != 8){
+            phone.error = "Phone number must be 8 digits"
+            phone.requestFocus()
+            return false
+        }
+
+        if(!phone.text.toString().trim().matches(Regex("[0-9]+"))){
             phone.error = "Phone number must be digits"
             phone.requestFocus()
             return false
@@ -110,9 +115,12 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun register(username: String, password: String, email: String, phone: String) {
-            val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
-            val id : String = ""
-            val registerInfo = User(id, username, password, email, phone)
+        loginbtn.isEnabled = false
+        registerbtn.isEnabled = false
+
+        val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
+        val id : String = ""
+        val registerInfo = User(id, username, email, password, phone)
 
         retIn.registerUser(registerInfo).enqueue(object :
             Callback<ResponseBody> {
@@ -140,6 +148,8 @@ class RegisterActivity : AppCompatActivity() {
                 }
             }
         })
+        loginbtn.isEnabled = true
+        registerbtn.isEnabled = true
     }
 
 }

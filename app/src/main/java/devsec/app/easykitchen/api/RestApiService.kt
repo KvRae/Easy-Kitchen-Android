@@ -24,9 +24,10 @@ interface RestApiService {
     ): Call<ResponseBody>
 
 }
+
 class RetrofitInstance {
     companion object {
-        const val BASE_URL: String = "http://192.168.1.13:3000/api/"
+        const val BASE_URL: String = "http://192.168.1.12:3000/api/"
 
         val interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
             this.level = HttpLoggingInterceptor.Level.BODY
@@ -44,3 +45,26 @@ class RetrofitInstance {
         }
     }
 }
+
+class RetrofitInstanceSpoonacular {
+    companion object {
+        const val BASE_URL: String = "https://api.spoonacular.com/food/ingredients/{"
+
+        val interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
+            this.level = HttpLoggingInterceptor.Level.BODY
+        }
+
+        val client: OkHttpClient = OkHttpClient.Builder().apply {
+            this.addInterceptor(interceptor)
+        }.build()
+        fun getRetrofitInstance(): Retrofit {
+            return Retrofit.Builder()
+                .baseUrl(RetrofitInstance.BASE_URL)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+        }
+
+    }
+}
+

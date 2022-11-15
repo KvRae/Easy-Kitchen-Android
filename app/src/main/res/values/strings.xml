@@ -27,5 +27,9 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="accueilTxt">Accueil</string>
+    <string name="recomnandedRecette">Recettes Recommandés</string>
+    <string name="category">Catégories</string>
+    <string name="expertRecette">Recette des experts</string>
     <string name="rechercheTxt">Recherche</string>
+
 </resources>

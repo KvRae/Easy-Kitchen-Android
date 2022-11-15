@@ -6,15 +6,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import devsec.app.easykitchen.R
 
-class Recommended_RecyclerView:RecyclerView.Adapter<Recommended_RecyclerView.RecommendedViewHolder>() {
+class Expert_RecyclerView:RecyclerView.Adapter<Expert_RecyclerView.ExpertViewHolder>() {
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecommendedViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpertViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.recommended_row,parent,false);
-        return RecommendedViewHolder(view)
+        return ExpertViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: RecommendedViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ExpertViewHolder, position: Int) {
 
         holder.itemView
     }
@@ -22,7 +22,7 @@ class Recommended_RecyclerView:RecyclerView.Adapter<Recommended_RecyclerView.Rec
     override fun getItemCount(): Int {
         return 10
     }
-    class RecommendedViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
+    class ExpertViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
 
     }
 }

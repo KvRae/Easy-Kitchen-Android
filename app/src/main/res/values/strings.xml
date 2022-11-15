@@ -31,5 +31,8 @@
     <string name="category">Catégories</string>
     <string name="expertRecette">Recette des experts</string>
     <string name="rechercheTxt">Recherche</string>
+    <string name="ojja">Ojja aux oeufs</string>
+    <string name="reccete_type">Recette généré</string>
+
 
 </resources>

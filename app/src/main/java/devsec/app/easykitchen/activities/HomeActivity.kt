@@ -13,6 +13,12 @@ import devsec.app.easykitchen.R
 import devsec.app.easykitchen.adapter.Categorie_RecyclerView
 import devsec.app.easykitchen.adapter.Expert_RecyclerView
 import devsec.app.easykitchen.adapter.Recommended_RecyclerView
+import devsec.app.easykitchen.api.RestApiService
+import devsec.app.easykitchen.api.RetrofitInstance
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import android.util.Log
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
@@ -45,14 +51,46 @@ class HomeActivity : AppCompatActivity() {
         recyclerView3.adapter = adapter3
 
         val next = findViewById<Button>(R.id.menu)
+        val showGet = findViewById<Button>(R.id.healthy)
+
 
         next.setOnClickListener() {
-
-
                 val intent = Intent(this, ListActivity::class.java)
                 startActivity(intent)
         }
 
+        showGet.setOnClickListener() {
+            showGet()
+        }
+
+    }
+    private fun showGet() {
+        val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
+        retIn.getRecette().enqueue(object : Callback<ResponseBody> {
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                Toast.makeText(
+                    this@HomeActivity,
+                    t.message,
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            override fun onResponse(
+                call: Call<ResponseBody>,
+                response: retrofit2.Response<ResponseBody>
+            ) {
+                if (response.code() == 200) {
+                        Log.d("recette" ,response.body().toString())
+                    val intent = Intent(this@HomeActivity, LoginActivity::class.java)
+                    startActivity(intent)
+
+                }
+                else{
+                    Toast.makeText(this@HomeActivity, response.message(), Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        })
 
     }
 }
+

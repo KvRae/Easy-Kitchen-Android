@@ -45,87 +45,93 @@
             android:layout_marginTop="37dp"
             android:layout_marginEnd="26dp"
             app:layout_constraintTop_toTopOf="parent"
-            
-            >
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            
->
 
-        <TextView
-        android:id="@+id/recetteTitre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/recetteType"
-        android:text="@string/ojja"
-        android:textSize="16sp" />
-            <TextView
-                android:id="@+id/recetteType"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/reccete_type"
-                android:textSize="12sp"
-                app:layout_constraintTop_toBottomOf="@id/recetteTitre"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="4dp"
+                app:layout_constraintTop_toTopOf="parent"
 
-                />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                >
+
+                <TextView
+                    android:id="@+id/recetteTitre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ojja"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@id/recetteType"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/recetteType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/reccete_type"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recetteTitre"
+
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                >
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/upvoteLayout"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="@id/upvoteButton"
-    >
-            <View
-                android:id="@+id/upvote"
-                android:layout_width="48dp"
-                android:layout_height="22dp"
-                android:background="@drawable/long_rounded_button"
-                android:elevation="4dp"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                />
-</androidx.constraintlayout.widget.ConstraintLayout>
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/downvoteButton"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:background="@drawable/rounded_button"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/upvoteLayout"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="-10dp"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/upvoteLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginEnd="10dp">
 
-                />
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/upvoteButton"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:background="@drawable/rounded_button"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/upvoteLayout"
-                app:layout_constraintEnd_toEndOf="parent"
-                />
+                    <View
+                        android:id="@+id/upvote"
+                        android:layout_width="48dp"
+                        android:layout_height="22dp"
+                        android:background="@drawable/long_rounded_button"
+                        android:elevation="4dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+
+                        app:layout_constraintVertical_bias="0.0" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/downvoteButton"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="-10dp"
+                    android:background="@drawable/rounded_button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/upvoteLayout"
+                    app:layout_constraintTop_toTopOf="parent"
+
+                    />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/upvoteButton"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:background="@drawable/rounded_button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/upvoteLayout"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginEnd="-7dp"
+                   />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 

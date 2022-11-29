@@ -18,16 +18,16 @@
         android:theme="@style/Theme.EasyKitchen"
         tools:targetApi="31">
         <activity
-            android:name=".activities.ingredients_Activity"
+            android:name=".ui.main.view.IngredientsActivity"
             android:exported="false"
-            android:label="@string/title_activity_ingredients"
-            android:theme="@style/Theme.EasyKitchen.NoActionBar">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
+            android:theme="@style/Theme.EasyKitchenNoAB">
         </activity>
         <activity
-            android:name=".activities.HomeActivity"
+            android:name=".ui.main.view.EditProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.EasyKitchenNoAB" />
+        <activity
+            android:name=".ui.main.view.HomeActivity"
             android:exported="false"
             android:label="@string/title_activity_home"
             android:theme="@style/Theme.EasyKitchenNoAB">
@@ -36,14 +36,15 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activities.MainMenuActivity"
-            android:exported="true">
+            android:name=".ui.main.view.MainMenuActivity"
+            android:exported="true"
+            android:theme="@style/Theme.EasyKitchenNoAB">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".activities.LoginActivity"
+            android:name=".ui.main.view.LoginActivity"
             android:exported="false"
             android:theme="@style/Theme.EasyKitchenNoAB">
             <meta-data
@@ -51,7 +52,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activities.SplashScreenActivity"
+            android:name=".ui.main.view.SplashScreenActivity"
             android:exported="true"
             android:theme="@style/Theme.EasyKitchenNoAB">
             <intent-filter>
@@ -65,7 +66,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activities.GuideActivity"
+            android:name=".ui.main.view.GuideActivity"
             android:exported="false"
             android:theme="@style/Theme.EasyKitchenNoAB">
             <meta-data
@@ -73,7 +74,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activities.RegisterActivity"
+            android:name=".ui.main.view.RegisterActivity"
             android:exported="false"
             android:theme="@style/Theme.EasyKitchenNoAB" />
     </application>

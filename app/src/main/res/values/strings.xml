@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">EasyKitchen</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="nextBtn">Next</string>
     <string name="SkipBtn">Skip</string>
@@ -118,5 +117,13 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+    <string name="BASE_URL">http://10.0.2.2:3000/api/</string>
     <string name="action_settings">Settings</string>
+    <string name="hello_food_fragment">hello food fragment</string>
+    <string name="hello_blog_frag">hello blog frag</string>
+    <string name="hello_profile_fragment">Hello profile fragment</string>
+    <string name="updateBTN">update Profile</string>
+    <string name="authorusername">AuthorUsername</string>
+    <string name="recommended_recipes">Recommended Recipes</string>
+    <string name="delete_my_account">Delete My Account</string>
 </resources>

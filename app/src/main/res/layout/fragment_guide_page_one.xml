@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/za3ka"
-    tools:context=".fragments.GuidePageOneFragment">
+    tools:context=".ui.main.fragments.GuidePageOneFragment">
 
     <TextView
         android:id="@+id/Title"

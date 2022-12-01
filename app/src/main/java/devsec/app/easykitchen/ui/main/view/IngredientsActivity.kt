@@ -23,6 +23,7 @@ class IngredientsActivity : AppCompatActivity() {
         val searchView = menu?.findItem(R.id.ingredients_search)?.actionView as SearchView
         searchView.queryHint = "Search for ingredients"
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return true
             }

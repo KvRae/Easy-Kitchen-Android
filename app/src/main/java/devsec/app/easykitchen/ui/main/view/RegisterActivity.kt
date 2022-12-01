@@ -12,6 +12,7 @@ import devsec.app.easykitchen.api.RestApiService
 import devsec.app.easykitchen.api.RetrofitInstance
 import devsec.app.easykitchen.data.models.User
 import devsec.app.easykitchen.databinding.ActivityRegisterBinding
+import devsec.app.easykitchen.utils.session.SessionPref
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,12 +22,23 @@ class RegisterActivity : AppCompatActivity() {
     val binding by lazy { ActivityRegisterBinding.inflate(layoutInflater) }
     lateinit var loginbtn : Button
     lateinit var registerbtn : Button
+    lateinit var sessionPref: SessionPref
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+        sessionPref = SessionPref(this)
+        if (sessionPref.isLoggedIn()) {
+            val intent = Intent(this, MainMenuActivity::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            finish()
+        }
 
 
-         registerbtn = findViewById<Button>(R.id.RegisterBTN)
+
+        registerbtn = findViewById<Button>(R.id.RegisterBTN)
 
         registerbtn.setOnClickListener {
 
@@ -37,7 +49,6 @@ class RegisterActivity : AppCompatActivity() {
             val phone = findViewById<EditText>(R.id.phoneEditText)
 
             if (validateRegister(username, password, verifPass, email, phone)) {
-                savePreferences(username, password, email, phone)
                 register(username.text.toString(), password.text.toString(), email.text.toString(), phone.text.toString())}
             }
 
@@ -140,11 +151,14 @@ class RegisterActivity : AppCompatActivity() {
                 call: Call<ResponseBody>,
                 response: retrofit2.Response<ResponseBody>
             ) {
-                if (response.code() == 201) {
+                if (response.code() == 200) {
                     Toast.makeText(this@RegisterActivity, "Registration success!", Toast.LENGTH_SHORT)
                         .show()
+                    sessionPref.createRegisterSession(id, username, email,password, phone)
                     val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                     startActivity(intent)
+
+                    finish()
 
                 }
                 else{
@@ -155,16 +169,6 @@ class RegisterActivity : AppCompatActivity() {
         })
         loginbtn.isEnabled = true
         registerbtn.isEnabled = true
-    }
-
-    fun savePreferences(username: TextView, password: TextView, email: TextView, phone: TextView){
-        val sharedPref = getSharedPreferences("MyPref", MODE_PRIVATE)
-        val editor = sharedPref.edit()
-        editor.putString("username", username.text.toString())
-        editor.putString("password", password.text.toString())
-        editor.putString("email", email.text.toString())
-        editor.putString("phone", phone.text.toString())
-        editor.apply()
     }
 
 }

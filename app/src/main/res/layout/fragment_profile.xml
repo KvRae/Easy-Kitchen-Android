@@ -96,7 +96,7 @@
             app:layout_constraintTop_toBottomOf="@+id/profileImage" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/profileEmailINPT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
@@ -107,7 +107,7 @@
             app:layout_constraintTop_toBottomOf="@+id/profileUsernameINPT" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/profilePhoneINPT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
@@ -115,18 +115,18 @@
             android:text="phoneValue"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/profilePhoneTXT"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            app:layout_constraintTop_toBottomOf="@+id/profileEmailINPT" />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/profilePasswordValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginTop="20dp"
-            android:text="passwordValue"
+            android:text="*************"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/profilePasswordTxt"
-            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+            app:layout_constraintTop_toBottomOf="@+id/profilePhoneINPT" />
 
         <Button
             android:id="@+id/deleteAccountBTN"

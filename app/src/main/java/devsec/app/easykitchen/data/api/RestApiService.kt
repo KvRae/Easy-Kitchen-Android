@@ -43,6 +43,12 @@ interface RestApiService {
 
     //***********************Blog***********************//
 
+    //***********************Recipe***********************//
+
+    //***********************Ingredient***********************//
+    @GET("list.php?i=list")
+    fun getIngredients(): Call<ResponseBody>
+
 
 
 }
@@ -65,28 +71,6 @@ class RetrofitInstance {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         }
-    }
-}
-
-class RetrofitInstanceSpoonacular {
-    companion object {
-        const val BASE_URL: String = "https://api.spoonacular.com/food/ingredients/{"
-
-        val interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
-            this.level = HttpLoggingInterceptor.Level.BODY
-        }
-
-        val client: OkHttpClient = OkHttpClient.Builder().apply {
-            this.addInterceptor(interceptor)
-        }.build()
-        fun getRetrofitInstance(): Retrofit {
-            return Retrofit.Builder()
-                .baseUrl(RetrofitInstance.BASE_URL)
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-        }
-
     }
 }
 

@@ -126,4 +126,5 @@
     <string name="authorusername">AuthorUsername</string>
     <string name="recommended_recipes">Recommended Recipes</string>
     <string name="delete_my_account">Delete My Account</string>
+    <string name="ingredient_name">IngredientName</string>
 </resources>

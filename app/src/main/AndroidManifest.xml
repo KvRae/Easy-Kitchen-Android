@@ -19,7 +19,7 @@
         android:theme="@style/Theme.EasyKitchen"
         tools:targetApi="31">
         <activity
-            android:name=".categoryActivity"
+            android:name=".ui.main.view.FavoriteFoodActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -28,7 +28,7 @@
         <activity
             android:name=".ui.main.view.IngredientsActivity"
             android:exported="false"
-            android:theme="@style/Theme.EasyKitchenNoAB"></activity>
+            android:theme="@style/Theme.EasyKitchenNoAB" />
         <activity
             android:name=".ui.main.view.EditProfileActivity"
             android:exported="false"

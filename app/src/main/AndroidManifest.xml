@@ -4,8 +4,11 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="usesCleartextTraffic=”true”" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="usesCleartextTraffic=”true”" />
+
 
     <application
         android:allowBackup="true"
@@ -25,7 +28,32 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        
         <activity
+            android:name=".ui.main.activities.RecetteFormActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        
+        <activity
+            android:name=".ui.main.activities.RecetteActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.main.activities.ListActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.main.activities.HomeActivity"
+
             android:name=".ui.main.view.IngredientsActivity"
             android:exported="false"
             android:theme="@style/Theme.EasyKitchenNoAB" />
@@ -35,6 +63,7 @@
             android:theme="@style/Theme.EasyKitchenNoAB" />
         <activity
             android:name=".ui.main.view.HomeActivity"
+
             android:exported="false"
             android:label="@string/title_activity_home"
             android:theme="@style/Theme.EasyKitchenNoAB">
@@ -43,6 +72,7 @@
                 android:value="" />
         </activity>
         <activity
+
             android:name=".ui.main.view.MainMenuActivity"
             android:exported="true"
             android:theme="@style/Theme.EasyKitchenNoAB">
@@ -50,6 +80,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        
         <activity
             android:name=".ui.main.view.LoginActivity"
             android:exported="false"

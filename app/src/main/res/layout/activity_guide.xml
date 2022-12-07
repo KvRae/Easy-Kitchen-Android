@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
 
 
-    tools:context=".activities.GuideActivity">
+    tools:context=".ui.main.activities.GuideActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -32,7 +32,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainer"
-            android:name="devsec.app.easykitchen.fragments.GuidePageOneFragment"
+            android:name="devsec.app.easykitchen.ui.main.fragments.GuidePageOneFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

@@ -33,6 +33,18 @@
     <string name="rechercheTxt">Recherche</string>
     <string name="ojja">Ojja aux oeufs</string>
     <string name="reccete_type">Recette généré</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="instructions">Instructions</string>
+    <string name="longLorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc diam augue, vestibulum bibendum faucibus id, imperdiet id diam. Nullam ex lorem, placerat in sem vel, ullamcorper consectetur lacus. Curabitur sodales urna nibh, sit amet iaculis ante dapibus vitae. Suspendisse et tortor at sem maximus consectetur a id nunc.</string>
+    <string name="ajoutRecette">Ajouter une recette</string>
+    <string name="titreRecetteInput">Titre de la recette</string>
+    <string name="dureeRecetteInput">Durée de la recette</string>
+    <string name="personRecetteInput">Nombre de personnes</string>
+    <string name="difficultyRecetteInput">Difficulté de la recette</string>
+    <string name="bioRecetteInput">Votre recette est elle Bio ?</string>
+    <string name="descRecetteInput">Veuillez specifier les instructions de votre recette</string>
+    <string name="ajouter">Ajouter</string>
+
 
 
 </resources>

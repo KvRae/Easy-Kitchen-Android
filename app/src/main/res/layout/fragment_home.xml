@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.fragments.HomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="25dp">
+            <TextView
+                android:id="@+id/title"
+                android:layout_marginStart="25dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/accueilTxt"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_marginStart="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/menu"
+                    android:layout_width="46dp"
+                    android:layout_height="54dp"
+                    android:backgroundTint="@color/theWhite"
+                    app:icon="@drawable/hamburger"
+                    app:iconTint="@color/ourColor"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/healthy"
+                    android:layout_width="46dp"
+                    android:layout_height="54dp"
+                    android:layout_marginStart="10dp"
+                    android:backgroundTint="@color/theWhite"
+                    app:icon="@drawable/leaf"
+                    app:iconTint="@color/black"
+                    app:layout_constraintStart_toEndOf="@+id/menu"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <EditText
+                    android:id="@+id/recherche"
+                    android:layout_width="0dp"
+                    android:layout_height="43dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:elevation="5dp"
+                    android:hint="@string/rechercheTxt"
+                    android:drawableEnd="@drawable/glass"
+                    android:textSize="14sp"
+                    android:paddingHorizontal="14dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/healthy"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/recommendedText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/recomnandedRecette"
+                android:textSize="18sp"
+                android:layout_marginStart="25dp"
+
+                app:layout_constraintBottom_toTopOf="@+id/recommendedView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recommendedView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                app:layout_constraintBottom_toTopOf="@id/categorieText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recommendedText"/>
+            <TextView
+                android:id="@+id/categorieText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category"
+                android:textSize="18sp"
+                android:layout_marginStart="25dp"
+
+                app:layout_constraintBottom_toTopOf="@+id/categorieView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recommendedView" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/categorieView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/expertText"
+                app:layout_constraintTop_toBottomOf="@+id/categorieText"/>
+            <TextView
+                android:id="@+id/expertText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/expertRecette"
+                android:textSize="18sp"
+                android:layout_marginStart="25dp"
+
+                app:layout_constraintBottom_toTopOf="@+id/expertView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/categorieView" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/expertView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/expertText"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

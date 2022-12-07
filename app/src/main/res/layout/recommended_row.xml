@@ -10,10 +10,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginEnd="15dp"
     app:cardCornerRadius="10dp"
-    app:cardElevation="10dp">
+    app:cardElevation="10dp"
+    >
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/ojja"
+
+        >
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/favorite"
@@ -25,7 +29,17 @@
             android:layout_marginEnd="12dp"
             android:background="@drawable/rounded_button"
             />
-
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical"
+        android:padding="20dp"
+        />
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/upvote"
             android:layout_width="20dp"
@@ -62,6 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Ojja aux oeufs"
+                android:textColor="@color/theWhite"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toTopOf="@+id/time"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -72,6 +87,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="8sp"
                 android:text="20 min - 30 min"
+                android:textColor="@color/theWhite"
                 android:drawablePadding="5dp"
                 app:drawableStartCompat="@drawable/clock_icon"
                 app:layout_constraintStart_toStartOf="parent"

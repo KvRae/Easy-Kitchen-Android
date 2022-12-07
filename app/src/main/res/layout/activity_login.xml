@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.activities.LoginActivity">
+
+    tools:context=".ui.main.view.LoginActivity">
 
     <ImageView
         android:id="@+id/LogoIV"
@@ -58,6 +59,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="40dp"
         android:hint="@string/PasswordTxt"
+        android:inputType="textPassword"
         app:errorTextAppearance="@color/rosybrown"
         app:boxCornerRadiusBottomEnd="20dp"
         app:boxCornerRadiusBottomStart="20dp"
@@ -75,6 +77,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passwordEditText"
+            android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>

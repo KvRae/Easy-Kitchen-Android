@@ -1,10 +1,12 @@
-package devsec.app.easykitchen.data.api
 
+package devsec.app.easykitchen.api
 
 import devsec.app.easykitchen.data.models.ImageResponse
 import devsec.app.easykitchen.data.models.RecettesInQueue
 import devsec.app.easykitchen.data.models.User
 import okhttp3.MultipartBody
+import devsec.app.easykitchen.data.models.Ingredients
+import devsec.app.easykitchen.data.models.User
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
@@ -16,6 +18,7 @@ import retrofit2.http.*
 interface RestApiService {
 
 
+    //*********************** Sign up/in ***********************//
     @Headers("Content-Type:application/json")
     @POST("login")
     fun loginUser(@Body info: User): Call<ResponseBody>
@@ -26,7 +29,24 @@ interface RestApiService {
         @Body info: User
     ): Call<ResponseBody>
 
+    //*********************** User ***********************//
+    @GET("users")
+    fun getUsers(): Call<List<User>>
+
+    @GET("users/{id}")
+    fun getUser(@Path("id") id: String): Call<User>
+
     @Headers("Content-Type:application/json")
+    @PATCH("users/{id}")
+    fun updateUser(@Path("id") id: String, @Body user: User): Call<User>
+
+    @DELETE("users/{id}")
+    fun deleteUser(@Path("id") id: String): Call<ResponseBody>
+
+    //***********************Blog***********************//
+
+    //***********************Recipe***********************//
+     @Headers("Content-Type:application/json")
     @GET("recettes")
     fun getRecette(): Call<RecettesInQueue>
 
@@ -49,6 +69,13 @@ interface RestApiService {
 //        @Part("myFile") name: RequestBody?
     ): Call<ResponseBody>
 
+    //***********************Ingredient***********************//
+    @GET("ingredients")
+    fun getIngredientsList(): Call<List<Ingredients>>
+
+
+
+
 }
 
 class RetrofitInstance {
@@ -62,9 +89,6 @@ class RetrofitInstance {
         val client: OkHttpClient = OkHttpClient.Builder().apply {
             this.addInterceptor(interceptor)
         }.build()
-
-
-
         fun getRetrofitInstance(): Retrofit {
             return Retrofit.Builder()
                 .baseUrl(BASE_URL)

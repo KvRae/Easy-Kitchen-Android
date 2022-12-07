@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-
-    tools:context=".ui.main.activities.GuideActivity">
+    tools:context=".ui.main.view.GuideActivity">
 
     <ImageView
         android:id="@+id/imageView"

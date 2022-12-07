@@ -3,6 +3,7 @@ package devsec.app.easykitchen.ui.main.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import devsec.app.easykitchen.R
@@ -29,5 +30,6 @@ class Recommended_RecyclerView(private val recetteList: ArrayList<RecettesInQueu
     override fun getItemCount(): Int {
         return recetteList.size
     }
+
 
 }

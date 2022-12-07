@@ -112,7 +112,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginTop="20dp"
-            android:text="phoneValue"
+            android:text="@string/phone_value"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/profilePhoneTXT"
             app:layout_constraintTop_toBottomOf="@+id/profileEmailINPT" />
@@ -123,7 +123,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginTop="20dp"
-            android:text="*************"
+            android:text="@string/password_holder"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/profilePasswordTxt"
             app:layout_constraintTop_toBottomOf="@+id/profilePhoneINPT" />

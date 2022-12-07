@@ -1,6 +1,7 @@
 package devsec.app.easykitchen.api
 
 
+import devsec.app.easykitchen.data.models.Ingredients
 import devsec.app.easykitchen.data.models.User
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
@@ -31,12 +32,8 @@ interface RestApiService {
     fun getUser(@Path("id") id: String): Call<User>
 
     @Headers("Content-Type:application/json")
-    @POST("users")
-    fun addUser(@Body user: User): Call<ResponseBody>
-
-    @Headers("Content-Type:application/json")
-    @PUT("users/{id}")
-    fun updateUser(@Path("id") id: String, @Body user: User): Call<ResponseBody>
+    @PATCH("users/{id}")
+    fun updateUser(@Path("id") id: String, @Body user: User): Call<User>
 
     @DELETE("users/{id}")
     fun deleteUser(@Path("id") id: String): Call<ResponseBody>
@@ -46,8 +43,8 @@ interface RestApiService {
     //***********************Recipe***********************//
 
     //***********************Ingredient***********************//
-    @GET("list.php?i=list")
-    fun getIngredients(): Call<ResponseBody>
+    @GET("ingredients")
+    fun getIngredientsList(): Call<List<Ingredients>>
 
 
 
@@ -55,6 +52,7 @@ interface RestApiService {
 
 class RetrofitInstance {
     companion object {
+
         const val BASE_URL: String = "http://10.0.2.2:3000/api/"
 
         val interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().apply {

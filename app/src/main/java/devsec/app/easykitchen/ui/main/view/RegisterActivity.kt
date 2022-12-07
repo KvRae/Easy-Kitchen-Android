@@ -7,11 +7,14 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.google.gson.Gson
+import com.google.gson.JsonObject
 import devsec.app.easykitchen.R
 import devsec.app.easykitchen.api.RestApiService
 import devsec.app.easykitchen.api.RetrofitInstance
 import devsec.app.easykitchen.data.models.User
 import devsec.app.easykitchen.databinding.ActivityRegisterBinding
+import devsec.app.easykitchen.utils.LoadingDialog
 import devsec.app.easykitchen.utils.session.SessionPref
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -23,11 +26,13 @@ class RegisterActivity : AppCompatActivity() {
     lateinit var loginbtn : Button
     lateinit var registerbtn : Button
     lateinit var sessionPref: SessionPref
+    lateinit var loadingDialog: LoadingDialog
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+        loadingDialog = LoadingDialog(this)
         sessionPref = SessionPref(this)
         if (sessionPref.isLoggedIn()) {
             val intent = Intent(this, MainMenuActivity::class.java)
@@ -133,6 +138,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun register(username: String, password: String, email: String, phone: String) {
         loginbtn.isEnabled = false
         registerbtn.isEnabled = false
+        loadingDialog.startLoadingDialog()
 
         val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
         val id : String = ""
@@ -141,6 +147,7 @@ class RegisterActivity : AppCompatActivity() {
         retIn.registerUser(registerInfo).enqueue(object :
             Callback<ResponseBody> {
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                loadingDialog.dismissDialog()
                 Toast.makeText(
                     this@RegisterActivity,
                     t.message,
@@ -150,11 +157,23 @@ class RegisterActivity : AppCompatActivity() {
             override fun onResponse(
                 call: Call<ResponseBody>,
                 response: retrofit2.Response<ResponseBody>
+
             ) {
+                loadingDialog.dismissDialog()
                 if (response.code() == 200) {
                     Toast.makeText(this@RegisterActivity, "Registration success!", Toast.LENGTH_SHORT)
                         .show()
-                    sessionPref.createRegisterSession(id, username, email,password, phone)
+
+                    val gson = Gson()
+                    val jsonSTRING = response.body()?.string()
+                    val jsonObject = gson.fromJson(jsonSTRING, JsonObject::class.java)
+                    val user = jsonObject.get("user").asJsonObject
+                    val id_user = user.get("_id").asString
+                    val username_user = user.get("username").asString
+                    val email_user = user.get("email").asString
+                    val phone_user = user.get("phone").asString
+                    sessionPref.createRegisterSession(id_user, username_user, email_user,"", phone_user)
+
                     val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                     startActivity(intent)
 

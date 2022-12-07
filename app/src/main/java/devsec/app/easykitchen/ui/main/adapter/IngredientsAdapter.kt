@@ -16,11 +16,13 @@ class IngredientsAdapter(private val ingredientsList: List<String>) : RecyclerVi
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IngredientsViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.ingredient_item, parent, false)
         return IngredientsViewHolder(view)
+
     }
 
     override fun onBindViewHolder(holder: IngredientsViewHolder, position: Int) {
         val ingredient = ingredientsList[position]
         holder.ingredient_name.text = ingredient
+
     }
 
     override fun getItemCount(): Int {

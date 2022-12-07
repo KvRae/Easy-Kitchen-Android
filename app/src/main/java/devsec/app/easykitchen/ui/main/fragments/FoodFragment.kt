@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import devsec.app.easykitchen.R
 import devsec.app.easykitchen.ui.main.adapter.FoodAdapter
 import devsec.app.easykitchen.data.models.Food
+import devsec.app.easykitchen.ui.main.view.FavoriteFoodActivity
 import devsec.app.easykitchen.ui.main.view.IngredientsActivity
 
 class FoodFragment : Fragment() {
@@ -45,6 +46,11 @@ class FoodFragment : Fragment() {
         val toolbar = view.findViewById<Toolbar>(R.id.foodBar)
         toolbar.menu.findItem(R.id.ingredientsCart).setOnMenuItemClickListener {
             val intent = Intent(context, IngredientsActivity::class.java)
+            startActivity(intent)
+            true
+        }
+        toolbar.menu.findItem(R.id.favorite_food).setOnMenuItemClickListener {
+            val intent = Intent(context, FavoriteFoodActivity::class.java)
             startActivity(intent)
             true
         }

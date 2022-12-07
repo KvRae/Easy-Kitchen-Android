@@ -14,7 +14,7 @@
         android:icon="@drawable/blog_icon"/>
         />
 
-    <item android:title="profile"
+    <item android:title="Profile"
         android:id="@+id/profile"
         android:icon="@drawable/person_icon"/>
 </menu>

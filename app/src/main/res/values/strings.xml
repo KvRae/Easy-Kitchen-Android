@@ -127,4 +127,7 @@
     <string name="recommended_recipes">Recommended Recipes</string>
     <string name="delete_my_account">Delete My Account</string>
     <string name="ingredient_name">IngredientName</string>
+    <string name="loading_text">Loading...</string>
+    <string name="password_holder">*************</string>
+    <string name="phone_value">phoneValue</string>
 </resources>

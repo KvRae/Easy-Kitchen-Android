@@ -47,6 +47,16 @@ class SessionPref {
         editor.commit()
     }
 
+    fun updateProfileSession(id: String, username: String, email: String,password: String, phone: String)
+    {
+        editor.putString(USER_ID, id)
+        editor.putString(USER_NAME, username)
+        editor.putString(USER_EMAIL, email)
+        editor.putString(USER_PASSWORD, password)
+        editor.putString(USER_PHONE, phone)
+        editor.commit()
+    }
+
 
     fun checkLogin() {
         if (!this.isLoggedIn()) {
@@ -59,14 +69,23 @@ class SessionPref {
 
     fun getUserPref(): HashMap<String, String> {
         val user = HashMap<String, String>()
-//        user.put(USER_ID, pref.getString(USER_ID, null)!!)
-        user.put(USER_NAME, pref.getString(USER_NAME, null)!!)
-        user.put(USER_EMAIL, pref.getString(USER_EMAIL, null)!!)
-        user.put(USER_PASSWORD, pref.getString(USER_PASSWORD, null)!!)
-        user.put(USER_PHONE, pref.getString(USER_PHONE, null)!!)
+        user.put(USER_ID, pref.getString(USER_ID, null)!!)
+        user.put(USER_NAME, pref.getString(USER_NAME, "username")!!)
+        user.put(USER_EMAIL, pref.getString(USER_EMAIL, "email")!!)
+        user.put(USER_PASSWORD, pref.getString(USER_PASSWORD, "password")!!)
+        user.put(USER_PHONE, pref.getString(USER_PHONE, "phone")!!)
 //        user.put(USER_IMAGE, pref.getString(USER_IMAGE, null)!!)
         return user
 
+    }
+
+    fun setUserPref(username: String, email: String, password: String, phone: String)
+    {
+        editor.putString(USER_NAME, username)
+        editor.putString(USER_EMAIL, email)
+        editor.putString(USER_PASSWORD, password)
+        editor.putString(USER_PHONE, phone)
+        editor.commit()
     }
 
     fun logoutUser() {
@@ -79,5 +98,9 @@ class SessionPref {
     }
     fun isLoggedIn(): Boolean {
         return pref.getBoolean(IS_LOGGED_IN, false)
+    }
+
+    fun getId(): String {
+        return pref.getString(USER_ID, "id")!!
     }
 }

@@ -1,23 +1,29 @@
 package devsec.app.easykitchen.ui.main.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
-import android.widget.ArrayAdapter
-import android.widget.ListView
-import android.widget.SearchView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import devsec.app.easykitchen.R
+import devsec.app.easykitchen.api.RestApiService
+import devsec.app.easykitchen.api.RetrofitInstance
+import devsec.app.easykitchen.data.models.Ingredients
 import devsec.app.easykitchen.ui.main.adapter.IngredientsAdapter
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.time.temporal.Temporal
+import java.util.*
+import kotlin.collections.ArrayList
 
 class IngredientsActivity : AppCompatActivity() {
-    lateinit var adapter: IngredientsAdapter
+    private lateinit var adapter: IngredientsAdapter
     lateinit var recyclerView: RecyclerView
-    lateinit var ingredientsArrayList: ArrayList<String>
-
-    lateinit var ingredientsName : Array<String>
+    private lateinit var ingredientsArrayList: ArrayList<String>
+    private lateinit var searchArrayList: ArrayList<String>
 
 
 
@@ -29,10 +35,9 @@ class IngredientsActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         recyclerView = findViewById(R.id.ingredientsRV)
         recyclerView.layoutManager = layoutManager
-        adapter = IngredientsAdapter(ingredientsArrayList)
+        searchArrayList = ingredientsArrayList
+        adapter = IngredientsAdapter(searchArrayList)
         recyclerView.adapter = adapter
-
-
 
         val toolbar = findViewById<Toolbar>(R.id.ingredientsToolbar)
         toolbar.setNavigationOnClickListener {
@@ -42,26 +47,63 @@ class IngredientsActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.ingredients_menu, menu)
-        val searchView = menu?.findItem(R.id.ingredients_search)?.actionView as SearchView
+        val searchItem = menu?.findItem(R.id.ingredients_search)
+        val searchView = searchItem?.actionView as SearchView
         searchView.queryHint = "Search for ingredients"
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String?): Boolean {
+
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                val searchText = newText?.lowercase(Locale.getDefault())
+                searchArrayList.clear()
+                if (searchText?.isNotEmpty() == true) {
+                    ingredientsArrayList.forEach {
+                        if (it.lowercase(Locale.getDefault()).contains(searchText)) {
+                            searchArrayList.add(it)
+                        }
+                    }
+                    recyclerView.adapter?.notifyDataSetChanged()
+                } else {
+                    searchArrayList.addAll(ingredientsArrayList)
+                    recyclerView.adapter?.notifyDataSetChanged()
+                }
 
-
-                return true
+                return false
             }
         })
         return super.onCreateOptionsMenu(menu)
     }
 
+
+    private fun getIngredients(){
+        val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
+        val call = retIn.getIngredientsList()
+        call.enqueue(object : Callback<List<Ingredients>> {
+            override fun onResponse(
+                call: Call<List<Ingredients>>,
+                response: Response<List<Ingredients>>
+            ) {
+                if (response.isSuccessful) {
+                    val ingredientsList = response.body()
+                    for (i in ingredientsList!!) {
+                        ingredientsArrayList.add(i.name)
+                        }
+                    }
+                adapter.notifyDataSetChanged()
+                }
+
+            override fun onFailure(call: Call<List<Ingredients>>, t: Throwable) {
+                t.printStackTrace()
+            }
+        })
+    }
+
     private fun initIngredientsList(){
-        ingredientsName = arrayOf("Apple", "Banana", "Orange", "Mango", "Pineapple", "Strawberry", "Watermelon", "Grapes", "Peach", "Pear", "Cherry", "Blueberry", "Raspberry", "Lemon", "Lime", "Coconut", "Papaya", "Kiwi", "Tomato", "Potato", "Onion", "Garlic", "Carrot", "Cucumber", "Spinach", "Broccoli", "Cabbage", "Mushroom", "Pepper", "Eggplant", "Corn", "Beetroot", "Cauliflower", "Zucchini", "Sweet Potato", "Celery", "Asparagus", "Avocado", "Pumpkin", "Chili", "Mango", "Pineapple", "Strawberry", "Watermelon", "Grapes", "Peach", "Pear", "Cherry", "Blueberry", "Raspberry", "Lemon", "Lime", "Coconut", "Papaya", "Kiwi", "Tomato", "Potato", "Onion", "Garlic", "Carrot", "Cucumber", "Spinach", "Broccoli", "Cabbage", "Mushroom", "Pepper", "Eggplant", "Corn", "Beetroot", "Cauliflower", "Zucchini", "Sweet Potato", "Celery", "Asparagus", "Avocado", "Pumpkin", "Chili", "Mango", "Pineapple", "Strawberry", "Watermelon", "Grapes", "Peach", "Pear", "Cherry", "Blueberry", "Raspberry", "Lemon", "Lime", "Coconut", "Papaya", "Kiwi", "Tomato", "Potato", "Onion", "Garlic", "Carrot", "Cucumber", "Spinach", "Broccoli", "Cabbage", "Mushroom", "Pepper", "Eggplant", "Corn", "Beetroot", "Cauliflower", "Zucchini", "Sweet Potato", "Celery", "Asparagus", "Avocado", "Pumpkin", "Chili", "Mango", "Pineapple", "Strawberry", "Watermelon")
         ingredientsArrayList = ArrayList()
-        ingredientsArrayList.addAll(ingredientsName)
+        getIngredients()
     }
 }

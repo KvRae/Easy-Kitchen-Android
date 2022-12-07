@@ -1,6 +1,7 @@
 package devsec.app.easykitchen.ui.main.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -15,15 +16,14 @@ import devsec.app.easykitchen.ui.main.adapter.IngredientsAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.time.temporal.Temporal
 import java.util.*
-import kotlin.collections.ArrayList
 
 class IngredientsActivity : AppCompatActivity() {
     private lateinit var adapter: IngredientsAdapter
     lateinit var recyclerView: RecyclerView
     private lateinit var ingredientsArrayList: ArrayList<String>
     private lateinit var searchArrayList: ArrayList<String>
+
 
 
 
@@ -46,6 +46,7 @@ class IngredientsActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
         menuInflater.inflate(R.menu.ingredients_menu, menu)
         val searchItem = menu?.findItem(R.id.ingredients_search)
         val searchView = searchItem?.actionView as SearchView
@@ -53,23 +54,23 @@ class IngredientsActivity : AppCompatActivity() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String?): Boolean {
-
-                return true
+                return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                val searchText = newText?.lowercase(Locale.getDefault())
+                val searchText = newText!!.lowercase(Locale.getDefault())
                 searchArrayList.clear()
-                if (searchText?.isNotEmpty() == true) {
+                if (searchText.isNotEmpty()) {
                     ingredientsArrayList.forEach {
                         if (it.lowercase(Locale.getDefault()).contains(searchText)) {
                             searchArrayList.add(it)
                         }
                     }
-                    recyclerView.adapter?.notifyDataSetChanged()
+                    recyclerView.adapter!!.notifyDataSetChanged()
                 } else {
+                    searchArrayList.clear()
                     searchArrayList.addAll(ingredientsArrayList)
-                    recyclerView.adapter?.notifyDataSetChanged()
+                    recyclerView.adapter!!.notifyDataSetChanged()
                 }
 
                 return false
@@ -104,6 +105,7 @@ class IngredientsActivity : AppCompatActivity() {
 
     private fun initIngredientsList(){
         ingredientsArrayList = ArrayList()
+        searchArrayList = ArrayList()
         getIngredients()
     }
 }

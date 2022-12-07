@@ -8,6 +8,8 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/ingredientsToolbar"
+        app:title="@string/add_ingredients"
+        app:titleTextColor="@color/theWhite"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="?attr/colorPrimary"

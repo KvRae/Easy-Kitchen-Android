@@ -1,4 +1,4 @@
-package devsec.app.easykitchen.ui.main.activities
+package devsec.app.easykitchen.ui.main.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

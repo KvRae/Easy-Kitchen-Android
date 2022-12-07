@@ -30,7 +30,7 @@
         </activity>
         
         <activity
-            android:name=".ui.main.activities.RecetteFormActivity"
+            android:name=".ui.main.view.RecetteFormActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -38,22 +38,20 @@
         </activity>
         
         <activity
-            android:name=".ui.main.activities.RecetteActivity"
+            android:name=".ui.main.view.RecetteActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.main.activities.ListActivity"
+            android:name=".ui.main.view.ListActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.main.activities.HomeActivity"
-
             android:name=".ui.main.view.IngredientsActivity"
             android:exported="false"
             android:theme="@style/Theme.EasyKitchenNoAB" />

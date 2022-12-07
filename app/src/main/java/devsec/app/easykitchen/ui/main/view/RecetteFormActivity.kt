@@ -1,4 +1,4 @@
-package devsec.app.easykitchen.ui.main.activities
+package devsec.app.easykitchen.ui.main.view
 
 
 import android.annotation.SuppressLint
@@ -21,25 +21,17 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import devsec.app.easykitchen.R
-import devsec.app.easykitchen.data.api.RestApiService
-import devsec.app.easykitchen.data.api.RetrofitInstance
-import devsec.app.easykitchen.data.models.ImageResponse
+import devsec.app.easykitchen.api.RestApiService
+import devsec.app.easykitchen.api.RetrofitInstance
 import devsec.app.easykitchen.data.models.RecettesInQueue
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import okhttp3.MediaType
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.ByteArrayOutputStream
-import java.io.File
-import java.io.FileOutputStream
 
 
 class RecetteFormActivity : AppCompatActivity() {
@@ -148,7 +140,7 @@ class RecetteFormActivity : AppCompatActivity() {
             it.toByteArray()
         }
         val type = contentResolver.getType(imageUri)
-        val requestFile = RequestBody.create(type!!.toMediaTypeOrNull(), bytes)
+        val requestFile = RequestBody.create(MediaType.parse(type), bytes)
         val image = MultipartBody.Part.createFormData("myFile", fileName, requestFile)
 
         val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)

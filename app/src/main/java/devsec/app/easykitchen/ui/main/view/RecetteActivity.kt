@@ -1,4 +1,4 @@
-package devsec.app.easykitchen.ui.main.activities
+package devsec.app.easykitchen.ui.main.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,11 +7,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import devsec.app.easykitchen.R
-import devsec.app.easykitchen.data.api.RestApiService
-import devsec.app.easykitchen.data.api.RetrofitInstance
+import devsec.app.easykitchen.api.RestApiService
+import devsec.app.easykitchen.api.RetrofitInstance
 import devsec.app.easykitchen.data.models.RecettesInQueue
 import devsec.app.easykitchen.ui.main.adapter.IngredientsText_RecyclerView
-import devsec.app.easykitchen.ui.main.adapter.Recommended_RecyclerView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

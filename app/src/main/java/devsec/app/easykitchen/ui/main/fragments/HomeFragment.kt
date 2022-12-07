@@ -12,12 +12,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import devsec.app.easykitchen.R
-import devsec.app.easykitchen.ui.main.activities.RecetteActivity
+import devsec.app.easykitchen.api.RestApiService
+import devsec.app.easykitchen.api.RetrofitInstance
+import devsec.app.easykitchen.ui.main.view.RecetteActivity
 import devsec.app.easykitchen.ui.main.adapter.Categorie_RecyclerView
 import devsec.app.easykitchen.ui.main.adapter.Expert_RecyclerView
 import devsec.app.easykitchen.ui.main.adapter.Recommended_RecyclerView
-import devsec.app.easykitchen.data.api.RestApiService
-import devsec.app.easykitchen.data.api.RetrofitInstance
 import devsec.app.easykitchen.data.models.RecettesInQueue
 import retrofit2.Call
 import retrofit2.Callback
@@ -49,9 +49,9 @@ class HomeFragment : Fragment() {
         title = view.findViewById(R.id.title)
 
 
-        recyclerView = view.findViewById(R.id.recommendedView)
-        recyclerView.setHasFixedSize(true)
-        initRecette()
+//        recyclerView = view.findViewById(R.id.recommendedView)
+//        recyclerView.setHasFixedSize(true)
+//        initRecette()
 
         recyclerView2 = view.findViewById(R.id.categorieView)
         adapter2 = Categorie_RecyclerView()
@@ -66,11 +66,11 @@ class HomeFragment : Fragment() {
         recyclerView3.adapter = adapter3
 
         val next = view.findViewById<Button>(R.id.menu)
-
-        next.setOnClickListener() {
-            val intent = Intent(context, RecetteActivity::class.java)
-            startActivity(intent)
-        }
+//
+//        next.setOnClickListener() {
+//            val intent = Intent(context, RecetteActivity::class.java)
+//            startActivity(intent)
+//        }
 
 
 

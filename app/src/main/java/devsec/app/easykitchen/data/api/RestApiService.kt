@@ -72,6 +72,9 @@ interface RestApiService {
     //***********************Category***********************//
     @GET("categories")
     fun getCategoriesList(): Call<List<Category>>
+    //***********************Food***********************//
+    @GET("foods")
+    fun getFoodsList(): Call<List<Food>>
 
 
 

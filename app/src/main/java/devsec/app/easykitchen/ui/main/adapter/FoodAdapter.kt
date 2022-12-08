@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import devsec.app.easykitchen.R
 import devsec.app.easykitchen.data.models.Food
 
@@ -13,7 +14,7 @@ class FoodAdapter(private val foodList: List<Food>): RecyclerView.Adapter<FoodAd
     inner class FoodViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         val food_name = itemView.findViewById<TextView>(R.id.foodName)
         val food_image = itemView.findViewById<ImageView>(R.id.foodImage)
-        val food_time = itemView.findViewById<TextView>(R.id.foodTime)
+//        val food_time = itemView.findViewById<TextView>(R.id.foodTime)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder {
@@ -24,8 +25,7 @@ class FoodAdapter(private val foodList: List<Food>): RecyclerView.Adapter<FoodAd
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
         val food = foodList[position]
         holder.food_name.text = food.name
-        holder.food_image.setImageResource(food.image)
-        holder.food_time.text = food.time
+        Picasso.get().load(food.image).into(holder.food_image)
     }
 
     override fun getItemCount(): Int {

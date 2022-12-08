@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/food_card"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
-    android:padding="5dp"
-    android:layout_marginBottom="10dp">
+    android:layout_height="180dp"
+    android:elevation="20dp"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="20dp">
 
     <ImageView
         android:id="@+id/foodImage"
@@ -13,36 +16,47 @@
         android:scaleType="centerCrop"
         app:srcCompat="@drawable/french_fries_with_cheeseburger" />
 
-    <TextView
-        android:id="@+id/foodName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:text="CheeseBurger"
-        android:textColor="@color/theWhite"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        android:layout_alignParentStart="true"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/foodName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
 
-    <TextView
-        android:id="@+id/foodTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_toRightOf="@id/TimeIcon"
-        android:text="20min"
-        android:textColor="@color/theWhite"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+            android:layout_marginTop="16dp"
+            android:text="CheeseBurger"
+            android:textColor="@color/theWhite"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/TimeIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_alignParentBottom="true"
-        app:srcCompat="@drawable/ic_baseline_access_time_24" />
-</RelativeLayout>
+        <TextView
+            android:id="@+id/foodTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="52dp"
+            android:layout_marginBottom="24dp"
+            android:text="20min"
+            android:textColor="@color/theWhite"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/countryIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_baseline_access_time_24" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

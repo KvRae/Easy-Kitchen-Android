@@ -54,7 +54,9 @@
     <string name="recommended_recipes">Recommended Recipes</string>
     <string name="delete_my_account">Delete My Account</string>
     <string name="ingredient_name">IngredientName</string>
-    <string name="loading_text">Loading...</string>
+    <string name="loading_text">Loading…</string>
     <string name="password_holder">*************</string>
     <string name="phone_value">phoneValue</string>
+    <string name="food_toobar_title">Food list</string>
+    <string name="food_recipe">Food Recipe</string>
 </resources>

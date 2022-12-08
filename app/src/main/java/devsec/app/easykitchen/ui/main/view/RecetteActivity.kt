@@ -28,17 +28,17 @@ class RecetteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recette)
 
-        recyclerView = findViewById(R.id.ingredientView)
-        adapter = IngredientsTextAdapter()
+        recyclerView = findViewById(R.id.ingredientListView)
+//        adapter = IngredientsTextAdapter()
 
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter
         initRecette()
-        recetteTitre = findViewById(R.id.recetteTitre)
+        recetteTitre = findViewById(R.id.foodRecipeName)
         timeTxt = findViewById(R.id.timeTxt)
         peopleTxt = findViewById(R.id.peopleTxt)
         difficultyTxt = findViewById(R.id.difficultyTxt)
-        instructionTxt = findViewById(R.id.instructionTxt)
+        instructionTxt = findViewById(R.id.foodRecipeInstructionHeader)
 
         recetteTitre.text = recette.name
         timeTxt.text = recette.duration.toString()

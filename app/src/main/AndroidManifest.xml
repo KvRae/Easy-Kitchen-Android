@@ -9,7 +9,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="usesCleartextTraffic=”true”" />
 
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -22,13 +21,17 @@
         android:theme="@style/Theme.EasyKitchen"
         tools:targetApi="31">
         <activity
+            android:name=".ui.main.view.FoodRecipeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.EasyKitchenNoAB">
+        </activity>
+        <activity
             android:name=".ui.main.view.FavoriteFoodActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        
         <activity
             android:name=".ui.main.view.RecetteFormActivity"
             android:exported="false">
@@ -36,7 +39,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        
         <activity
             android:name=".ui.main.view.RecetteActivity"
             android:exported="false">
@@ -60,17 +62,6 @@
             android:exported="false"
             android:theme="@style/Theme.EasyKitchenNoAB" />
         <activity
-            android:name=".ui.main.view.HomeActivity"
-
-            android:exported="false"
-            android:label="@string/title_activity_home"
-            android:theme="@style/Theme.EasyKitchenNoAB">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-
             android:name=".ui.main.view.MainMenuActivity"
             android:exported="true"
             android:theme="@style/Theme.EasyKitchenNoAB">
@@ -78,7 +69,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        
         <activity
             android:name=".ui.main.view.LoginActivity"
             android:exported="false"

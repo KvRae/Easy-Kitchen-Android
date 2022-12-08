@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName
 data class Food(    @SerializedName("_id")
                     val id: String,
                     @SerializedName("strArea")
-                    val name: String,
+                    val area: String,
                     @SerializedName("strCategory")
-                    val strCategory: String,
+                    val category: String,
                     @SerializedName("strIngredient1")
                     val strIngredient1: String,
                     @SerializedName("strIngredient10")
@@ -23,17 +23,17 @@ data class Food(    @SerializedName("_id")
                     @SerializedName("strIngredient15")
                     val strIngredient15: String,
                     @SerializedName("strIngredient16")
-                    val strIngredient16: Any,
+                    val strIngredient16: String,
                     @SerializedName("strIngredient17")
-                    val strIngredient17: Any,
+                    val strIngredient17: String,
                     @SerializedName("strIngredient18")
-                    val strIngredient18: Any,
+                    val strIngredient18: String,
                     @SerializedName("strIngredient19")
-                    val strIngredient19: Any,
+                    val strIngredient19: String,
                     @SerializedName("strIngredient2")
                     val strIngredient2: String,
                     @SerializedName("strIngredient20")
-                    val strIngredient20: Any,
+                    val strIngredient20: String,
                     @SerializedName("strIngredient3")
                     val strIngredient3: String,
                     @SerializedName("strIngredient4")
@@ -49,12 +49,12 @@ data class Food(    @SerializedName("_id")
                     @SerializedName("strIngredient9")
                     val strIngredient9: String,
                     @SerializedName("strInstructions")
-                    val strInstructions: String,
+                    val instructions: String,
                     @SerializedName("strMeal")
-                    val strMeal: String,
+                    val name: String,
                     @SerializedName("strMealThumb")
                     val image: String,
                     @SerializedName("strSource")
-                    val strSource: Any,
+                    val source: Any,
                     @SerializedName("strYoutube")
-                    val strYoutube: String)
+                    val youtube: String)

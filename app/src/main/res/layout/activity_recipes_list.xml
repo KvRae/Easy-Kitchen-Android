@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingVertical="25dp"
-    tools:context=".ui.main.view.ListActivity"
+    tools:context=".ui.main.view.RecipesListActivity"
     android:background="@color/background"
     >
     <TextView

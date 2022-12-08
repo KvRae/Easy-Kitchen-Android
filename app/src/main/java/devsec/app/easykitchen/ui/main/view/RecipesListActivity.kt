@@ -5,17 +5,17 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import devsec.app.easykitchen.R
-import devsec.app.easykitchen.ui.main.adapter.List_RecyclerView
+import devsec.app.easykitchen.ui.main.adapter.RecipesAdapter
 
-class ListActivity : AppCompatActivity() {
+class RecipesListActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: List_RecyclerView
+    private lateinit var adapter: RecipesAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_list)
+        setContentView(R.layout.activity_recipes_list)
 
         recyclerView = findViewById(R.id.listView)
-        adapter = List_RecyclerView()
+        adapter = RecipesAdapter()
 
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
         recyclerView.adapter = adapter

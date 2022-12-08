@@ -10,14 +10,14 @@ import devsec.app.easykitchen.R
 import devsec.app.easykitchen.api.RestApiService
 import devsec.app.easykitchen.api.RetrofitInstance
 import devsec.app.easykitchen.data.models.RecettesInQueue
-import devsec.app.easykitchen.ui.main.adapter.IngredientsText_RecyclerView
+import devsec.app.easykitchen.ui.main.adapter.IngredientsTextAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class RecetteActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: IngredientsText_RecyclerView
+    private lateinit var adapter: IngredientsTextAdapter
     private lateinit var recette: RecettesInQueue.Recette
     private lateinit var recetteTitre: TextView
     private lateinit var timeTxt: TextView
@@ -29,7 +29,7 @@ class RecetteActivity : AppCompatActivity() {
         setContentView(R.layout.activity_recette)
 
         recyclerView = findViewById(R.id.ingredientView)
-        adapter = IngredientsText_RecyclerView()
+        adapter = IngredientsTextAdapter()
 
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter

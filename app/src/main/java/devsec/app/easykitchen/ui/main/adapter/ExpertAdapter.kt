@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import devsec.app.easykitchen.R
 
-class Expert_RecyclerView:RecyclerView.Adapter<Expert_RecyclerView.ExpertViewHolder>() {
+class ExpertAdapter:RecyclerView.Adapter<ExpertAdapter.ExpertViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpertViewHolder {

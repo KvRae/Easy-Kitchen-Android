@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import devsec.app.easykitchen.R
 import devsec.app.easykitchen.data.models.RecettesInQueue
 
-class Recommended_RecyclerView(private val recetteList: ArrayList<RecettesInQueue.Recette>):RecyclerView.Adapter<Recommended_RecyclerView.RecommendedViewHolder>() {
+class RecommendedFoodAdapter(private val recetteList: ArrayList<RecettesInQueue.Recette>):RecyclerView.Adapter<RecommendedFoodAdapter.RecommendedViewHolder>() {
     class RecommendedViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
         val recette_name = itemView.findViewById<TextView>(R.id.titre)
         val recette_duration = itemView.findViewById<TextView>(R.id.time)

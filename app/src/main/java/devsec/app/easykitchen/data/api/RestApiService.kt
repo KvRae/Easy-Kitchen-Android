@@ -1,11 +1,8 @@
 
 package devsec.app.easykitchen.api
 
-import devsec.app.easykitchen.data.models.ImageResponse
-import devsec.app.easykitchen.data.models.RecettesInQueue
+import devsec.app.easykitchen.data.models.*
 import okhttp3.MultipartBody
-import devsec.app.easykitchen.data.models.Ingredients
-import devsec.app.easykitchen.data.models.User
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
@@ -71,6 +68,10 @@ interface RestApiService {
     //***********************Ingredient***********************//
     @GET("ingredients")
     fun getIngredientsList(): Call<List<Ingredients>>
+
+    //***********************Category***********************//
+    @GET("categories")
+    fun getCategoriesList(): Call<List<Category>>
 
 
 

@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import devsec.app.easykitchen.R
 
-class List_RecyclerView:RecyclerView.Adapter<List_RecyclerView.ListViewHolder>() {
+class IngredientsTextAdapter:RecyclerView.Adapter<IngredientsTextAdapter.ListViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_row,parent,false);
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_ingredient,parent,false);
         return ListViewHolder(view)
     }
 
@@ -20,7 +20,7 @@ class List_RecyclerView:RecyclerView.Adapter<List_RecyclerView.ListViewHolder>()
     }
 
     override fun getItemCount(): Int {
-        return 10
+        return 4
     }
     class ListViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
 

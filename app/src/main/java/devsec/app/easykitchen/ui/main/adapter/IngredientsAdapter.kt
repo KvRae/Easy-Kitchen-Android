@@ -8,14 +8,33 @@ import devsec.app.easykitchen.R
 
 class IngredientsAdapter(private val ingredientsList: List<String>) : RecyclerView.Adapter<IngredientsAdapter.IngredientsViewHolder>()
 {
-    inner class IngredientsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    private lateinit var mListener: OnItemClickListener
+
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
+
+    inner class IngredientsViewHolder(itemView: View,listener: OnItemClickListener) : RecyclerView.ViewHolder(itemView)
     {
         val ingredient_name = itemView.findViewById<TextView>(R.id.ingredient_name)
+        init {
+            itemView.setOnClickListener {
+                if (adapterPosition != RecyclerView.NO_POSITION) {
+                    mListener.onItemClick(adapterPosition)
+                }
+            }
+        }
     }
+
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        mListener = listener
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IngredientsViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.ingredient_item, parent, false)
-        return IngredientsViewHolder(view)
+        return IngredientsViewHolder(view,mListener)
 
     }
 

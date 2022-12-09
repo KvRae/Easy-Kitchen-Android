@@ -8,4 +8,10 @@
         android:title="@string/search"
         app:showAsAction="always"
         app:actionViewClass="androidx.appcompat.widget.SearchView" />
+    <item
+        android:id="@+id/ingredients_cart"
+        android:icon="@drawable/ic_baseline_inbox_24"
+        android:title="Cart"
+        app:showAsAction="always" />
+
 </menu>

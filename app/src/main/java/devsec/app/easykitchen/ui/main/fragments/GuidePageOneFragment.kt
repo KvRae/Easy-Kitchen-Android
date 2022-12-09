@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import devsec.app.easykitchen.R
 
+
 class GuidePageOneFragment : Fragment() {
 
     override fun onCreateView(
@@ -18,5 +19,4 @@ class GuidePageOneFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_guide_page_one, container, false)
 
     }
-
 }

@@ -4,8 +4,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="usesCleartextTraffic=”true”" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="usesCleartextTraffic=”true”" />
 
     <application
         android:allowBackup="true"
@@ -19,7 +21,33 @@
         android:theme="@style/Theme.EasyKitchen"
         tools:targetApi="31">
         <activity
+            android:name=".ui.main.view.FoodRecipeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.EasyKitchenNoAB">
+        </activity>
+        <activity
             android:name=".ui.main.view.FavoriteFoodActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.main.view.RecetteFormActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.main.view.RecetteActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.main.view.RecipesListActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -33,15 +61,6 @@
             android:name=".ui.main.view.EditProfileActivity"
             android:exported="false"
             android:theme="@style/Theme.EasyKitchenNoAB" />
-        <activity
-            android:name=".ui.main.view.HomeActivity"
-            android:exported="false"
-            android:label="@string/title_activity_home"
-            android:theme="@style/Theme.EasyKitchenNoAB">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
         <activity
             android:name=".ui.main.view.MainMenuActivity"
             android:exported="true"

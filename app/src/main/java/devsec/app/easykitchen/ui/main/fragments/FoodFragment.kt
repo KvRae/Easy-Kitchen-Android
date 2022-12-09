@@ -2,6 +2,7 @@ package devsec.app.easykitchen.ui.main.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,19 +11,22 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import devsec.app.easykitchen.R
+import devsec.app.easykitchen.api.RestApiService
+import devsec.app.easykitchen.api.RetrofitInstance
 import devsec.app.easykitchen.ui.main.adapter.FoodAdapter
 import devsec.app.easykitchen.data.models.Food
 import devsec.app.easykitchen.ui.main.view.FavoriteFoodActivity
+import devsec.app.easykitchen.ui.main.view.FoodRecipeActivity
 import devsec.app.easykitchen.ui.main.view.IngredientsActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class FoodFragment : Fragment() {
     private lateinit var adapter : FoodAdapter
     private lateinit var recyclerView : RecyclerView
     private lateinit var foodArrayList: ArrayList<Food>
-
-    lateinit var foodImage : IntArray
-    lateinit var foodTime : Array<String>
-    lateinit var foodName : Array<String>
+//    val loadingDialog = LoadingDialog(requireActivity())
 
 
     override fun onCreateView(
@@ -39,9 +43,17 @@ class FoodFragment : Fragment() {
         val layoutManager = LinearLayoutManager(context)
         recyclerView = view.findViewById(R.id.foodListView)
         recyclerView.layoutManager = layoutManager
-        recyclerView.setHasFixedSize(true)
         adapter = FoodAdapter(foodArrayList)
         recyclerView.adapter = adapter
+
+
+        adapter.setOnItemClickListener(object : FoodAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                val intent = Intent(context, FoodRecipeActivity::class.java)
+                intent.putExtra("id", foodArrayList[position].id)
+                startActivity(intent)
+            }
+        })
 
         val toolbar = view.findViewById<Toolbar>(R.id.foodBar)
         toolbar.menu.findItem(R.id.ingredientsCart).setOnMenuItemClickListener {
@@ -57,20 +69,24 @@ class FoodFragment : Fragment() {
     }
 
     private fun initFoodList(){
-        foodImage = intArrayOf(R.drawable.french_fries_with_cheeseburger, R.drawable.french_fries_with_cheeseburger, R.drawable.french_fries_with_cheeseburger)
-        foodTime = arrayOf("10 min", "15 min", "20 min")
-        foodName = arrayOf("Food 1", "Food 2", "Food 3")
-
         foodArrayList = ArrayList()
-        for(i in foodImage.indices){
-            val food = Food(foodName[i], foodTime[i],foodImage[i] )
-            foodArrayList.add(food)
-        }
+        val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
+        val call = retIn.getFoodsList()
+        call.enqueue(object : Callback<List<Food>> {
+            override fun onResponse(call: Call<List<Food>>, response: Response<List<Food>>) {
+                if (response.isSuccessful) {
+//
+                    foodArrayList.addAll(response.body()!!)
+                    adapter.notifyDataSetChanged()
+//                    loadingDialog.dismissDialog()
+                }
+            }
 
-
+            override fun onFailure(call: Call<List<Food>>, t: Throwable) {
+                Log.d("Error", t.message.toString())
+            }
+        })
 
     }
-
-
 
 }

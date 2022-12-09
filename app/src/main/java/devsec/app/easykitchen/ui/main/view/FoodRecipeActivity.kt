@@ -2,6 +2,8 @@ package devsec.app.easykitchen.ui.main.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.util.Log.DEBUG
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -35,24 +37,23 @@ class FoodRecipeActivity : AppCompatActivity() {
         val recipeCategory = findViewById<TextView>(R.id.foodRecipeCategory)
         val recipeName = findViewById<TextView>(R.id.foodRecipeName)
         val recipeInstructions = findViewById<TextView>(R.id.foodRecipeInstructions)
+        ingredientsList = ArrayList()
         getRecipe(id, recipeImage, recipeCategory, recipeName, recipeInstructions)
 
         val layoutManager = LinearLayoutManager(this)
         recyclerView = findViewById(R.id.ingredientListView)
         recyclerView.layoutManager = layoutManager
-        adapter = IngredientsTextAdapter(ingredientsList)
-        recyclerView.adapter = adapter
+
 
 
         val toolbar = findViewById<Toolbar>(R.id.foodRecipeToolbar)
         toolbar.setNavigationOnClickListener {
             finish()
+
         }
     }
 
-
     fun getRecipe(id: String, recipeImage: ImageView, recipeCategory: TextView, recipeName: TextView, recipeInstructions: TextView) {
-        ingredientsList = ArrayList()
         val ingredients = ArrayList<String>()
         val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
         val call = retIn.getFoodById(id)
@@ -85,9 +86,12 @@ class FoodRecipeActivity : AppCompatActivity() {
                     if(!food?.strIngredient18.isNullOrEmpty()) { ingredients.add(food?.strIngredient18.toString()) }
                     if(!food?.strIngredient19.isNullOrEmpty()) { ingredients.add(food?.strIngredient19.toString()) }
                     if(!food?.strIngredient20.isNullOrEmpty()) { ingredients.add(food?.strIngredient20.toString()) }
-
-
                     ingredientsList.addAll(ingredients)
+
+                    adapter = IngredientsTextAdapter(ingredientsList)
+                    recyclerView.adapter = adapter
+                    Log.d("TAG", "onResponse: $ingredientsList")
+                    Log.d("List", "onResponse: $ingredients")
                 }
             }
 

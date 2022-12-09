@@ -57,6 +57,8 @@
     <string name="loading_text">Loading…</string>
     <string name="password_holder">*************</string>
     <string name="phone_value">phoneValue</string>
+    <string name="search">Search</string>
+    <string name="add_ingredients">Add ingredients</string>
     <string name="food_toobar_title">Food list</string>
     <string name="food_recipe">Food Recipe</string>
 </resources>

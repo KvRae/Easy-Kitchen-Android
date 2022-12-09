@@ -49,7 +49,7 @@
         android:paddingHorizontal="26dp"
         >
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/upper"
+            android:id="@+id/recipeHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="37dp"
@@ -67,24 +67,24 @@
                 >
 
                 <TextView
-                    android:id="@+id/recetteTitre"
+                    android:id="@+id/foodRecipeName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/ojja"
                     android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@id/recetteType"
+                    app:layout_constraintBottom_toTopOf="@id/foodRecipeCategory"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/recetteType"
+                    android:id="@+id/foodRecipeCategory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="@string/reccete_type"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/recetteTitre"
+                    app:layout_constraintTop_toBottomOf="@id/foodRecipeName"
 
                     />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -151,8 +151,8 @@
             android:padding="28dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/upper"
-            app:layout_constraintBottom_toTopOf="@id/ingredients"
+            app:layout_constraintTop_toBottomOf="@+id/recipeHeader"
+            app:layout_constraintBottom_toTopOf="@id/foodRecipeIngredients"
             android:clipToPadding="false"
             >
 
@@ -261,47 +261,47 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/ingredients"
+            android:id="@+id/foodRecipeIngredients"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" 
             app:layout_constraintTop_toBottomOf="@id/info"
             app:layout_constraintStart_toStartOf="parent"
             >
         <TextView
-            android:id="@+id/ingredientTxt"
+            android:id="@+id/ingredientHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/ingredients"
             android:textSize="14sp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/ingredientView"
+            app:layout_constraintBottom_toTopOf="@id/ingredientListView"
             />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/ingredientView"
+                android:id="@+id/ingredientListView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 tools:listitem="@layout/list_ingredient"
-                app:layout_constraintTop_toBottomOf="@id/ingredientTxt"
+                app:layout_constraintTop_toBottomOf="@id/ingredientHeader"
 
                 />
             <TextView
-                android:id="@+id/instructionTxt"
+                android:id="@+id/foodRecipeInstructionHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/instructions"
                 android:textSize="14sp"
                 android:layout_marginTop="10dp"
 
-                app:layout_constraintTop_toBottomOf="@id/ingredientView"
+                app:layout_constraintTop_toBottomOf="@id/ingredientListView"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/instruction"
+                app:layout_constraintBottom_toTopOf="@id/foodRecipeInstructions"
 
                 />
             <TextView
-                android:id="@+id/instruction"
+                android:id="@+id/foodRecipeInstructions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/longLorem"
@@ -309,7 +309,7 @@
                 android:layout_marginTop="10dp"
 
                 android:lineSpacingExtra="4dp"
-                app:layout_constraintTop_toBottomOf="@id/instructionTxt"
+                app:layout_constraintTop_toBottomOf="@id/foodRecipeInstructionHeader"
                 app:layout_constraintStart_toStartOf="parent"
                 />
 

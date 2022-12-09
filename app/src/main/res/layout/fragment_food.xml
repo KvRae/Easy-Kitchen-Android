@@ -10,7 +10,7 @@
         android:id="@+id/foodBar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        app:title="Recommended Food"
+        app:title="@string/food_toobar_title"
         app:titleTextColor="@color/theWhite"
         app:menu="@menu/food_menu"
         app:collapseIcon="@drawable/ic_baseline_shopping_basket_24"

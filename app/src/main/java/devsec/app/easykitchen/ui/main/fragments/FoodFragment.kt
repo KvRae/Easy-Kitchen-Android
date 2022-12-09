@@ -16,6 +16,7 @@ import devsec.app.easykitchen.api.RetrofitInstance
 import devsec.app.easykitchen.ui.main.adapter.FoodAdapter
 import devsec.app.easykitchen.data.models.Food
 import devsec.app.easykitchen.ui.main.view.FavoriteFoodActivity
+import devsec.app.easykitchen.ui.main.view.FoodRecipeActivity
 import devsec.app.easykitchen.ui.main.view.IngredientsActivity
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,6 +26,7 @@ class FoodFragment : Fragment() {
     private lateinit var adapter : FoodAdapter
     private lateinit var recyclerView : RecyclerView
     private lateinit var foodArrayList: ArrayList<Food>
+//    val loadingDialog = LoadingDialog(requireActivity())
 
 
     override fun onCreateView(
@@ -43,6 +45,15 @@ class FoodFragment : Fragment() {
         recyclerView.layoutManager = layoutManager
         adapter = FoodAdapter(foodArrayList)
         recyclerView.adapter = adapter
+
+
+        adapter.setOnItemClickListener(object : FoodAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                val intent = Intent(context, FoodRecipeActivity::class.java)
+                intent.putExtra("id", foodArrayList[position].id)
+                startActivity(intent)
+            }
+        })
 
         val toolbar = view.findViewById<Toolbar>(R.id.foodBar)
         toolbar.menu.findItem(R.id.ingredientsCart).setOnMenuItemClickListener {
@@ -64,8 +75,10 @@ class FoodFragment : Fragment() {
         call.enqueue(object : Callback<List<Food>> {
             override fun onResponse(call: Call<List<Food>>, response: Response<List<Food>>) {
                 if (response.isSuccessful) {
+//
                     foodArrayList.addAll(response.body()!!)
                     adapter.notifyDataSetChanged()
+//                    loadingDialog.dismissDialog()
                 }
             }
 

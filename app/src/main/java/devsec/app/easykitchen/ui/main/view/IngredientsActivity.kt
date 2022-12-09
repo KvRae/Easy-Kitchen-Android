@@ -2,6 +2,7 @@ package devsec.app.easykitchen.ui.main.view
 
 import android.os.Bundle
 import android.view.Menu
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
@@ -24,6 +25,7 @@ class IngredientsActivity : AppCompatActivity() {
     lateinit var recyclerView: RecyclerView
     private lateinit var ingredientsArrayList: ArrayList<String>
     private lateinit var searchArrayList: ArrayList<String>
+     var igredientCart: List<String> = ArrayList()
 
 
 
@@ -38,6 +40,14 @@ class IngredientsActivity : AppCompatActivity() {
         searchArrayList = ingredientsArrayList
         adapter = IngredientsAdapter(searchArrayList)
         recyclerView.adapter = adapter
+        adapter.setOnItemClickListener(object : IngredientsAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                val item = searchArrayList[position]
+                Toast.makeText(this@IngredientsActivity, item, Toast.LENGTH_SHORT).show()
+                igredientCart = igredientCart + item
+
+            }
+        })
 
         val toolbar = findViewById<Toolbar>(R.id.ingredientsToolbar)
         toolbar.setNavigationOnClickListener {

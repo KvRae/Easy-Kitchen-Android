@@ -11,15 +11,35 @@ import devsec.app.easykitchen.R
 import devsec.app.easykitchen.data.models.Food
 
 class FoodAdapter(private val foodList: List<Food>): RecyclerView.Adapter<FoodAdapter.FoodViewHolder>() {
-    inner class FoodViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
+
+
+    private lateinit var mListener: OnItemClickListener
+
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
+
+    inner class FoodViewHolder(itemView: View,listener:OnItemClickListener):RecyclerView.ViewHolder(itemView){
         val food_name = itemView.findViewById<TextView>(R.id.foodName)
         val food_image = itemView.findViewById<ImageView>(R.id.foodImage)
-//        val food_time = itemView.findViewById<TextView>(R.id.foodTime)
+//      val food_time = itemView.findViewById<TextView>(R.id.foodTime)
+
+        init {
+            itemView.setOnClickListener {
+                if (adapterPosition != RecyclerView.NO_POSITION) {
+                    mListener.onItemClick(adapterPosition)
+                }
+            }
+        }
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        mListener = listener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.food_item, parent, false)
-        return FoodViewHolder(view)
+        return FoodViewHolder(view,mListener)
     }
 
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {

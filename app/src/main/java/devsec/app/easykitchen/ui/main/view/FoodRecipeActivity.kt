@@ -87,7 +87,6 @@ class FoodRecipeActivity : AppCompatActivity() {
                     if(!food?.strIngredient19.isNullOrEmpty()) { ingredients.add(food?.strIngredient19.toString()) }
                     if(!food?.strIngredient20.isNullOrEmpty()) { ingredients.add(food?.strIngredient20.toString()) }
                     ingredientsList.addAll(ingredients)
-
                     adapter = IngredientsTextAdapter(ingredientsList)
                     recyclerView.adapter = adapter
                 }

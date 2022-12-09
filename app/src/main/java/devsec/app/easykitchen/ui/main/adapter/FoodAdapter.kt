@@ -22,7 +22,7 @@ class FoodAdapter(private val foodList: List<Food>): RecyclerView.Adapter<FoodAd
     inner class FoodViewHolder(itemView: View,listener:OnItemClickListener):RecyclerView.ViewHolder(itemView){
         val food_name = itemView.findViewById<TextView>(R.id.foodName)
         val food_image = itemView.findViewById<ImageView>(R.id.foodImage)
-//      val food_time = itemView.findViewById<TextView>(R.id.foodTime)
+        val food_area = itemView.findViewById<TextView>(R.id.foodArea)
 
         init {
             itemView.setOnClickListener {
@@ -45,6 +45,7 @@ class FoodAdapter(private val foodList: List<Food>): RecyclerView.Adapter<FoodAd
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
         val food = foodList[position]
         holder.food_name.text = food.name
+        holder.food_area.text = food.area
         Picasso.get().load(food.image).into(holder.food_image)
     }
 

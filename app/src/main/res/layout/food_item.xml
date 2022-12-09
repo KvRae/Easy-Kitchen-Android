@@ -35,11 +35,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/foodTime"
+            android:id="@+id/foodArea"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="52dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginBottom="18dp"
             android:text="20min"
             android:textColor="@color/theWhite"
             android:textSize="16sp"
@@ -55,7 +55,7 @@
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/ic_baseline_access_time_24" />
+            app:srcCompat="@drawable/ic_baseline_place_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -90,8 +90,6 @@ class FoodRecipeActivity : AppCompatActivity() {
 
                     adapter = IngredientsTextAdapter(ingredientsList)
                     recyclerView.adapter = adapter
-                    Log.d("TAG", "onResponse: $ingredientsList")
-                    Log.d("List", "onResponse: $ingredients")
                 }
             }
 

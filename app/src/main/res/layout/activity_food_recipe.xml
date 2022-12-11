@@ -80,7 +80,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/ojja"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
                             app:layout_constraintBottom_toTopOf="@id/foodRecipeCategory"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -91,7 +91,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:text="@string/reccete_type"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/foodRecipeName"
 
@@ -116,15 +116,33 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
+                    <TextView
+                        android:id="@+id/ingredientHeader2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="1dp"
+                        android:text="@string/measures"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/ingredientListView"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/ingredientHeader"
-                        tools:listitem="@layout/list_ingredient"
+                        tools:listitem="@layout/list_ingredient" />
 
-                        />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/mesureListView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ingredientHeader"
+                        tools:listitem="@layout/list_mesures" />
 
                     <TextView
                         android:id="@+id/foodRecipeInstructionHeader"
@@ -132,7 +150,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="@string/instructions"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
 
                         app:layout_constraintBottom_toTopOf="@id/foodRecipeInstructions"
                         app:layout_constraintStart_toStartOf="parent"
@@ -148,7 +166,7 @@
                         android:lineSpacingExtra="4dp"
                         android:text="@string/longLorem"
 
-                        android:textSize="10sp"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/foodRecipeInstructionHeader" />
 

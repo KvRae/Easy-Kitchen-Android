@@ -19,11 +19,13 @@ import devsec.app.easykitchen.data.models.Food
 import devsec.app.easykitchen.ui.main.view.FavoriteFoodActivity
 import devsec.app.easykitchen.ui.main.view.FoodRecipeActivity
 import devsec.app.easykitchen.ui.main.view.IngredientsActivity
+import devsec.app.easykitchen.utils.LoadingDialog
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class FoodFragment : Fragment() {
+    private lateinit var loadingDialog: LoadingDialog
     private lateinit var adapter : FoodAdapter
     private lateinit var recyclerView : RecyclerView
     private lateinit var foodArrayList: ArrayList<Food>
@@ -43,6 +45,7 @@ class FoodFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        loadingDialog = LoadingDialog(requireActivity())
 
         swiperRefreshLayout = view.findViewById(R.id.foodSwipeRefresh)
         initFoodList()
@@ -80,6 +83,7 @@ class FoodFragment : Fragment() {
     }
 
     private fun initFoodList(){
+        loadingDialog.startLoadingDialog()
         foodArrayList = ArrayList()
         val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
         val call = retIn.getFoodsList()
@@ -89,12 +93,13 @@ class FoodFragment : Fragment() {
 //
                     foodArrayList.addAll(response.body()!!)
                     adapter.notifyDataSetChanged()
-//                    loadingDialog.dismissDialog()
+                    loadingDialog.dismissDialog()
                 }
             }
 
             override fun onFailure(call: Call<List<Food>>, t: Throwable) {
                 Log.d("Error", t.message.toString())
+                loadingDialog.dismissDialog()
             }
         })
 

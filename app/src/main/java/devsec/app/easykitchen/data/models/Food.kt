@@ -48,6 +48,48 @@ data class Food(    @SerializedName("_id")
                     val strIngredient8: String,
                     @SerializedName("strIngredient9")
                     val strIngredient9: String,
+                    @SerializedName("strMeasure1")
+                    val strMeasure1: String,
+                    @SerializedName("strMeasure2")
+                    val strMeasure2: String,
+                    @SerializedName("strMeasure3")
+                    val strMeasure3: String,
+                    @SerializedName("strMeasure4")
+                    val strMeasure4: String,
+                    @SerializedName("strMeasure5")
+                    val strMeasure5: String,
+                    @SerializedName("strMeasure6")
+                    val strMeasure6: String,
+                    @SerializedName("strMeasure7")
+                    val strMeasure7: String,
+                    @SerializedName("strMeasure8")
+                    val strMeasure8: String,
+                    @SerializedName("strMeasure9")
+                    val strMeasure9: String,
+                    @SerializedName("strMeasure10")
+                    val strMeasure10: String,
+                    @SerializedName("strMeasure11")
+                    val strMeasure11: String,
+                    @SerializedName("strMeasure12")
+                    val strMeasure12: String,
+                    @SerializedName("strMeasure13")
+                    val strMeasure13: String,
+                    @SerializedName("strMeasure14")
+                    val strMeasure14: String,
+                    @SerializedName("strMeasure15")
+                    val strMeasure15: String,
+                    @SerializedName("strMeasure16")
+                    val strMeasure16: String,
+                    @SerializedName("strMeasure17")
+                    val strMeasure17: String,
+                    @SerializedName("strMeasure18")
+                    val strMeasure18: String,
+                    @SerializedName("strMeasure19")
+                    val strMeasure19: String,
+                    @SerializedName("strMeasure20")
+                    val strMeasure20: String,
+
+
                     @SerializedName("strInstructions")
                     val instructions: String,
                     @SerializedName("strMeal")

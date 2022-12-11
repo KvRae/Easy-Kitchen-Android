@@ -64,5 +64,6 @@
     <string name="upvote_number">50</string>
     <string name="comment">Commentaire</string>
     <string name="commentTitle">Laissez un Commentaire</string>
+    <string name="measures">Measures</string>
 
 </resources>

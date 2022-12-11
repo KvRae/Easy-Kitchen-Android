@@ -161,15 +161,12 @@ class HomeFragment : Fragment() {
         call.enqueue((object : Callback<List<Food>> {
             override fun onResponse(call: Call<List<Food>>, response: Response<List<Food>>) {
                 if (response.isSuccessful) {
-                    val foods = response.body()
-                    val count = 0
-                    for (food in foods!!) {
+                    var foods = response.body()
+                    foods = listOf(foods!!.random(), foods.random(), foods.random(),foods.random(), foods.random())
+                    for (food in foods) {
                         foodList.add(food)
-                        count + 1
-                        if (count > 10) {
-                            break
-                        }
                     }
+
                 }
                 expertRecipesAdapter.notifyDataSetChanged()
             }

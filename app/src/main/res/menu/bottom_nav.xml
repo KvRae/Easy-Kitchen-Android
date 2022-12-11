@@ -9,7 +9,7 @@
         android:id="@+id/food"
         android:icon="@drawable/food_icon"/>
 
-    <item android:title="Space"
+    <item android:title="Longe"
         android:id="@+id/blog"
         android:icon="@drawable/blog_icon"/>
         />

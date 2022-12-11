@@ -152,9 +152,6 @@ class RecetteFormActivity : AppCompatActivity() {
                 Toast.makeText(this@RecetteFormActivity,"Failure Added",Toast.LENGTH_SHORT).show()            }
             })
 
-
-
-
     }
 
 

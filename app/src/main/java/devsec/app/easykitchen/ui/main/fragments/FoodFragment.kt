@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import devsec.app.easykitchen.R
 import devsec.app.easykitchen.api.RestApiService
 import devsec.app.easykitchen.api.RetrofitInstance
@@ -26,7 +27,10 @@ class FoodFragment : Fragment() {
     private lateinit var adapter : FoodAdapter
     private lateinit var recyclerView : RecyclerView
     private lateinit var foodArrayList: ArrayList<Food>
+
+
 //    val loadingDialog = LoadingDialog(requireActivity())
+    private lateinit var swiperRefreshLayout : SwipeRefreshLayout
 
 
     override fun onCreateView(
@@ -39,12 +43,19 @@ class FoodFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        swiperRefreshLayout = view.findViewById(R.id.foodSwipeRefresh)
         initFoodList()
         val layoutManager = LinearLayoutManager(context)
         recyclerView = view.findViewById(R.id.foodListView)
         recyclerView.layoutManager = layoutManager
         adapter = FoodAdapter(foodArrayList)
         recyclerView.adapter = adapter
+
+        swiperRefreshLayout.setOnRefreshListener {
+            initFoodList()
+            this.swiperRefreshLayout.isRefreshing = false
+        }
 
 
         adapter.setOnItemClickListener(object : FoodAdapter.OnItemClickListener {

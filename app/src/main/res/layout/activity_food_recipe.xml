@@ -25,14 +25,14 @@
         android:id="@+id/recipeFoodImage"
         android:layout_width="match_parent"
         android:layout_height="250dp"
+        android:contentDescription=""
         android:paddingTop="50dp"
         android:scaleX="2.1"
         android:scaleY="2.1"
         android:src="@drawable/ojja"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/foodRecipeToolbar"
-        android:contentDescription="" />
+        app:layout_constraintTop_toBottomOf="@+id/foodRecipeToolbar" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/foodRecipeDescription"

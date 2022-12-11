@@ -97,4 +97,5 @@ class FoodRecipeActivity : AppCompatActivity() {
             }
         })
     }
+
 }

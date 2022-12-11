@@ -21,6 +21,7 @@ import devsec.app.easykitchen.ui.main.adapter.ExpertRecipesAdapter
 import devsec.app.easykitchen.ui.main.adapter.RecommendedFoodAdapter
 import devsec.app.easykitchen.data.models.RecettesInQueue
 import devsec.app.easykitchen.ui.main.adapter.FoodAdapter
+import devsec.app.easykitchen.ui.main.view.CategoryRecipesFilterActivity
 import devsec.app.easykitchen.ui.main.view.FoodRecipeActivity
 import retrofit2.Call
 import retrofit2.Callback
@@ -72,6 +73,13 @@ class HomeFragment : Fragment() {
         categoryRecyclerView.setHasFixedSize(true)
         categoryAdapter = CategoryAdapter(categoryList)
         categoryRecyclerView.adapter = categoryAdapter
+        categoryAdapter.setOnItemClickListener(object : CategoryAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                val intent = Intent(context, CategoryRecipesFilterActivity::class.java)
+                intent.putExtra("category", categoryList[position].name)
+                startActivity(intent)
+            }
+        })
 
         //*********** Expert Recipes Recycler View Implementation ***********//
         initFoodList()

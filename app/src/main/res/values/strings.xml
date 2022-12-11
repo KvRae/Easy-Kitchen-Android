@@ -65,5 +65,6 @@
     <string name="comment">Commentaire</string>
     <string name="commentTitle">Laissez un Commentaire</string>
     <string name="measures">Measures</string>
+    <string name="meals_category_filter">Meals by category</string>
 
 </resources>

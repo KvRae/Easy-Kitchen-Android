@@ -11,8 +11,6 @@ import devsec.app.easykitchen.R
 import devsec.app.easykitchen.data.models.Food
 
 class FoodAdapter(private val foodList: List<Food>): RecyclerView.Adapter<FoodAdapter.FoodViewHolder>() {
-
-
     private lateinit var mListener: OnItemClickListener
 
     interface OnItemClickListener {

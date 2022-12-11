@@ -11,16 +11,32 @@ import devsec.app.easykitchen.R
 import devsec.app.easykitchen.data.models.Category
 
 class CategoryAdapter(private val categoriesList: List<Category>):RecyclerView.Adapter<CategoryAdapter.CategorieViewHolder>() {
-    class CategorieViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
+    private lateinit var mListener: OnItemClickListener
+
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
+
+    inner class CategorieViewHolder(itemView: View, mListener:OnItemClickListener):RecyclerView.ViewHolder(itemView) {
         val category_name = itemView.findViewById<TextView>(R.id.category_name)
         val category_image = itemView.findViewById<ImageView>(R.id.category_image)
 
+        init {
+            itemView.setOnClickListener {
+                if (adapterPosition != RecyclerView.NO_POSITION) {
+                    mListener.onItemClick(adapterPosition)
+                }
+            }
+        }
+    }
 
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        mListener = listener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategorieViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.categorie_row,parent,false);
-        return CategorieViewHolder(view)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.categorie_row,parent,false)
+        return CategorieViewHolder(view,mListener)
     }
 
     override fun onBindViewHolder(holder: CategorieViewHolder, position: Int) {
@@ -32,5 +48,8 @@ class CategoryAdapter(private val categoriesList: List<Category>):RecyclerView.A
     override fun getItemCount(): Int {
         return categoriesList.size
     }
+
+
+
 
 }

@@ -6,14 +6,6 @@ data class RecettesInQueue(
     var recettes: ArrayList<Recette>
 
 ){
-//    operator fun get(position: Int): Any {
-//        val recettesList:ArrayList<Recette>
-//        for (item in recettes){
-//
-//            recettesList.add()
-//        }
-//    }
-
     data  class Recette (
     @SerializedName("_id")
     @Expose

@@ -61,4 +61,8 @@
     <string name="add_ingredients">Add ingredients</string>
     <string name="food_toobar_title">Food list</string>
     <string name="food_recipe">Food Recipe</string>
+    <string name="upvote_number">50</string>
+    <string name="comment">Commentaire</string>
+    <string name="commentTitle">Laissez un Commentaire</string>
+
 </resources>

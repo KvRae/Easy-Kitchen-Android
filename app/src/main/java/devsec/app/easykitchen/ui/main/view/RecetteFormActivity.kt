@@ -146,7 +146,9 @@ class RecetteFormActivity : AppCompatActivity() {
         val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
         retIn.postImage(image).enqueue(object : Callback<ResponseBody>{
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                Toast.makeText(this@RecetteFormActivity,"Successfully Added",Toast.LENGTH_SHORT).show()            }
+                Toast.makeText(this@RecetteFormActivity,"Successfully Added",Toast.LENGTH_SHORT).show()
+                Log.d("TEST",response.body().toString())
+            }
 
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 Toast.makeText(this@RecetteFormActivity,"Failure Added",Toast.LENGTH_SHORT).show()            }
@@ -179,6 +181,7 @@ class RecetteFormActivity : AppCompatActivity() {
 //            Log.d("IMAGE", response.filename)
 //        }
 //    }
+
     private fun checkDrop(a:String,b:ArrayList<String>):Boolean
     {
         var found = false
@@ -279,23 +282,6 @@ class RecetteFormActivity : AppCompatActivity() {
 
         })
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

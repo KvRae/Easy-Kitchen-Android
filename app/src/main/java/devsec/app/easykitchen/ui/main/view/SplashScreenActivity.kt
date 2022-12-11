@@ -24,7 +24,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
         handler = Handler()
 
-        val activity: Activity = GuideActivity()
+        val activity: Activity = MainMenuActivity()
 
         handler.postDelayed({
             val intent = Intent(this, activity::class.java)

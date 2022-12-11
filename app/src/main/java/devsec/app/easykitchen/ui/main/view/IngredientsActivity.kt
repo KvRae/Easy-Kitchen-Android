@@ -65,6 +65,7 @@ class IngredientsActivity : AppCompatActivity() {
 
                 if (igredientCart.contains(item)) {
                     igredientCart = igredientCart.minus(item)
+
                     itemView!!.itemView.findViewById<ImageButton>(R.id.ingredientItemIcon)
                         .setImageResource(R.drawable.ic_baseline_add_24)
                     itemView!!.itemView.findViewById<TextView>(R.id.ingredient_name)
@@ -72,14 +73,13 @@ class IngredientsActivity : AppCompatActivity() {
 
                 } else {
                     igredientCart = igredientCart.plus(item)
+
                     itemView!!.itemView.findViewById<ImageButton>(R.id.ingredientItemIcon)
                         .setImageResource(R.drawable.ic_baseline_remove_24)
                     itemView!!.itemView.findViewById<TextView>(R.id.ingredient_name)
                         .setTextColor(resources.getColor(androidx.appcompat.R.color.material_grey_300))
 
-
                 }
-                Log.d("Cart", igredientCart.toString())
                 badge.number = igredientCart.size
 
 
@@ -122,19 +122,22 @@ class IngredientsActivity : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                searchArrayList = ArrayList()
-                if (newText!!.isNotEmpty()) {
+                val searchText = newText!!.lowercase(Locale.getDefault())
+                searchArrayList.clear()
+                if (searchText.isNotEmpty()) {
                     ingredientsArrayList.forEach {
-                        if (it.toLowerCase(Locale.ROOT).contains(newText.toLowerCase(Locale.ROOT))) {
+                        if (it.lowercase(Locale.getDefault()).contains(searchText)) {
                             searchArrayList.add(it)
                         }
                     }
                     recyclerView.adapter!!.notifyDataSetChanged()
                 } else {
-                    searchArrayList = ingredientsArrayList
+                    searchArrayList.clear()
+                    searchArrayList.addAll(ingredientsArrayList)
                     recyclerView.adapter!!.notifyDataSetChanged()
                 }
-                return true
+                this@IngredientsActivity.searchArrayList =ingredientsArrayList
+                return false
             }
         })
         return super.onCreateOptionsMenu(menu)
@@ -168,19 +171,6 @@ class IngredientsActivity : AppCompatActivity() {
         ingredientsArrayList = ArrayList()
         searchArrayList = ArrayList()
         getIngredients()
-    }
-
-    private fun initCartBadge(){
-//         cartButton = findViewById<ImageButton>(R.id.cartButton)
-//        cartBadge = cartButton.getOrCreateBadge()
-//        cartBadge.isVisible = false
-//        cartBadge.number = 0
-
-    }
-
-    private fun updateCartBadge(){
-        badge.isVisible = true
-        badge.number = igredientCart.size
 
     }
 }

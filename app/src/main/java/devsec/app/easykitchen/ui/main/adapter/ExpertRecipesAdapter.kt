@@ -5,8 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import devsec.app.easykitchen.R
+import devsec.app.easykitchen.data.models.Food
 
-class ExpertAdapter:RecyclerView.Adapter<ExpertAdapter.ExpertViewHolder>() {
+class ExpertRecipesAdapter(private val expertRecipesList: List<Food>):RecyclerView.Adapter<ExpertRecipesAdapter.ExpertViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpertViewHolder {

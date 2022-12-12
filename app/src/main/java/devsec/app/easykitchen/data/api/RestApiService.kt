@@ -48,8 +48,8 @@ interface RestApiService {
 
 
     @Headers("Content-Type:application/json")
-    @GET("recettes/637b87f3ecd1532b6052cbee")
-    fun getRecetteById(): Call<RecettesInQueue.Recette>
+    @GET("recettes/{id}")
+    fun getRecetteById(@Path("id") id: String): Call<RecettesInQueue.Recette>
 
     @Headers("Content-Type:application/json")
     @POST("recettes")

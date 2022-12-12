@@ -31,11 +31,10 @@ data class RecettesInQueue(
     @SerializedName("difficulty")
     @Expose
     val  difficulty :  String,
+    @SerializedName("comments")
+    @Expose
+    val  comments: ArrayList<Comment>,
 
 
-)}
-//{
-//    constructor(name: String, description: String) : this("", name, description,"", false,0,0,"")
-//
-//
-//}
+
+    )}

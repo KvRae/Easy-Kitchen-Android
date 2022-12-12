@@ -99,10 +99,8 @@ class IngredientsActivity : AppCompatActivity() {
         badge.isVisible = true
         badge.number = igredientCart.size
         toolbar.setNavigationOnClickListener {
-            finish()
+            onBackPressed()
         }
-
-
 
     }
 

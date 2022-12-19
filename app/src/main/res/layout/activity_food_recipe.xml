@@ -10,16 +10,16 @@
         android:id="@+id/foodRecipeToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="@string/food_recipe"
-        app:titleTextColor="@color/theWhite"
-        app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
-        android:background="?attr/colorPrimary"
+        android:background="#08171717"
         android:elevation="20dp"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+        app:titleTextColor="@color/theWhite" />
 
     <ImageView
         android:id="@+id/recipeFoodImage"
@@ -27,12 +27,13 @@
         android:layout_height="250dp"
         android:contentDescription=""
         android:paddingTop="50dp"
+        android:scaleType="centerCrop"
         android:scaleX="2.1"
         android:scaleY="2.1"
         android:src="@drawable/ojja"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/foodRecipeToolbar" />
+        app:layout_constraintTop_toTopOf="@+id/foodRecipeToolbar" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/foodRecipeDescription"
@@ -116,16 +117,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/ingredientHeader2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="1dp"
-                        android:text="@string/measures"
-                        android:textSize="14sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/ingredientListView"
                         android:layout_width="wrap_content"
@@ -139,8 +130,9 @@
                         android:id="@+id/mesureListView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
                         android:layout_marginTop="10dp"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ingredientListView"
                         app:layout_constraintTop_toBottomOf="@id/ingredientHeader"
                         tools:listitem="@layout/list_mesures" />
 

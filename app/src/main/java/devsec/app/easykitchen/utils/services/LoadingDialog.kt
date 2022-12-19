@@ -1,4 +1,4 @@
-package devsec.app.easykitchen.utils
+package devsec.app.easykitchen.utils.services
 
 import android.app.Activity
 import android.app.AlertDialog

@@ -9,6 +9,7 @@ import android.os.Handler
 import android.widget.ImageView
 import devsec.app.easykitchen.R
 
+@Suppress("DEPRECATION")
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
     private lateinit var handler: Handler
@@ -23,11 +24,8 @@ class SplashScreenActivity : AppCompatActivity() {
         }.start()
 
         handler = Handler()
-
-        val activity: Activity = MainMenuActivity()
-
         handler.postDelayed({
-            val intent = Intent(this, activity::class.java)
+            val intent = Intent(this, GuideActivity::class.java)
             startActivity(intent)
             finish()
         }, 3000)

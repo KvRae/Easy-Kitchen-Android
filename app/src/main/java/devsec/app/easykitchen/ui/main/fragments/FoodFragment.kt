@@ -19,7 +19,8 @@ import devsec.app.easykitchen.data.models.Food
 import devsec.app.easykitchen.ui.main.view.FavoriteFoodActivity
 import devsec.app.easykitchen.ui.main.view.FoodRecipeActivity
 import devsec.app.easykitchen.ui.main.view.IngredientsActivity
-import devsec.app.easykitchen.utils.LoadingDialog
+import devsec.app.easykitchen.utils.services.Cart
+import devsec.app.easykitchen.utils.services.LoadingDialog
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -47,6 +48,7 @@ class FoodFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         loadingDialog = LoadingDialog(requireActivity())
 
+
         swiperRefreshLayout = view.findViewById(R.id.foodSwipeRefresh)
         initFoodList()
         val layoutManager = LinearLayoutManager(context)
@@ -54,6 +56,9 @@ class FoodFragment : Fragment() {
         recyclerView.layoutManager = layoutManager
         adapter = FoodAdapter(foodArrayList)
         recyclerView.adapter = adapter
+
+
+
 
         swiperRefreshLayout.setOnRefreshListener {
             initFoodList()
@@ -80,20 +85,28 @@ class FoodFragment : Fragment() {
             startActivity(intent)
             true
         }
+        toolbar.menu.findItem(R.id.favorite_food).setOnMenuItemClickListener {
+            Log.d("Cart", Cart.cart.toString())
+            true
+        }
     }
 
     private fun initFoodList(){
         loadingDialog.startLoadingDialog()
         foodArrayList = ArrayList()
+        val ingredients = ArrayList<String>()
+        foodArrayList.clear()
         val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
         val call = retIn.getFoodsList()
         call.enqueue(object : Callback<List<Food>> {
             override fun onResponse(call: Call<List<Food>>, response: Response<List<Food>>) {
                 if (response.isSuccessful) {
-//
                     foodArrayList.addAll(response.body()!!)
                     adapter.notifyDataSetChanged()
                     loadingDialog.dismissDialog()
+                    Log.d("FoodList", foodArrayList.toString())
+                    Log.d("Cart", Cart.cart.toString())
+                    Log.d("Ingredients", ingredients.toString())
                 }
             }
 
@@ -104,5 +117,24 @@ class FoodFragment : Fragment() {
         })
 
     }
+
+//    private fun filterFoodListbyIngredients(){
+//        var ingredientsCart = Cart.cart
+//        var filteredFoodList = ArrayList<Food>()
+//        for (food in foodArrayList){
+//            var foodIngredients = food.ingredients
+//            var flag = true
+//            for (ingredient in ingredientsCart){
+//                if (!foodIngredients.contains(ingredient)){
+//                    flag = false
+//                    break
+//                }
+//            }
+//            if (flag){
+//                filteredFoodList.add(food)
+//            }
+//        }
+//
+//    }
 
 }

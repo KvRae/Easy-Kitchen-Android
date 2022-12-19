@@ -6,10 +6,20 @@ import android.os.Bundle
 import android.widget.TextView
 import devsec.app.easykitchen.R
 import devsec.app.easykitchen.ui.main.fragments.GuidePageOneFragment
+import devsec.app.easykitchen.utils.session.SessionPref
 
 
 class GuideActivity : AppCompatActivity() {
+    lateinit var sessionPref: SessionPref
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        sessionPref = SessionPref(this)
+        if (sessionPref.isLoggedIn()) {
+            val intent = Intent(this, MainMenuActivity::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            finish()
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_guide)
         val fragment = GuidePageOneFragment()

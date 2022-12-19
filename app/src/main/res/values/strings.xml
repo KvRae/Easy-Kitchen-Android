@@ -32,7 +32,7 @@
     <string name="rechercheTxt">Recherche</string>
     <string name="ojja">Ojja aux oeufs</string>
     <string name="reccete_type">Recette généré</string>
-    <string name="ingredients">Ingredients</string>
+    <string name="ingredients">Ingredients and mesures</string>
     <string name="instructions">Instructions</string>
     <string name="longLorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc diam augue, vestibulum bibendum faucibus id, imperdiet id diam. Nullam ex lorem, placerat in sem vel, ullamcorper consectetur lacus. Curabitur sodales urna nibh, sit amet iaculis ante dapibus vitae. Suspendisse et tortor at sem maximus consectetur a id nunc.</string>
     <string name="ajoutRecette">Ajouter une recette</string>
@@ -66,5 +66,9 @@
     <string name="commentTitle">Laissez un Commentaire</string>
     <string name="measures">Measures</string>
     <string name="meals_category_filter">Meals by category</string>
+    <string name="profileimage">profileImage</string>
+    <string name="greetings">Greetings</string>
+    <string name="rate_our_app">Rate Our App</string>
+    <string name="send_feedback">send feedback</string>
 
 </resources>

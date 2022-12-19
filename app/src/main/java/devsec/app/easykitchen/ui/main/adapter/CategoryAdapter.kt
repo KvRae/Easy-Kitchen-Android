@@ -18,7 +18,7 @@ class CategoryAdapter(private val categoriesList: List<Category>):RecyclerView.A
     }
 
     inner class CategorieViewHolder(itemView: View, mListener:OnItemClickListener):RecyclerView.ViewHolder(itemView) {
-        val category_name = itemView.findViewById<TextView>(R.id.category_name)
+        val category_name = itemView.findViewById<TextView>(R.id.areaName)
         val category_image = itemView.findViewById<ImageView>(R.id.category_image)
 
         init {

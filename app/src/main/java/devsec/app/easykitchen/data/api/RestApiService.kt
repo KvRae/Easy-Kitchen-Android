@@ -78,6 +78,9 @@ interface RestApiService {
 
     @GET("food/{id}")
     fun getFoodById(@Path("id") id: String): Call<Food>
+    /*********************** Area ***********************/
+    @GET("areas")
+    fun getAreasList(): Call<List<Area>>
 
 
 

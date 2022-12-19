@@ -3,26 +3,23 @@ package devsec.app.easykitchen.ui.main.view
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import android.util.Log.DEBUG
 import android.view.Menu
 import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.badge.BadgeDrawable
-import com.google.android.material.badge.BadgeUtils
 import com.google.android.material.badge.BadgeUtils.*
 import devsec.app.easykitchen.R
 import devsec.app.easykitchen.api.RestApiService
 import devsec.app.easykitchen.api.RetrofitInstance
 import devsec.app.easykitchen.data.models.Ingredients
-import devsec.app.easykitchen.databinding.ActivityIngredientsBinding
 import devsec.app.easykitchen.ui.main.adapter.IngredientsAdapter
+import devsec.app.easykitchen.utils.services.Cart
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -81,6 +78,8 @@ class IngredientsActivity : AppCompatActivity() {
 
                 }
                 badge.number = igredientCart.size
+                Cart.cart = igredientCart
+                Log.d("Cart", Cart.cart.toString())
 
 
 
@@ -94,10 +93,11 @@ class IngredientsActivity : AppCompatActivity() {
 
         //********************Badge*************************//
 
-        val cartItem = toolbar.menu.findItem(R.id.ingredients_cart).itemId
+        toolbar.menu.findItem(R.id.ingredients_cart).itemId
         badge = BadgeDrawable.create(this)
         badge.isVisible = true
         badge.number = igredientCart.size
+
         toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
@@ -110,7 +110,20 @@ class IngredientsActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.ingredients_menu, menu)
         attachBadgeDrawable(badge ,toolbar, R.id.ingredients_cart)
 
-        val searchItem = menu?.findItem(R.id.ingredients_search)
+        val cartItem = menu!!.findItem(R.id.ingredients_cart)
+        cartItem.setOnMenuItemClickListener { item ->
+            AlertDialog.Builder(this)
+                .setTitle("Cart")
+                .setMessage(if(Cart.cart.isEmpty()) "Your cart is empty" else Cart.cart.toString())
+                .setPositiveButton("OK") { dialog, which ->
+                    dialog.dismiss()
+                }
+                .show()
+            true
+
+        }
+
+        val searchItem = menu.findItem(R.id.ingredients_search)
         val searchView = searchItem?.actionView as SearchView
         searchView.queryHint = "Search for ingredients"
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -138,6 +151,8 @@ class IngredientsActivity : AppCompatActivity() {
                 return false
             }
         })
+
+
         return super.onCreateOptionsMenu(menu)
     }
 

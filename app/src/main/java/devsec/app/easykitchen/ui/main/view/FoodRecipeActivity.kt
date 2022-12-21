@@ -41,6 +41,7 @@ class FoodRecipeActivity : AppCompatActivity() {
         getRecipe(id, recipeImage, recipeCategory, recipeName, recipeInstructions)
 
         val layoutManager = LinearLayoutManager(this)
+
         recyclerView = findViewById(R.id.ingredientListView)
         recyclerView.layoutManager = layoutManager
 

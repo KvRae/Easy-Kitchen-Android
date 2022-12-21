@@ -124,6 +124,7 @@
                         app:layout_constraintVertical_bias="0.0" >
 
                         <TextView
+                            android:id="@+id/recetteLikes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/upvote_number"
@@ -342,8 +343,10 @@
                 android:layout_marginTop="10dp"
 
                 android:lineSpacingExtra="4dp"
+                android:layout_marginBottom="10dp"
                 app:layout_constraintTop_toBottomOf="@id/foodRecipeInstructions"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/commentInput"
                 />
 
 
@@ -408,7 +411,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/commentSession"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="500dp"
                 android:layout_marginTop="10dp"
                 tools:listitem="@layout/comment_list"
                 app:layout_goneMarginTop="10dp"

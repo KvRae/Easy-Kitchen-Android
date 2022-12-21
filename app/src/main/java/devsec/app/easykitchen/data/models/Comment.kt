@@ -5,12 +5,14 @@ import com.google.gson.annotations.SerializedName
 data class Comment (
     @SerializedName("_id")
     val id: String,
-    @SerializedName("text")
-    val text: String,
     @SerializedName("date")
     val date: String,
-    @SerializedName("recette")
-    val recette:RecettesInQueue.Recette,
-    @SerializedName("user")
-    val user: User
-)
+    @SerializedName("text")
+    val text: String,
+    @SerializedName("recetteId")
+    val recette:String,
+    @SerializedName("userId")
+    val user: String
+){
+    constructor(text:String,recette:String,user:String):this("","",text,recette,user)
+}

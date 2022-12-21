@@ -2,14 +2,11 @@ package devsec.app.easykitchen.data.models
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-data class RecettesInQueue(
-    var recettes: ArrayList<Recette>
 
-){
     data  class Recette (
     @SerializedName("_id")
     @Expose
-    val  _id :  String ,
+    val  id :  String ,
     @SerializedName("name")
     @Expose
     val  name :  String ,
@@ -31,10 +28,16 @@ data class RecettesInQueue(
     @SerializedName("difficulty")
     @Expose
     val  difficulty :  String,
+    @SerializedName("user")
+    val  user :  String,
     @SerializedName("comments")
-    @Expose
-    val  comments: ArrayList<Comment>,
+    val  comments :  ArrayList<String>,
+    @SerializedName("likes")
+    val  likes :  Number,
+    @SerializedName("dislikes")
+    val  dislikes :  Number,
+    @SerializedName("usersLiked")
+    val  usersLiked :  ArrayList<String>,
+    @SerializedName("usersDisliked")
+    val  usersDisliked :  ArrayList<String> )
 
-
-
-    )}

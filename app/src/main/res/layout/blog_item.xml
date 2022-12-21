@@ -71,24 +71,35 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <TextView
-                android:id="@+id/titre"
+                android:id="@+id/blog_titre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Ojja aux oeufs"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toTopOf="@+id/time"
+                app:layout_constraintBottom_toTopOf="@+id/blog_time"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
-                android:id="@+id/time"
+                android:id="@+id/blog_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="8sp"
-                android:text="20 min - 30 min"
+                android:text="20"
                 android:drawablePadding="5dp"
                 app:drawableStartCompat="@drawable/clock_icon"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titre" />
+                app:layout_constraintTop_toBottomOf="@+id/blog_titre" />
+
+            <TextView
+                android:id="@+id/minutes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:text="min"
+                android:textSize="8sp"
+                android:layout_marginStart="2dp"
+                app:layout_constraintStart_toEndOf="@+id/blog_time"
+                app:layout_constraintTop_toBottomOf="@+id/blog_titre" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

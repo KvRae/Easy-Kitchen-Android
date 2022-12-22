@@ -1,11 +1,13 @@
 package devsec.app.easykitchen.ui.main.view
 
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ContentUris
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.database.Cursor
 import android.net.Uri
 import android.os.Build
@@ -20,10 +22,11 @@ import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import devsec.app.easykitchen.R
 import devsec.app.easykitchen.api.RestApiService
 import devsec.app.easykitchen.api.RetrofitInstance
-import devsec.app.easykitchen.data.models.RecettesInQueue
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -32,6 +35,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.ByteArrayOutputStream
+import java.io.File
 
 
 class RecetteFormActivity : AppCompatActivity() {
@@ -48,15 +52,23 @@ class RecetteFormActivity : AppCompatActivity() {
     lateinit var difficultyDropDown: AutoCompleteTextView
     lateinit var listDifficulty: ArrayList<String>
     lateinit var path : String
+    private val IMAGE_PICK_CODE = 1
+    private val REQUEST_CODE = 420
 
-    private val contract = registerForActivityResult(ActivityResultContracts.GetContent()) {
-        imageUri = it!!
-        imgView.setImageURI(it)
-    }
+
+//    private val contract = registerForActivityResult(ActivityResultContracts.GetContent()) {
+//        imageUri = it!!
+//        imgView.setImageURI(it)
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recette_form)
+
+        val permission = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), REQUEST_CODE)
+        }
 
         difficultyDropDown = findViewById(R.id.difficultyDropDown)
 
@@ -90,7 +102,12 @@ class RecetteFormActivity : AppCompatActivity() {
         bioCheckBox = findViewById(R.id.bioCheckBox)
         difficultyDropDown = findViewById(R.id.difficultyDropDown)
 
-        addButton.setOnClickListener { startFileChooser() }
+        addButton.setOnClickListener {
+
+            val pickImageIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            startActivityForResult(pickImageIntent, IMAGE_PICK_CODE)
+
+        }
 
         submitButton.setOnClickListener {
 //            var bio = false
@@ -100,84 +117,59 @@ class RecetteFormActivity : AppCompatActivity() {
 //            if (validate(titreInput, descInput, dureeInput, personInput, difficultyDropDown)) {
 //                submit(titreInput.text.toString(), descInput.text.toString(),bio, Integer.parseInt(dureeInput.text.toString()), Integer.parseInt(personInput.text.toString()),difficultyDropDown.text.toString())
 //            }
-            uploadImage()
 
         }
     }
-    private fun startFileChooser() {
-        var i = Intent()
-        i.setType("image/*")
-        i.setAction(Intent.ACTION_GET_CONTENT)
-        startActivityForResult(Intent.createChooser(i,"choose Picture"),111)
-    }
 
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_CODE) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // permission was granted, do something with the file
+            } else {
+                // permission was denied, handle the error
+            }
+        }
+    }
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 111 && resultCode == Activity.RESULT_OK && data != null) {
+        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE) {
+            val imageUri = data?.data
 
-            imageUri = data.data!!
-            Log.d("TAG", imageUri.toString())
-            path = imageUri.toString().substring(imageUri.toString().lastIndexOf("%") + 3)
-            var bitmap = MediaStore.Images.Media.getBitmap(contentResolver, imageUri)
-            imgView.setImageBitmap(bitmap)
-        }
-    }
+         val image = prepareFilePart("myFile",imageUri!!)
 
-    @SuppressLint("Range")
-    private fun uploadImage(){
+            imgView.setImageURI(imageUri)
 
-        val fileName = contentResolver.query(imageUri, null, null, null, null).use {
-            if (it != null) {
-                it.moveToFirst()
-            }
-            it?.getString(it.getColumnIndex(OpenableColumns.DISPLAY_NAME))
-        }
-        val inputStream = contentResolver.openInputStream(imageUri)
-        val bytes = ByteArrayOutputStream().use {
-            if (inputStream != null) {
-                inputStream.copyTo(it)
-            }
-            it.toByteArray()
-        }
-        val type = contentResolver.getType(imageUri)
-        val requestFile = RequestBody.create(MediaType.parse(type), bytes)
-        val image = MultipartBody.Part.createFormData("myFile", fileName, requestFile)
+            val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
+            retIn.postImage(image).enqueue(object: Callback<ResponseBody>{
+                override fun onResponse(
+                    call: Call<ResponseBody>,
+                    response: Response<ResponseBody>
+                ) {
+                    Log.d("IMAGE",response.body()!!.toString())
+                }
 
-        val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
-        retIn.postImage(image).enqueue(object : Callback<ResponseBody>{
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                Toast.makeText(this@RecetteFormActivity,"Successfully Added",Toast.LENGTH_SHORT).show()
-                Log.d("TEST",response.body().toString())
-            }
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                    Log.d("400","Failure = "+t.toString());
+                }
 
-            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                Toast.makeText(this@RecetteFormActivity,"Failure Added",Toast.LENGTH_SHORT).show()            }
             })
 
+
+
+        }
+    }
+    private fun upload() {
+
+
+    }
+    fun prepareFilePart(partName: String, fileUri: Uri): MultipartBody.Part {
+        val file = File(fileUri.path)
+        val requestFile = RequestBody.create(MediaType.parse("image/*"), file)
+        return MultipartBody.Part.createFormData(partName, file.name, requestFile)
     }
 
-
-
-
-//    private fun upload() {
-//
-//        val filesDir = applicationContext.filesDir
-//        val file = File(filesDir, "image.png")
-//
-//        val inputStream = contentResolver.openInputStream(imageUri)
-//        val outputStream = FileOutputStream(file)
-//        inputStream!!.copyTo(outputStream)
-//
-//        val requestBody = file.asRequestBody("image/*".toMediaTypeOrNull())
-//        val part = MultipartBody.Part.createFormData("myFile", file.name, requestBody)
-//
-//
-//        val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
-//        CoroutineScope(Dispatchers.IO).launch {
-//            val response = retIn.postImage(part)
-//            Log.d("IMAGE", response.filename)
-//        }
-//    }
 
     private fun checkDrop(a:String,b:ArrayList<String>):Boolean
     {
@@ -233,166 +225,52 @@ class RecetteFormActivity : AppCompatActivity() {
     }
     
     private fun submit(
-        name: String,
-        description: String,
-        isBio: Boolean,
-        duration: Int,
-        person: Int,
-        difficulty: String
+//        name: String,
+//        description: String,
+//        isBio: Boolean,
+//        duration: Int,
+//        person: Int,
+//        difficulty: String
     ) {
 
-        val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
-        val id: String = ""
-        val image: String = "test"
-        val recetteInfo = RecettesInQueue.Recette(
-            id,
-            name,
-            description,
-            image,
-            isBio,
-            duration,
-            person,
-            difficulty
-        )
-
-        retIn.addRecette(recetteInfo).enqueue(object :
-            Callback<ResponseBody> {
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                if (response.code() == 200) {
-                    Toast.makeText(this@RecetteFormActivity, "Recette Added", Toast.LENGTH_SHORT)
-                        .show()
-
-                } else {
-                    Toast.makeText(this@RecetteFormActivity, response.message(), Toast.LENGTH_SHORT)
-                        .show()
-                }
-
-            }
-
-            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                Toast.makeText(
-                    this@RecetteFormActivity,
-                    t.message,
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-
-        })
-    }
-
-
-
-    @SuppressLint("NewApi")
-    fun getRealPathFromURIAPI19(context: Context, uri: Uri): String? {
-
-        val isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT
-
-        // DocumentProvider
-        if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
-            // ExternalStorageProvider
-            if (isExternalStorageDocument(uri)) {
-                val docId = DocumentsContract.getDocumentId(uri)
-                val split = docId.split(":".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-                val type = split[0]
-
-                if ("primary".equals(type, ignoreCase = true)) {
-                    return Environment.getExternalStorageDirectory().toString() + "/" + split[1]
-                }
-            } else if (isDownloadsDocument(uri)) {
-                var cursor: Cursor? = null
-                try {
-                    cursor = context.contentResolver.query(uri, arrayOf(MediaStore.MediaColumns.DISPLAY_NAME), null, null, null)
-                    cursor!!.moveToNext()
-                    val fileName = cursor.getString(0)
-                    val path = Environment.getExternalStorageDirectory().toString() + "/Download/" + fileName
-                    if (!TextUtils.isEmpty(path)) {
-                        return path
-                    }
-                } finally {
-                    cursor?.close()
-                }
-                val id = DocumentsContract.getDocumentId(uri)
-                if (id.startsWith("raw:")) {
-                    return id.replaceFirst("raw:".toRegex(), "")
-                }
-                val contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads"), java.lang.Long.valueOf(id))
-
-                return getDataColumn(context, contentUri, null, null)
-            } else if (isMediaDocument(uri)) {
-                val docId = DocumentsContract.getDocumentId(uri)
-                val split = docId.split(":".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-                val type = split[0]
-
-                var contentUri: Uri? = null
-                when (type) {
-                    "image" -> contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-                    "video" -> contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI
-                    "audio" -> contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
-                }
-
-                val selection = "_id=?"
-                val selectionArgs = arrayOf(split[1])
-
-                return getDataColumn(context, contentUri, selection, selectionArgs)
-            }// MediaProvider
-            // DownloadsProvider
-        } else if ("content".equals(uri.scheme!!, ignoreCase = true)) {
-
-            // Return the remote address
-            return if (isGooglePhotosUri(uri)) uri.lastPathSegment else getDataColumn(context, uri, null, null)
-        } else if ("file".equals(uri.scheme!!, ignoreCase = true)) {
-            return uri.path
-        }// File
-        // MediaStore (and general)
-
-        return null
-    }
-
-    private fun getDataColumn(context: Context, uri: Uri?, selection: String?,
-                              selectionArgs: Array<String>?): String? {
-
-        var cursor: Cursor? = null
-        val column = "_data"
-        val projection = arrayOf(column)
-
-        try {
-            cursor = context.contentResolver.query(uri!!, projection, selection, selectionArgs, null)
-            if (cursor != null && cursor.moveToFirst()) {
-                val index = cursor.getColumnIndexOrThrow(column)
-                return cursor.getString(index)
-            }
-        } finally {
-            cursor?.close()
-        }
-        return null
-    }
-
-    private fun isExternalStorageDocument(uri: Uri): Boolean {
-        return "com.android.externalstorage.documents" == uri.authority
-    }
-
-    /**
-     * @param uri The Uri to check.
-     * @return Whether the Uri authority is DownloadsProvider.
-     */
-    private fun isDownloadsDocument(uri: Uri): Boolean {
-        return "com.android.providers.downloads.documents" == uri.authority
-    }
-
-    /**
-     * @param uri The Uri to check.
-     * @return Whether the Uri authority is MediaProvider.
-     */
-    private fun isMediaDocument(uri: Uri): Boolean {
-        return "com.android.providers.media.documents" == uri.authority
-    }
-
-    /**
-     * @param uri The Uri to check.
-     * @return Whether the Uri authority is Google Photos.
-     */
-    private fun isGooglePhotosUri(uri: Uri): Boolean {
-        return "com.google.android.apps.photos.content" == uri.authority
-
+//        val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
+//        val id: String = ""
+//        val image: String = "test"
+//        val recetteInfo = RecettesInQueue.Recette(
+//            id,
+//            name,
+//            description,
+//            image,
+//            isBio,
+//            duration,
+//            person,
+//            difficulty,
+//            username,
+//            likeDiff
+//        )
+//
+//        retIn.addRecette(recetteInfo).enqueue(object :
+//            Callback<ResponseBody> {
+//            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+//                if (response.code() == 200) {
+//                    Toast.makeText(this@RecetteFormActivity, "Recette Added", Toast.LENGTH_SHORT)
+//                        .show()
+//
+//                } else {
+//                    Toast.makeText(this@RecetteFormActivity, response.message(), Toast.LENGTH_SHORT)
+//                        .show()
+//                }
+//
+//            }
+//
+//            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+//                Toast.makeText(
+//                    this@RecetteFormActivity,
+//                    t.message,
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//            }
+//
+//        })
     }
 }

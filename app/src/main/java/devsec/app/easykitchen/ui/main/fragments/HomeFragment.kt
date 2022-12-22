@@ -16,10 +16,10 @@ import devsec.app.easykitchen.api.RestApiService
 import devsec.app.easykitchen.api.RetrofitInstance
 import devsec.app.easykitchen.data.models.Category
 import devsec.app.easykitchen.data.models.Food
+import devsec.app.easykitchen.data.models.Recette
 import devsec.app.easykitchen.ui.main.adapter.CategoryAdapter
 import devsec.app.easykitchen.ui.main.adapter.ExpertRecipesAdapter
 import devsec.app.easykitchen.ui.main.adapter.RecommendedFoodAdapter
-import devsec.app.easykitchen.data.models.RecettesInQueue
 import devsec.app.easykitchen.ui.main.adapter.FoodAdapter
 import devsec.app.easykitchen.ui.main.view.CategoryRecipesFilterActivity
 import devsec.app.easykitchen.ui.main.view.FoodRecipeActivity
@@ -43,7 +43,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var title: TextView
     //***************** Recycler View lists *************//
-    private lateinit var recetteList: ArrayList<RecettesInQueue.Recette>
+    private lateinit var recetteList: ArrayList<Recette>
     private lateinit var categoryList: ArrayList<Category>
     private lateinit var foodList: ArrayList<Food>
 
@@ -121,26 +121,26 @@ class HomeFragment : Fragment() {
 
     private fun initRecette() {
 
-        val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
-
-        retIn.getRecette().enqueue(object : Callback<RecettesInQueue> {
-            override fun onResponse(
-                call: Call<RecettesInQueue>,
-                response: Response<RecettesInQueue>
-            ) {
-
-                recommendedFoodAdapter = RecommendedFoodAdapter(response.body()!!.recettes)
-                recommendedFoodRecyclerView.adapter = recommendedFoodAdapter
-                recommendedFoodRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false)
-
-
-            }
-
-            override fun onFailure(call: Call<RecettesInQueue>, t: Throwable) {
-                Log.d("400","Failure = "+t.toString());
-            }
-
-        })
+//        val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
+//
+//        retIn.getRecette().enqueue(object : Callback<RecettesInQueue> {
+//            override fun onResponse(
+//                call: Call<RecettesInQueue>,
+//                response: Response<RecettesInQueue>
+//            ) {
+//
+//                recommendedFoodAdapter = RecommendedFoodAdapter(response.body()!!.recettes)
+//                recommendedFoodRecyclerView.adapter = recommendedFoodAdapter
+//                recommendedFoodRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false)
+//
+//
+//            }
+//
+//            override fun onFailure(call: Call<RecettesInQueue>, t: Throwable) {
+//                Log.d("400","Failure = "+t.toString());
+//            }
+//
+//        })
 
     }
 

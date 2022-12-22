@@ -3,6 +3,7 @@ package devsec.app.easykitchen.ui.main.view
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -21,6 +22,7 @@ class EditProfileActivity : AppCompatActivity() {
     lateinit var sessionPref: SessionPref
     lateinit var id : String
     lateinit var user : HashMap<String, String>
+
     @SuppressLint("WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -52,8 +52,8 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/upvote"
-            android:layout_width="40dp"
-            android:layout_height="18dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_marginTop="14dp"
             android:layout_marginRight="10dp"
             android:background="@drawable/long_rounded_button_colored"
@@ -85,8 +85,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:textSize="8sp"
-                android:text="20"
                 android:drawablePadding="5dp"
                 android:text="20 min - 30 min"
                 android:textSize="8sp"

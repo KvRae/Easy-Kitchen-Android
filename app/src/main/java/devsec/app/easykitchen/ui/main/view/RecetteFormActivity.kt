@@ -134,31 +134,31 @@ class RecetteFormActivity : AppCompatActivity() {
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE) {
-            val imageUri = data?.data
-
-         val image = prepareFilePart("myFile",imageUri!!)
-
-            imgView.setImageURI(imageUri)
-
-            val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
-            retIn.postImage(image).enqueue(object: Callback<ResponseBody>{
-                override fun onResponse(
-                    call: Call<ResponseBody>,
-                    response: Response<ResponseBody>
-                ) {
-                    Log.d("IMAGE",response.body()!!.toString())
-                }
-
-                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                    Log.d("400","Failure = "+t.toString());
-                }
-
-            })
-
-
-
-        }
+//        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE) {
+//            val imageUri = data?.data
+//
+//         val image = prepareFilePart("myFile",imageUri!!)
+//
+//            imgView.setImageURI(imageUri)
+//
+//            val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
+//            retIn.postImage(image).enqueue(object: Callback<ResponseBody>{
+//                override fun onResponse(
+//                    call: Call<ResponseBody>,
+//                    response: Response<ResponseBody>
+//                ) {
+//                    Log.d("IMAGE",response.body()!!.toString())
+//                }
+//
+//                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+//                    Log.d("400","Failure = "+t.toString());
+//                }
+//
+//            })
+//
+//
+//
+//        }
     }
     private fun upload() {
 

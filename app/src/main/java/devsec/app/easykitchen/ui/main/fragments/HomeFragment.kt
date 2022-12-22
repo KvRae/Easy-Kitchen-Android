@@ -17,12 +17,12 @@ import devsec.app.easykitchen.api.RetrofitInstance
 import devsec.app.easykitchen.data.models.Category
 import devsec.app.easykitchen.data.models.Food
 import devsec.app.easykitchen.ui.main.adapter.CategoryAdapter
-import devsec.app.easykitchen.ui.main.adapter.ExpertRecipesAdapter
 import devsec.app.easykitchen.ui.main.adapter.RecommendedFoodAdapter
 import devsec.app.easykitchen.data.models.RecettesInQueue
 import devsec.app.easykitchen.ui.main.adapter.FoodAdapter
 import devsec.app.easykitchen.ui.main.view.CategoryRecipesFilterActivity
 import devsec.app.easykitchen.ui.main.view.FoodRecipeActivity
+import devsec.app.easykitchen.ui.main.view.MainMenuActivity
 import devsec.app.easykitchen.utils.services.LoadingDialog
 import retrofit2.Call
 import retrofit2.Callback
@@ -39,8 +39,6 @@ class HomeFragment : Fragment() {
     //************** Expert Recipes **************//
     private lateinit var expertRecipesRecyclerView: RecyclerView
     private lateinit var expertRecipesAdapter: FoodAdapter
-
-
     private lateinit var title: TextView
     //***************** Recycler View lists *************//
     private lateinit var recetteList: ArrayList<RecettesInQueue.Recette>
@@ -49,6 +47,7 @@ class HomeFragment : Fragment() {
 
     //***************** Loading Dialog *************//
     private lateinit var loadingDialog: LoadingDialog
+
 
 
 
@@ -62,6 +61,14 @@ class HomeFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val navDrawerButton = view.findViewById<Button>(R.id.menu)
+        val drawerLayout = (activity as MainMenuActivity).drawerLayout
+        navDrawerButton.setOnClickListener {
+            drawerLayout.open()
+        }
+        navDrawerButton.setOnClickListener {
+
+        }
         //************* Recommended food *************//
 
         val layoutManager = LinearLayoutManager(context)

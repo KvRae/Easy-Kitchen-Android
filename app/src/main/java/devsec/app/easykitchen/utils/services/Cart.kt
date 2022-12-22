@@ -4,6 +4,6 @@ import devsec.app.easykitchen.data.models.Food
 
 class Cart {
     companion object {
-        var cart: List<String> = ArrayList()
+        var cart: ArrayList<String> = ArrayList()
     }
 }

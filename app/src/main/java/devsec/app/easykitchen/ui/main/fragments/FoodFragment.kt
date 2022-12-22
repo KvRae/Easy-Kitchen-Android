@@ -16,9 +16,7 @@ import devsec.app.easykitchen.api.RestApiService
 import devsec.app.easykitchen.api.RetrofitInstance
 import devsec.app.easykitchen.ui.main.adapter.FoodAdapter
 import devsec.app.easykitchen.data.models.Food
-import devsec.app.easykitchen.ui.main.view.FavoriteFoodActivity
 import devsec.app.easykitchen.ui.main.view.FoodRecipeActivity
-import devsec.app.easykitchen.ui.main.view.IngredientsActivity
 import devsec.app.easykitchen.utils.services.Cart
 import devsec.app.easykitchen.utils.services.LoadingDialog
 import retrofit2.Call
@@ -49,16 +47,13 @@ class FoodFragment : Fragment() {
         loadingDialog = LoadingDialog(requireActivity())
 
 
-        swiperRefreshLayout = view.findViewById(R.id.foodSwipeRefresh)
+        swiperRefreshLayout = view.findViewById(R.id.foodIngredientSwipeRefresh)
         initFoodList()
         val layoutManager = LinearLayoutManager(context)
         recyclerView = view.findViewById(R.id.foodListView)
         recyclerView.layoutManager = layoutManager
         adapter = FoodAdapter(foodArrayList)
         recyclerView.adapter = adapter
-
-
-
 
         swiperRefreshLayout.setOnRefreshListener {
             initFoodList()
@@ -74,21 +69,21 @@ class FoodFragment : Fragment() {
             }
         })
 
-        val toolbar = view.findViewById<Toolbar>(R.id.foodBar)
-        toolbar.menu.findItem(R.id.ingredientsCart).setOnMenuItemClickListener {
-            val intent = Intent(context, IngredientsActivity::class.java)
-            startActivity(intent)
-            true
-        }
-        toolbar.menu.findItem(R.id.favorite_food).setOnMenuItemClickListener {
-            val intent = Intent(context, FavoriteFoodActivity::class.java)
-            startActivity(intent)
-            true
-        }
-        toolbar.menu.findItem(R.id.favorite_food).setOnMenuItemClickListener {
-            Log.d("Cart", Cart.cart.toString())
-            true
-        }
+        val toolbar = view.findViewById<Toolbar>(R.id.foodIngredientBar)
+//        toolbar.menu.findItem(R.id.ingredientsCart).setOnMenuItemClickListener {
+//            val intent = Intent(context, IngredientsCartActivity::class.java)
+//            startActivity(intent)
+//            true
+//        }
+//        toolbar.menu.findItem(R.id.favorite_food).setOnMenuItemClickListener {
+//            val intent = Intent(context, FavoriteFoodActivity::class.java)
+//            startActivity(intent)
+//            true
+//        }
+//        toolbar.menu.findItem(R.id.favorite_food).setOnMenuItemClickListener {
+//            Log.d("Cart", Cart.cart.toString())
+//            true
+//        }
     }
 
     private fun initFoodList(){
@@ -117,24 +112,4 @@ class FoodFragment : Fragment() {
         })
 
     }
-
-//    private fun filterFoodListbyIngredients(){
-//        var ingredientsCart = Cart.cart
-//        var filteredFoodList = ArrayList<Food>()
-//        for (food in foodArrayList){
-//            var foodIngredients = food.ingredients
-//            var flag = true
-//            for (ingredient in ingredientsCart){
-//                if (!foodIngredients.contains(ingredient)){
-//                    flag = false
-//                    break
-//                }
-//            }
-//            if (flag){
-//                filteredFoodList.add(food)
-//            }
-//        }
-//
-//    }
-
 }

@@ -70,5 +70,10 @@
     <string name="greetings">Greetings</string>
     <string name="rate_our_app">Rate Our App</string>
     <string name="send_feedback">send feedback</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="no_recipes_found">No recipes found</string>
+    <string name="ingredients_basket">Ingredients basket</string>
+    <string name="clear_cart">clear</string>
 
 </resources>

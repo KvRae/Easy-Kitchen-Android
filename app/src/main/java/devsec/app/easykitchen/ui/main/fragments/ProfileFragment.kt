@@ -14,6 +14,7 @@ import devsec.app.easykitchen.ui.main.view.EditProfileActivity
 import androidx.appcompat.widget.Toolbar
 import devsec.app.easykitchen.api.RestApiService
 import devsec.app.easykitchen.api.RetrofitInstance
+import devsec.app.easykitchen.databinding.FragmentProfileBinding
 import devsec.app.easykitchen.ui.main.view.LoginActivity
 import devsec.app.easykitchen.utils.services.LoadingDialog
 import devsec.app.easykitchen.utils.session.SessionPref
@@ -23,6 +24,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class ProfileFragment : Fragment() {
+    lateinit var binding : FragmentProfileBinding
     lateinit var session : SessionPref
 
 
@@ -61,6 +63,7 @@ class ProfileFragment : Fragment() {
         toolbar.menu.findItem(R.id.logoutProfile).setOnMenuItemClickListener {
             val intent = Intent(context, LoginActivity::class.java)
             startActivity(intent)
+            this.requireActivity().finish()
             true
         }
 

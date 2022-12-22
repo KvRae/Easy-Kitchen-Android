@@ -24,6 +24,9 @@ class SplashScreenActivity : AppCompatActivity() {
         }.start()
 
         handler = Handler()
+
+        val activity: Activity = GuideActivity()
+
         handler.postDelayed({
             val intent = Intent(this, GuideActivity::class.java)
             startActivity(intent)

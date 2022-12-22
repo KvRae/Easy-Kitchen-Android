@@ -1,26 +1,38 @@
 package devsec.app.easykitchen.ui.main.fragments
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import devsec.app.easykitchen.R
+import devsec.app.easykitchen.api.RestApiService
+import devsec.app.easykitchen.api.RetrofitInstance
+import devsec.app.easykitchen.data.models.Recette
 import devsec.app.easykitchen.ui.main.adapter.BlogAdapter
-import devsec.app.easykitchen.data.models.Blog
+import devsec.app.easykitchen.ui.main.view.RecetteActivity
+import devsec.app.easykitchen.ui.main.view.RecetteFormActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class BlogFragment : Fragment() {
 
     private lateinit var adapter : BlogAdapter
     private lateinit var recyclerView : RecyclerView
-    private lateinit var blogArrayList: ArrayList<Blog>
 
-    lateinit var blogImage : IntArray
-    lateinit var blogAuthorImage : IntArray
-    lateinit var blogAuthor : Array<String>
+    lateinit var formButton: FloatingActionButton
+
+    private lateinit var recetteArray: ArrayList<Recette>
+
+
+
 
 
     override fun onCreateView(
@@ -33,28 +45,52 @@ class BlogFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initBlogList()
+
         val layoutManager = LinearLayoutManager(context)
+        initBlogList()
         recyclerView = view.findViewById(R.id.blogList)
         recyclerView.layoutManager = layoutManager
         recyclerView.setHasFixedSize(true)
-        adapter = BlogAdapter(blogArrayList)
+
+        adapter = BlogAdapter(recetteArray)
         recyclerView.adapter = adapter
-    }
 
-    private fun initBlogList(){
-        blogImage = intArrayOf(R.drawable.picture, R.drawable.picture, R.drawable.picture)
-        blogAuthorImage = intArrayOf(R.drawable.android_icon, R.drawable.android_icon, R.drawable.android_icon, R.drawable.android_icon, R.drawable.android_icon, R.drawable.android_icon)
-        blogAuthor = arrayOf("John Doe", "Jane Doe", "John Doe", "Jane Doe", "John Doe", "Jane Doe")
 
-        blogArrayList = ArrayList()
-        for(i in blogImage.indices){
-            val blog = Blog(blogAuthor[i], blogAuthorImage[i],blogImage[i] )
-            blogArrayList.add(blog)
+        adapter.setOnItemClickListener(object : BlogAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                val intent = Intent(context, RecetteActivity::class.java)
+                intent.putExtra("id", recetteArray[position].id)
+                startActivity(intent)
+            }
+        })
+
+        formButton= view.findViewById(R.id.formButton)
+        formButton.setOnClickListener {
+            val intent = Intent(context, RecetteFormActivity::class.java)
+            startActivity(intent)
         }
 
 
-
     }
 
+    private fun initBlogList() {
+        recetteArray = ArrayList()
+        val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
+        val call = retIn.getRecette()
+        call.enqueue(object : Callback<List<Recette>> {
+            override fun onResponse(call: Call<List<Recette>>, response: Response<List<Recette>>) {
+                recetteArray.addAll(response.body()!!)
+
+                adapter.notifyDataSetChanged()
+
+                Log.d("recetteArray",recetteArray.size.toString())
+            }
+
+            override fun onFailure(call: Call<List<Recette>>, t: Throwable) {
+                Log.d("Error", t.message.toString())
+            }
+
+        })
+
+}
 }

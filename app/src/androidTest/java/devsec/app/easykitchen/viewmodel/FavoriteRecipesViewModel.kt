@@ -1,4 +1,4 @@
-package devsec.app.easykitchen.ui.main.viewmodel
+package devsec.app.easykitchen.viewmodel
 
 class FavoriteRecipesViewModel {
 

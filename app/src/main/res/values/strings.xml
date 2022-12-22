@@ -64,6 +64,9 @@
     <string name="upvote_number">50</string>
     <string name="comment">Commentaire</string>
     <string name="commentTitle">Laissez un Commentaire</string>
+    <string name="blog_title">Recettes Utilisateurs</string>
+    <string name="recetteFormTitle">Ajouter une recette</string>
+    <string name="dateComment">11/12/2022 16:28:20</string>
     <string name="measures">Measures</string>
     <string name="meals_category_filter">Meals by category</string>
     <string name="profileimage">profileImage</string>
@@ -75,5 +78,6 @@
     <string name="no_recipes_found">No recipes found</string>
     <string name="ingredients_basket">Ingredients basket</string>
     <string name="clear_cart">clear</string>
+
 
 </resources>

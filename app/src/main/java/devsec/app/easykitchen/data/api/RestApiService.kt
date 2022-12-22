@@ -39,32 +39,54 @@ interface RestApiService {
     @DELETE("users/{id}")
     fun deleteUser(@Path("id") id: String): Call<ResponseBody>
 
-    //***********************Blog***********************//
+    //***********************comments***********************//
+
+    @GET("recettes/{id}/comments")
+    fun getCommentsByRecette(@Path("id")id:String):Call<List<Comment>>
+
+    @POST("comments")
+    fun postComment(
+        @Body info: Comment
+    ):Call<ResponseBody>
+
 
 
 
     //***********************Recipe***********************//
      @Headers("Content-Type:application/json")
     @GET("recettes")
-    fun getRecette(): Call<RecettesInQueue>
+    fun getRecette(): Call<List<Recette>>
 
 
     @Headers("Content-Type:application/json")
-    @GET("recettes/637b87f3ecd1532b6052cbee")
-    fun getRecetteById(): Call<RecettesInQueue.Recette>
+    @GET("recettes/{id}")
+    fun getRecetteById(@Path("id") id: String): Call<Recette>
 
     @Headers("Content-Type:application/json")
     @POST("recettes")
     fun addRecette(
-        @Body info: RecettesInQueue.Recette
+        @Body info: Recette
     ): Call<ResponseBody>
 
     @Headers("Content-Type:application/json")
+    @PATCH("recettes/639858120789ef3eaccb49bd/like")
+    fun likeRecette(
+        @Body user:User
+
+    ): Call<ResponseBody>
+
+    @Headers("Content-Type:application/json")
+    @PATCH("recettes/639858120789ef3eaccb49bd/dislike")
+    fun dislikeRecette(
+        @Body user:User
+//        @Field("userId") userId:String
+
+    ): Call<ResponseBody>
+
     @Multipart
     @POST("uploadfile")
     fun postImage(
         @Part image: MultipartBody.Part,
-//        @Part("myFile") name: RequestBody?
     ): Call<ResponseBody>
 
     //***********************Ingredient***********************//

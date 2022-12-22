@@ -15,7 +15,7 @@ import androidx.appcompat.widget.Toolbar
 import devsec.app.easykitchen.api.RestApiService
 import devsec.app.easykitchen.api.RetrofitInstance
 import devsec.app.easykitchen.ui.main.view.LoginActivity
-import devsec.app.easykitchen.utils.LoadingDialog
+import devsec.app.easykitchen.utils.services.LoadingDialog
 import devsec.app.easykitchen.utils.session.SessionPref
 import okhttp3.ResponseBody
 import retrofit2.Call

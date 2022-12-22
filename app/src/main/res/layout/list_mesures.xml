@@ -4,26 +4,27 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="5dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <View
-        android:id="@+id/dot1"
+        android:id="@+id/dot"
         android:layout_width="6dp"
         android:layout_height="6dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/ingredientReq"
+        app:layout_constraintEnd_toStartOf="@id/mesuresReq"
         android:background="@drawable/circle"
         />
+
     <TextView
-        android:id="@+id/ingredientReq"
+        android:id="@+id/mesuresReq"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/dot1"
-        android:text="2 Onions"
+        android:text="2 kilos"
         android:textSize="10sp"
-        />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/dot"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

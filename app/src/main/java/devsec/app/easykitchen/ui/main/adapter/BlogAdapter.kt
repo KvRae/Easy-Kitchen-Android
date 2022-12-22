@@ -5,7 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+
 import androidx.appcompat.widget.AppCompatButton
+
+import androidx.constraintlayout.widget.ConstraintLayout
+
 import androidx.recyclerview.widget.RecyclerView
 import devsec.app.easykitchen.R
 import devsec.app.easykitchen.data.models.Recette
@@ -48,6 +52,7 @@ class BlogAdapter(private val blogList: ArrayList<Recette>):RecyclerView.Adapter
 
     override fun onBindViewHolder(holder: BlogViewHolder, position: Int) {
         val blog = blogList[position]
+
         val a=blog.likes
         val b=blog.dislikes
         likeDiff = ( a.toFloat()  - b.toFloat()).toInt()

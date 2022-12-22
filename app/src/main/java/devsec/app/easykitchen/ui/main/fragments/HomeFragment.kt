@@ -21,10 +21,13 @@ import devsec.app.easykitchen.ui.main.adapter.CategoryAdapter
 import devsec.app.easykitchen.ui.main.adapter.ExpertRecipesAdapter
 import devsec.app.easykitchen.ui.main.adapter.RecommendedFoodAdapter
 import devsec.app.easykitchen.ui.main.adapter.FoodAdapter
+import devsec.app.easykitchen.ui.main.view.CategoryRecipesFilterActivity
 import devsec.app.easykitchen.ui.main.view.FoodRecipeActivity
+import devsec.app.easykitchen.utils.services.LoadingDialog
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.time.LocalTime
 
 class HomeFragment : Fragment() {
     //************* Recommended food *************//
@@ -44,6 +47,10 @@ class HomeFragment : Fragment() {
     private lateinit var categoryList: ArrayList<Category>
     private lateinit var foodList: ArrayList<Food>
 
+    //***************** Loading Dialog *************//
+    private lateinit var loadingDialog: LoadingDialog
+
+
 
 
     override fun onCreateView(
@@ -55,11 +62,13 @@ class HomeFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //************* Recommended food *************//
 
         val layoutManager = LinearLayoutManager(context)
         title = view.findViewById(R.id.title)
         recommendedFoodRecyclerView = view.findViewById(R.id.recommendedView)
         recommendedFoodRecyclerView.setHasFixedSize(true)
+
 //        initRecette()
 
         //*********** Category Recycler View Implementation ***********//
@@ -71,9 +80,18 @@ class HomeFragment : Fragment() {
         categoryRecyclerView.setHasFixedSize(true)
         categoryAdapter = CategoryAdapter(categoryList)
         categoryRecyclerView.adapter = categoryAdapter
+        categoryAdapter.setOnItemClickListener(object : CategoryAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                val intent = Intent(context, CategoryRecipesFilterActivity::class.java)
+                intent.putExtra("category", categoryList[position].name)
+                startActivity(intent)
+            }
+        })
 
         //*********** Expert Recipes Recycler View Implementation ***********//
         initFoodList()
+        val expertRecipesTextHeader = view.findViewById<TextView>(R.id.expertText)
+        ("Expert Recipe for " +dailyFood()).also { expertRecipesTextHeader.text = it }
         val expertRecipesLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         expertRecipesRecyclerView = view.findViewById(R.id.expertView)
         expertRecipesRecyclerView.layoutManager = expertRecipesLayoutManager
@@ -162,13 +180,23 @@ class HomeFragment : Fragment() {
             override fun onResponse(call: Call<List<Food>>, response: Response<List<Food>>) {
                 if (response.isSuccessful) {
                     var foods = response.body()
-                    foods = listOf(foods!!.random(), foods.random(), foods.random(),foods.random(), foods.random())
-                    for (food in foods) {
-                        foodList.add(food)
+                    for (food in foods!!) {
+                        if (dailyFood()=="Breakfast"){
+                            if (food.category=="Breakfast"){ foodList.add(food)}
+                        }
+                        if (dailyFood()=="Lunch"){
+                            if (food.category=="Lamb" || food.category=="Pasta" || food.category=="Beef"){ foodList.add(food)}
+                        }
+                        if (dailyFood()=="Dinner"){
+                            if (food.category=="Side" ||food.category=="Starter"){ foodList.add(food)}
+                        }
                     }
-
+                    val randomFood = foodList.random()
+                    foodList.clear()
+                    foodList.add(randomFood)
+                    expertRecipesAdapter.notifyDataSetChanged()
                 }
-                expertRecipesAdapter.notifyDataSetChanged()
+
             }
 
             override fun onFailure(call: Call<List<Food>>, t: Throwable) {
@@ -176,6 +204,16 @@ class HomeFragment : Fragment() {
             }
 
         }))
+    }
+
+    private fun dailyFood (): String {
+        val current = LocalTime.now()
+        val morning = LocalTime.of(6,0)
+        val afternoon = LocalTime.of(12,0)
+        val evening = LocalTime.of(18,0)
+        if (current.isAfter(morning) && current.isBefore(afternoon)){ return "Breakfast"}
+        else if (current.isAfter(afternoon) && current.isBefore(evening)){ return "Lunch"}
+        return "Dinner"
 
     }
 

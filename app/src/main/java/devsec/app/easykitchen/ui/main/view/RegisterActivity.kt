@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -14,7 +13,7 @@ import devsec.app.easykitchen.api.RestApiService
 import devsec.app.easykitchen.api.RetrofitInstance
 import devsec.app.easykitchen.data.models.User
 import devsec.app.easykitchen.databinding.ActivityRegisterBinding
-import devsec.app.easykitchen.utils.LoadingDialog
+import devsec.app.easykitchen.utils.services.LoadingDialog
 import devsec.app.easykitchen.utils.session.SessionPref
 import okhttp3.ResponseBody
 import retrofit2.Call

@@ -95,11 +95,14 @@ interface RestApiService {
     @GET("categories")
     fun getCategoriesList(): Call<List<Category>>
     //***********************Food***********************//
-    @GET("foods")
+    @GET("food")
     fun getFoodsList(): Call<List<Food>>
 
-    @GET("foods/{id}")
+    @GET("food/{id}")
     fun getFoodById(@Path("id") id: String): Call<Food>
+    /*********************** Area ***********************/
+    @GET("areas")
+    fun getAreasList(): Call<List<Area>>
 
 
 

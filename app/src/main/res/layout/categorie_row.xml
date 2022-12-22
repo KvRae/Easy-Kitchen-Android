@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="100dp"
     android:layout_height="100dp"
+    android:background="@color/rosybrown"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginEnd="10dp"
     app:cardCornerRadius="20dp"
@@ -16,22 +18,23 @@
         android:id="@+id/category_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/french_fries_with_cheeseburger"
-        android:scaleType="fitCenter">
+        android:scaleType="fitCenter"
+        android:src="@drawable/french_fries_with_cheeseburger">
 
     </ImageView>
 
     <TextView
-        android:id="@+id/category_name"
+        android:id="@+id/areaName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textAlignment="center"
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="5dp"
-        android:background="@color/black_gradient1"
-        android:textAlignment="center"
-        android:textColor="@color/theWhite"
+
+        android:background="#8A020202"
+        android:textColor="@color/background"
         android:textStyle="bold"
         tools:text="Category name" />
 

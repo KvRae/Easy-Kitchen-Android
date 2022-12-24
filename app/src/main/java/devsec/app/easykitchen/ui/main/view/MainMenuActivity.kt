@@ -1,16 +1,15 @@
 package devsec.app.easykitchen.ui.main.view
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
 import devsec.app.easykitchen.R
 import devsec.app.easykitchen.databinding.ActivityMainMenuBinding
 import devsec.app.easykitchen.ui.main.fragments.*
-import devsec.app.easykitchen.utils.services.Notification
+
 
 class MainMenuActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainMenuBinding
@@ -23,17 +22,19 @@ class MainMenuActivity : AppCompatActivity() {
         binding = ActivityMainMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        navigationView = findViewById<NavigationView>(R.id.nav_view)
-        drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
+        navigationView = findViewById(R.id.nav_view)
+        drawerLayout = findViewById(R.id.drawerLayout)
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
+        if (intent.getStringExtra("openFragment") == "BasketFragment") {
+            supportFragmentManager.beginTransaction().replace(R.id.fragments_container, BasketFragment())
+                .commit()
 
-        if (intent.getStringExtra("fragment") != null) {
-            replaceFragment(BasketFragment())
-        }else{replaceFragment(HomeFragment())}
-
-
+        } else {
+            supportFragmentManager.beginTransaction().replace(R.id.fragments_container, HomeFragment())
+                .commit()
+        }
         binding.bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.home -> replaceFragment(HomeFragment())
@@ -41,8 +42,6 @@ class MainMenuActivity : AppCompatActivity() {
                 R.id.blog -> replaceFragment(BlogFragment())
                 R.id.profile -> replaceFragment(ProfileFragment())
                 R.id.cart -> replaceFragment(BasketFragment())
-
-                else -> {}
             }
             true
         }

@@ -4,6 +4,7 @@ package devsec.app.easykitchen.ui.main.view
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.ContentUris
 import android.content.Context
 import android.content.Intent
@@ -117,6 +118,14 @@ class RecetteFormActivity : AppCompatActivity() {
 //            if (validate(titreInput, descInput, dureeInput, personInput, difficultyDropDown)) {
 //                submit(titreInput.text.toString(), descInput.text.toString(),bio, Integer.parseInt(dureeInput.text.toString()), Integer.parseInt(personInput.text.toString()),difficultyDropDown.text.toString())
 //            }
+            AlertDialog.Builder(this)
+                .setTitle("Confirmation")
+                .setMessage("Your form has been submitted successfully! it will be reviewed by our team " +
+                        "and will be published soon")
+                .setPositiveButton("ok") { dialog, which ->
+                    dialog.dismiss()
+                }
+                .show()
 
         }
     }

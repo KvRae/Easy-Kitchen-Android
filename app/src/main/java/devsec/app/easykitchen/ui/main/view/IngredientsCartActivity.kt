@@ -63,14 +63,14 @@ class IngredientsCartActivity : AppCompatActivity() {
          toolbar = findViewById(R.id.ingredientsToolbar)
         setSupportActionBar(toolbar)
         toolbar.setNavigationOnClickListener {
+
+            if (Cart.cart.size == 0) {
+
+                val intent = Intent(this, MainMenuActivity::class.java)
+                intent.putExtra("openFragment", "BasketFragment")
+                startActivity(intent)
+            }
             onBackPressed()
-            val fragment = BasketFragment()
-            val intent = Intent(this, MainMenuActivity::class.java)
-            intent.putExtra("fragment", fragment.id)
-            startActivity(intent)
-
-
-
         }
 
     }
@@ -88,7 +88,6 @@ class IngredientsCartActivity : AppCompatActivity() {
                 .setPositiveButton("Yes") { dialog, which ->
                     Cart.cart.clear()
                     adapter.notifyDataSetChanged()
-//                    finish()
                     dialog.dismiss()
                 }
                 .setNegativeButton("No") { dialog, which ->

@@ -75,17 +75,28 @@ class BasketFragment : Fragment() {
 
         toolbar = view.findViewById(R.id.ingredientsBasketToolbar)
         toolbar.setNavigationOnClickListener {
-            AlertDialog.Builder(requireContext())
-                .setTitle("Are you sure?")
-                .setMessage("You want to go for recipes with this cart?")
-                .setPositiveButton("Yes") { dialog, which ->
-                    val intent = Intent(context, FoodByIngredientsActivity::class.java)
-                    startActivity(intent)
-                }
-                .setNegativeButton("No") { dialog, which ->
-                    dialog.dismiss()
-                }
-                .show()
+            if (Cart.cart.size != 0) {
+                AlertDialog.Builder(requireContext())
+                    .setTitle("Are you sure?")
+                    .setMessage("You want to go for recipes with those ingredients?")
+                    .setPositiveButton("Yes") { dialog, which ->
+                        val intent = Intent(context, FoodByIngredientsActivity::class.java)
+                        startActivity(intent)
+                    }
+                    .setNegativeButton("No") { dialog, which ->
+                        dialog.dismiss()
+                    }
+                    .show()
+
+            } else {
+                AlertDialog.Builder(requireContext())
+                    .setTitle("No ingredients selected")
+                    .setMessage("You didn't add ingredients to your basket yet")
+                    .setPositiveButton("Ok") { dialog, which ->
+                    }
+                    .show()
+            }
+
 
 
 

@@ -1,7 +1,7 @@
 
 <p align="center"><img src="app/src/main/res/drawable/asset_3.png" width="200"></p> 
 <h2 align="center"><b>Easy Kitchen</b></h2>
-<h4 align="center">A food recipes app for Android.</h4>
+<h4 align="center">Food recipes app for Android.</h4>
 
 
   ## Description

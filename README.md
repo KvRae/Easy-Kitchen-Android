@@ -1,5 +1,5 @@
 
-<p align="center"><img src="src/main/res/drawable/asset_3.png" width="150"></p> 
+<p align="center"><img src="app/src/main/res/drawable/asset_3.png" width="150"></p> 
 <h2 align="center"><b>Easy Kitchen</b></h2>
 <h4 align="center">A food recipes app for Android.</h4>
 

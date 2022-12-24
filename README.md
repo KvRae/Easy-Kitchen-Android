@@ -1,4 +1,4 @@
-<p align="center">[Asset 3](https://user-images.githubusercontent.com/58667227/209428006-0d62b337-2658-4abd-823c-f7ca45068ae8.png)></p> 
+<p align="center"><img src="[assets/new_pipe_icon_5.png](https://user-images.githubusercontent.com/58667227/209428006-0d62b337-2658-4abd-823c-f7ca45068ae8.png)" width="150"></p> 
 <h2 align="center"><b>Easy Kitchen</b></h2>
 <h4 align="center">A food recipes app for Android.</h4>!
 

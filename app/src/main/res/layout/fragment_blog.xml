@@ -13,7 +13,6 @@
         android:layout_height="50dp"
         app:title="@string/blog_title"
         app:titleTextColor="@color/theWhite"
-        app:collapseIcon="@drawable/ic_baseline_shopping_basket_24"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme" />

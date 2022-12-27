@@ -67,6 +67,9 @@
     <string name="blog_title">Recettes Utilisateurs</string>
     <string name="recetteFormTitle">Ajouter une recette</string>
     <string name="dateComment">11/12/2022 16:28:20</string>
+
+    <string name="MeasureTxt">Mesure</string>
+
     <string name="measures">Measures</string>
     <string name="meals_category_filter">Meals by category</string>
     <string name="profileimage">profileImage</string>

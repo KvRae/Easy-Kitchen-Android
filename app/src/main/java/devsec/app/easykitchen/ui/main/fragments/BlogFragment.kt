@@ -14,6 +14,7 @@ import devsec.app.easykitchen.R
 import devsec.app.easykitchen.api.RestApiService
 import devsec.app.easykitchen.api.RetrofitInstance
 import devsec.app.easykitchen.data.models.Recette
+import devsec.app.easykitchen.data.models.User
 import devsec.app.easykitchen.ui.main.adapter.BlogAdapter
 import devsec.app.easykitchen.ui.main.view.RecetteActivity
 import devsec.app.easykitchen.ui.main.view.RecetteFormActivity
@@ -30,6 +31,8 @@ class BlogFragment : Fragment() {
     lateinit var formButton: FloatingActionButton
 
     private lateinit var recetteArray: ArrayList<Recette>
+    private lateinit var usernameArray: ArrayList<String>
+
 
 
 
@@ -47,7 +50,10 @@ class BlogFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val layoutManager = LinearLayoutManager(context)
+        usernameArray = ArrayList()
         initBlogList()
+        Log.d("Allah",usernameArray.size.toString())
+
         recyclerView = view.findViewById(R.id.blogList)
         recyclerView.layoutManager = layoutManager
         recyclerView.setHasFixedSize(true)
@@ -80,6 +86,7 @@ class BlogFragment : Fragment() {
         call.enqueue(object : Callback<List<Recette>> {
             override fun onResponse(call: Call<List<Recette>>, response: Response<List<Recette>>) {
                 recetteArray.addAll(response.body()!!)
+                getUsername()
 
                 adapter.notifyDataSetChanged()
 
@@ -92,5 +99,11 @@ class BlogFragment : Fragment() {
 
         })
 
+
+
 }
+    private fun getUsername() {
+
+
+    }
 }

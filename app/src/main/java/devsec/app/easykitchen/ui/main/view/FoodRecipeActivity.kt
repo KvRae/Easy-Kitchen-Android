@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.util.Log.DEBUG
+import android.webkit.WebView
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -32,10 +33,16 @@ class FoodRecipeActivity : AppCompatActivity() {
     lateinit var ingredientsAdapter: IngredientsTextAdapter
     lateinit var measuresAdapter: MeasuresTextAdapter
 
+    lateinit var webView: WebView
+    lateinit var recipeLink : String
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_food_recipe)
+
+
+
 
 
         id = intent.getStringExtra("id").toString()
@@ -65,6 +72,24 @@ class FoodRecipeActivity : AppCompatActivity() {
             onBackPressed()
 
         }
+
+        webView = findViewById(R.id.foodRecipeSourceWebView)
+        val source = findViewById<TextView>(R.id.foodRecipeSource)
+        source.visibility = TextView.GONE
+        webView.settings.javaScriptEnabled = true
+        webView.settings.safeBrowsingEnabled = true
+
+
+        source.setOnClickListener(){
+            Log.d("recipeLink", recipeLink)
+            if (!recipeLink.isNullOrBlank()){
+                webView.loadUrl(recipeLink)
+            } else {
+                Toast.makeText(this, "No source available", Toast.LENGTH_SHORT).show()
+            }
+
+
+        }
     }
 
     fun getRecipe(id: String, recipeImage: ImageView, recipeCategory: TextView, recipeName: TextView, recipeInstructions: TextView) {
@@ -77,6 +102,8 @@ class FoodRecipeActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val food = response.body()
                     recipeName.text = food?.name
+                    recipeLink = food?.source!!
+
                     recipeCategory.text = food?.category
                     recipeInstructions.text = food?.instructions
                     Picasso.get().load(food?.image).into(recipeImage)

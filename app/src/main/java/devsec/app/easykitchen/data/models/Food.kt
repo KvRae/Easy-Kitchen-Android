@@ -97,6 +97,6 @@ data class Food(    @SerializedName("_id")
                     @SerializedName("strMealThumb")
                     val image: String,
                     @SerializedName("strSource")
-                    val source: Any,
+                    val source: String,
                     @SerializedName("strYoutube")
                     val youtube: String)

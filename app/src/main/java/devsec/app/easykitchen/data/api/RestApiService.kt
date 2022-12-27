@@ -50,6 +50,8 @@ interface RestApiService {
     ):Call<ResponseBody>
 
 
+
+
     //***********************Recipe***********************//
      @Headers("Content-Type:application/json")
     @GET("recettes")
@@ -97,11 +99,14 @@ interface RestApiService {
     @GET("categories")
     fun getCategoriesList(): Call<List<Category>>
     //***********************Food***********************//
-    @GET("foods")
+    @GET("food")
     fun getFoodsList(): Call<List<Food>>
 
-    @GET("foods/{id}")
+    @GET("food/{id}")
     fun getFoodById(@Path("id") id: String): Call<Food>
+    /*********************** Area ***********************/
+    @GET("areas")
+    fun getAreasList(): Call<List<Area>>
 
 
 
@@ -111,6 +116,7 @@ interface RestApiService {
 class RetrofitInstance {
     companion object {
         const val BASE_URL: String = "http://10.0.2.2:3000/api/"
+//        const val BASE_URL: String = "http://192.168.1.20:3000/api/"
 
         val interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
             this.level = HttpLoggingInterceptor.Level.BODY

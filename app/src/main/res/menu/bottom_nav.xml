@@ -9,7 +9,11 @@
         android:id="@+id/food"
         android:icon="@drawable/food_icon"/>
 
-    <item android:title="Longe"
+    <item android:title="My basket"
+        android:id="@+id/cart"
+        android:icon="@drawable/basket_icon"/>
+
+    <item android:title="Lounge"
         android:id="@+id/blog"
         android:icon="@drawable/blog_icon"/>
         />

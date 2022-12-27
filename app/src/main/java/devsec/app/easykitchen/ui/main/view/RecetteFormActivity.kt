@@ -1,9 +1,21 @@
 package devsec.app.easykitchen.ui.main.view
 
 
+
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+
+import android.Manifest
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.app.AlertDialog
+import android.content.ContentUris
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.database.Cursor
+
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
@@ -324,6 +336,7 @@ class RecetteFormActivity : AppCompatActivity() {
         }
 
         submitButton.setOnClickListener {
+
             var bio = false
             if(bioCheckBox.isChecked){
                 bio=true
@@ -356,6 +369,7 @@ class RecetteFormActivity : AppCompatActivity() {
         }
 
     }
+<
 
     private fun showDialogSpinner(tv:TextView,list:ArrayList<String>,iM:Int) {
         val dialog = Dialog(this@RecetteFormActivity)
@@ -415,6 +429,7 @@ class RecetteFormActivity : AppCompatActivity() {
                     dialog.dismiss()
                 }
         }
+
 
     }
     private fun upload() {

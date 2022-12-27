@@ -10,16 +10,16 @@
         android:id="@+id/foodRecipeToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="@string/food_recipe"
-        app:titleTextColor="@color/theWhite"
-        app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
-        android:background="?attr/colorPrimary"
+        android:background="#08171717"
         android:elevation="20dp"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+        app:titleTextColor="@color/theWhite" />
 
     <ImageView
         android:id="@+id/recipeFoodImage"
@@ -27,12 +27,13 @@
         android:layout_height="250dp"
         android:contentDescription=""
         android:paddingTop="50dp"
+        android:scaleType="centerCrop"
         android:scaleX="2.1"
         android:scaleY="2.1"
         android:src="@drawable/ojja"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/foodRecipeToolbar" />
+        app:layout_constraintTop_toTopOf="@+id/foodRecipeToolbar" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/foodRecipeDescription"
@@ -80,7 +81,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/ojja"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
                             app:layout_constraintBottom_toTopOf="@id/foodRecipeCategory"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -91,7 +92,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:text="@string/reccete_type"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/foodRecipeName"
 
@@ -118,13 +119,22 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/ingredientListView"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/ingredientHeader"
-                        tools:listitem="@layout/list_ingredient"
+                        tools:listitem="@layout/list_ingredient" />
 
-                        />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/mesureListView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintStart_toEndOf="@+id/ingredientListView"
+                        app:layout_constraintTop_toBottomOf="@id/ingredientHeader"
+                        tools:listitem="@layout/list_mesures" />
 
                     <TextView
                         android:id="@+id/foodRecipeInstructionHeader"
@@ -132,7 +142,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="@string/instructions"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
 
                         app:layout_constraintBottom_toTopOf="@id/foodRecipeInstructions"
                         app:layout_constraintStart_toStartOf="parent"
@@ -148,7 +158,7 @@
                         android:lineSpacingExtra="4dp"
                         android:text="@string/longLorem"
 
-                        android:textSize="10sp"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/foodRecipeInstructionHeader" />
 

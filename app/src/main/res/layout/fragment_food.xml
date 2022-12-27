@@ -7,7 +7,7 @@
     tools:context=".ui.main.fragments.FoodFragment">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/foodBar"
+        android:id="@+id/foodIngredientBar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:title="@string/food_toobar_title"
@@ -18,7 +18,7 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme" />
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/foodSwipeRefresh"
+        android:id="@+id/foodIngredientSwipeRefresh"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp">

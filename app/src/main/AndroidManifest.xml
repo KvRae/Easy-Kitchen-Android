@@ -34,14 +34,16 @@
         </activity>
         <activity
             android:name=".ui.main.view.RecetteFormActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/Theme.EasyKitchenNoAB">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".ui.main.view.RecetteActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/Theme.EasyKitchenNoAB">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

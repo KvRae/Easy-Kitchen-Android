@@ -1,5 +1,6 @@
 package devsec.app.easykitchen.ui.main.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,13 +9,21 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.RecyclerView
 import devsec.app.easykitchen.R
+import devsec.app.easykitchen.api.RestApiService
+import devsec.app.easykitchen.api.RetrofitInstance
 import devsec.app.easykitchen.data.models.Recette
+import devsec.app.easykitchen.data.models.User
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class BlogAdapter(private val blogList: ArrayList<Recette>):RecyclerView.Adapter<BlogAdapter.BlogViewHolder>() {
 
     private lateinit var mListener: OnItemClickListener
     private lateinit var likeDiff: Number
+    private lateinit var username:String
+    private lateinit var usernameArray:ArrayList<String>
 
     interface OnItemClickListener {
         fun onItemClick(position: Int)
@@ -34,6 +43,7 @@ class BlogAdapter(private val blogList: ArrayList<Recette>):RecyclerView.Adapter
                     mListener.onItemClick(adapterPosition)
                 }
             }
+
         }
 
     }
@@ -60,4 +70,6 @@ class BlogAdapter(private val blogList: ArrayList<Recette>):RecyclerView.Adapter
     override fun getItemCount(): Int {
         return blogList.size
     }
+
+
 }

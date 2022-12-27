@@ -67,15 +67,17 @@ interface RestApiService {
     ): Call<ResponseBody>
 
     @Headers("Content-Type:application/json")
-    @PATCH("recettes/639858120789ef3eaccb49bd/like")
+    @PATCH("recettes/{id}/like")
     fun likeRecette(
+        @Path("id") id: String,
         @Body user:User
 
     ): Call<ResponseBody>
 
     @Headers("Content-Type:application/json")
-    @PATCH("recettes/639858120789ef3eaccb49bd/dislike")
+    @PATCH("recettes/{id}/dislike")
     fun dislikeRecette(
+        @Path("id") id: String,
         @Body user:User
 //        @Field("userId") userId:String
 

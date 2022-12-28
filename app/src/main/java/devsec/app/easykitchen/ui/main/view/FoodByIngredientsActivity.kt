@@ -1,5 +1,6 @@
 package devsec.app.easykitchen.ui.main.view
 
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -26,12 +27,13 @@ class FoodByIngredientsActivity : AppCompatActivity(), SearchView.OnQueryTextLis
     private lateinit var adapter: FoodAdapter
     private lateinit var foodArrayList: ArrayList<Food>
     private lateinit var emptyRecipeLayout: LinearLayout
+    private lateinit var searchView: SearchView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_ingredient_filter_food)
+
         emptyRecipeLayout = findViewById(R.id.noFoodByIngredientsLayout)
         emptyRecipeLayout.visibility = LinearLayout.GONE
         toolbar = findViewById(R.id.foodSearchBar)
@@ -69,7 +71,12 @@ class FoodByIngredientsActivity : AppCompatActivity(), SearchView.OnQueryTextLis
         val search = menu?.findItem(R.id.food_search)
         val searchView = search?.actionView as SearchView
         searchView.setOnQueryTextListener(this)
+
+
+
+
         return super.onCreateOptionsMenu(menu)
+
 
     }
 
@@ -130,19 +137,52 @@ class FoodByIngredientsActivity : AppCompatActivity(), SearchView.OnQueryTextLis
         return false
     }
 
+    private fun filterList(newText: String) {
+        val filteredList = ArrayList<Food>()
+        for (item in foodArrayList) {
+            if (item.name.toLowerCase().contains(newText.toLowerCase())) {
+                filteredList.add(item)
+            }
+            else if (item.area.toLowerCase().contains(newText.toLowerCase())) {
+                filteredList.add(item)
+            }
+            else if (item.category.toLowerCase().contains(newText.toLowerCase())) {
+                filteredList.add(item)
+            }
+        }
+
+        if (filteredList.isEmpty()){
+            AlertDialog.Builder(this)
+                .setTitle("No Result")
+                .setMessage("No food found with the keyword $newText")
+                .setPositiveButton("OK") { dialog, which ->
+                    dialog.dismiss()
+                }
+                .show()
+        } else {
+            adapter.filterList(filteredList)
+            adapter.setOnItemClickListener(object : FoodAdapter.OnItemClickListener {
+                override fun onItemClick(position: Int) {
+                    val intent = Intent(this@FoodByIngredientsActivity, FoodRecipeActivity::class.java)
+                    intent.putExtra("id", filteredList[position].id)
+                    startActivity(intent)
+                }
+            })
+
+
+        }
+
+    }
+
     override fun onQueryTextSubmit(query: String?): Boolean {
-        return false
+        searchView.clearFocus()
+        return true
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        val searchArray = ArrayList<Food>()
-        for (food in foodArrayList) {
-            if (food.name.toLowerCase().contains(newText.toString().toLowerCase())) {
-                searchArray.add(food)
-            }
+        if (newText != null) {
+            filterList(newText)
         }
-        adapter = FoodAdapter( searchArray)
-        adapter.notifyDataSetChanged()
-        return false
+        return true
     }
 }

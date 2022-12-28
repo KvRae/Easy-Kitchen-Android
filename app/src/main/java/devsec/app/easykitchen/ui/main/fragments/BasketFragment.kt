@@ -56,8 +56,8 @@ class BasketFragment : Fragment() {
     @SuppressLint("UnsafeOptInUsageError")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Cart.cart = ArrayList()
         initIngredientsList()
+
         val layoutManager = LinearLayoutManager(context)
         recyclerView = view.findViewById(R.id.ingredientsBasketRV)
         recyclerView.layoutManager = layoutManager
@@ -186,6 +186,8 @@ class BasketFragment : Fragment() {
                         }
                         Log.d("TAG", "onResponse: $ingredientsArrayList")
                     }
+                    ingredientsArrayList.removeAll(Cart.cart)
+                    ingredientsArrayList.addAll(Cart.cartRemovedItems)
                     adapter.notifyDataSetChanged()
                 }
             }

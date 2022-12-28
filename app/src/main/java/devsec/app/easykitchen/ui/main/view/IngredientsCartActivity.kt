@@ -53,7 +53,9 @@ class IngredientsCartActivity : AppCompatActivity() {
         adapter.setOnItemClickListener(object : IngredientCartAdapter.OnItemClickListener {
             override fun onItemClick(position: Int) {
                 Cart.cart.minus(ingredientsArrayList[position])
+                Cart.cartRemovedItems.add(ingredientsArrayList[position])
                 ingredientsArrayList.removeAt(position)
+
                 adapter.notifyItemRemoved(position)
                 adapter.notifyItemRangeChanged(position, ingredientsArrayList.size)
 
@@ -69,7 +71,12 @@ class IngredientsCartActivity : AppCompatActivity() {
                 val intent = Intent(this, MainMenuActivity::class.java)
                 intent.putExtra("openFragment", "BasketFragment")
                 startActivity(intent)
-            }
+            }else
+                if (Cart.cartRemovedItems.size > 0) {
+                    val intent = Intent(this, MainMenuActivity::class.java)
+                    intent.putExtra("openFragment", "BasketFragment")
+                    startActivity(intent)
+                }
             onBackPressed()
         }
 

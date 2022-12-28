@@ -28,8 +28,11 @@ class MainMenuActivity : AppCompatActivity() {
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
         if (intent.getStringExtra("openFragment") == "BasketFragment") {
+            binding.bottomNavigationView.selectedItemId = R.id.cart
             supportFragmentManager.beginTransaction().replace(R.id.fragments_container, BasketFragment())
                 .commit()
+
+
 
         } else {
             supportFragmentManager.beginTransaction().replace(R.id.fragments_container, HomeFragment())

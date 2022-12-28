@@ -102,7 +102,6 @@ class FoodRecipeActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val food = response.body()
                     recipeName.text = food?.name
-                    recipeLink = food?.source!!
 
                     recipeCategory.text = food?.category
                     recipeInstructions.text = food?.instructions

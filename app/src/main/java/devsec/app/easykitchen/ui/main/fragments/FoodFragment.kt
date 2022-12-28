@@ -1,5 +1,6 @@
 package devsec.app.easykitchen.ui.main.fragments
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
@@ -94,6 +95,7 @@ class FoodFragment : Fragment() {
 
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun filterList(newText: String) {
         val filteredList = ArrayList<Food>()
         for (item in foodArrayList) {
@@ -118,6 +120,15 @@ class FoodFragment : Fragment() {
                 .show()
         } else {
             adapter.filterList(filteredList)
+            adapter.setOnItemClickListener(object : FoodAdapter.OnItemClickListener {
+                override fun onItemClick(position: Int) {
+                    val intent = Intent(context, FoodRecipeActivity::class.java)
+                    intent.putExtra("id", filteredList[position].id)
+                    startActivity(intent)
+                }
+            })
+
+
         }
 
     }

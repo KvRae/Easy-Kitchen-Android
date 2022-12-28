@@ -7,10 +7,13 @@
     tools:context=".ui.main.view.FoodByIngredientsActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/foodSearchBar"
-        android:layout_width="match_parent"
+        android:id="@+id/foodIngredientSearchBar"
+        android:layout_width="0dp"
         android:layout_height="50dp"
-        android:background="?attr/colorPrimary"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/custom_input"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:collapseIcon="@drawable/ic_baseline_shopping_basket_24"

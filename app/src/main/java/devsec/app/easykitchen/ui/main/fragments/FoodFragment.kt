@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,7 +18,6 @@ import devsec.app.easykitchen.api.RestApiService
 import devsec.app.easykitchen.api.RetrofitInstance
 import devsec.app.easykitchen.ui.main.adapter.FoodAdapter
 import devsec.app.easykitchen.data.models.Food
-import devsec.app.easykitchen.databinding.FragmentFoodBinding
 import devsec.app.easykitchen.ui.main.view.FoodRecipeActivity
 import devsec.app.easykitchen.utils.services.Cart
 import devsec.app.easykitchen.utils.services.LoadingDialog
@@ -49,7 +47,7 @@ class FoodFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loadingDialog = LoadingDialog(requireActivity())
-        searchView = view.findViewById(R.id.foodSearchBar)
+        searchView = view.findViewById(R.id.foodIngredientSearchBar)
         searchView.clearFocus()
 
 

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.badge.BadgeUtils.attachBadgeDrawable
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import devsec.app.easykitchen.R
 import devsec.app.easykitchen.api.RestApiService
 import devsec.app.easykitchen.api.RetrofitInstance
@@ -75,7 +76,8 @@ class BasketFragment : Fragment() {
         })
 
         toolbar = view.findViewById(R.id.ingredientsBasketToolbar)
-        toolbar.setNavigationOnClickListener {
+        val searchFoodButton = view.findViewById<FloatingActionButton>(R.id.searchFoodFloatingActionButton)
+        searchFoodButton.setOnClickListener {
             if (Cart.cart.size != 0) {
                 AlertDialog.Builder(requireContext())
                     .setTitle("Are you sure?")
@@ -97,6 +99,7 @@ class BasketFragment : Fragment() {
                     }
                     .show()
             }
+            true
         }
         toolbar.setOnMenuItemClickListener {
             when (it.itemId) {

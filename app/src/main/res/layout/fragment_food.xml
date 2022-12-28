@@ -9,7 +9,7 @@
 
 
     <androidx.appcompat.widget.SearchView
-        android:id="@+id/foodSearchBar"
+        android:id="@+id/foodIngredientSearchBar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
@@ -31,8 +31,8 @@
         android:layout_marginTop="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/foodSearchBar"
-        app:layout_constraintTop_toBottomOf="@+id/foodSearchBar">
+        app:layout_constraintStart_toStartOf="@+id/foodIngredientSearchBar"
+        app:layout_constraintTop_toBottomOf="@+id/foodIngredientSearchBar">
 
 
         <androidx.recyclerview.widget.RecyclerView

@@ -36,8 +36,9 @@ class FoodByIngredientsActivity : AppCompatActivity(), SearchView.OnQueryTextLis
 
         emptyRecipeLayout = findViewById(R.id.noFoodByIngredientsLayout)
         emptyRecipeLayout.visibility = LinearLayout.GONE
-        toolbar = findViewById(R.id.foodSearchBar)
+        toolbar = findViewById(R.id.foodIngredientSearchBar)
         setSupportActionBar(toolbar)
+        toolbar.setTitle("")
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         toolbar.setNavigationOnClickListener() {

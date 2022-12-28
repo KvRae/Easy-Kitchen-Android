@@ -39,7 +39,6 @@
             android:layout_marginBottom="20dp"
             android:clickable="true"
             android:src="@drawable/ic_baseline_manage_search_24"
-            app:backgroundTint="@color/theWhite"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="SpeakableTextPresentCheck" />

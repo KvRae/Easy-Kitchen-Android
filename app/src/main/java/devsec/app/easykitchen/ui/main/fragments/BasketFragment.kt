@@ -156,10 +156,10 @@ class BasketFragment : Fragment() {
             adapter.filterList(filteredList)
             adapter.setOnItemClickListener(object : IngredientsAdapter.OnItemClickListener {
                 override fun onItemClick(position: Int) {
-                    val item = ingredientsArrayList[position]
+                    val item = filteredList[position]
                     Cart.cart.add(item)
-                    ingredientsArrayList.remove(item)
                     filteredList.remove(item)
+                    ingredientsArrayList.remove(item)
                     badge.number = Cart.cart.size
                     Log.d("Cart", Cart.cart.toString())
                     adapter.notifyDataSetChanged()

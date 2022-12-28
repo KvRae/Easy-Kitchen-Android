@@ -81,6 +81,7 @@
     <string name="no_recipes_found">No recipes found</string>
     <string name="ingredients_basket">Ingredients basket</string>
     <string name="clear_cart">clear</string>
+    <string name="search_food">Search food</string>
 
 
 </resources>

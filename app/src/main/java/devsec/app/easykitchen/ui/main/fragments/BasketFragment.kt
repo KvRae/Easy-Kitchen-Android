@@ -68,6 +68,7 @@ class BasketFragment : Fragment() {
                 Cart.cart.add(item)
                 ingredientsArrayList.remove(item)
                 badge.number = Cart.cart.size
+                Log.d("Cart", Cart.cart.toString())
 
                 adapter.notifyDataSetChanged()
             }
@@ -96,17 +97,9 @@ class BasketFragment : Fragment() {
                     }
                     .show()
             }
-
-
-
-
         }
         toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
-                R.id.ingredients_search -> {
-                    Toast.makeText(context, "Search", Toast.LENGTH_SHORT).show()
-                    true
-                }
                 R.id.ingredients_cart -> {
                     val intent = Intent(context, IngredientsCartActivity::class.java)
                     startActivity(intent)

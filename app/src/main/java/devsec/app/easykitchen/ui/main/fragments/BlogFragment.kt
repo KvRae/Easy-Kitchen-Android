@@ -85,10 +85,10 @@ class BlogFragment : Fragment() {
         val call = retIn.getRecette()
         call.enqueue(object : Callback<List<Recette>> {
             override fun onResponse(call: Call<List<Recette>>, response: Response<List<Recette>>) {
-                recetteArray.addAll(response.body()!!)
+                if(response.body() != null) { recetteArray.addAll(response.body()!!)
+                    adapter.notifyDataSetChanged()}
                 getUsername()
 
-                adapter.notifyDataSetChanged()
 
                 Log.d("recetteArray",recetteArray.size.toString())
             }

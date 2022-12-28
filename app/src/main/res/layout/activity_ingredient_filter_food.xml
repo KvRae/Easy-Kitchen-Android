@@ -7,7 +7,7 @@
     tools:context=".ui.main.view.FoodByIngredientsActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/foodIngredientBar"
+        android:id="@+id/foodSearchBar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="?attr/colorPrimary"
@@ -39,5 +39,30 @@
             tools:listitem="@layout/list_row" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <LinearLayout
+        android:id="@+id/noFoodByIngredientsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/foodByIngredientsNotfoundimage"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:srcCompat="@drawable/ic_baseline_block_24" />
+
+        <TextView
+            android:id="@+id/foodByIngredientsNotFoundText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No recipes found"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

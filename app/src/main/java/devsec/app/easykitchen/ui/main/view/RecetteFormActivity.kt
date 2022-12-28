@@ -369,7 +369,6 @@ class RecetteFormActivity : AppCompatActivity() {
         }
 
     }
-<
 
     private fun showDialogSpinner(tv:TextView,list:ArrayList<String>,iM:Int) {
         val dialog = Dialog(this@RecetteFormActivity)

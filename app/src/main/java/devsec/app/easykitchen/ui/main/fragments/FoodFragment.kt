@@ -1,5 +1,6 @@
 package devsec.app.easykitchen.ui.main.fragments
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -7,7 +8,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.Toolbar
+import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -16,6 +18,7 @@ import devsec.app.easykitchen.api.RestApiService
 import devsec.app.easykitchen.api.RetrofitInstance
 import devsec.app.easykitchen.ui.main.adapter.FoodAdapter
 import devsec.app.easykitchen.data.models.Food
+import devsec.app.easykitchen.databinding.FragmentFoodBinding
 import devsec.app.easykitchen.ui.main.view.FoodRecipeActivity
 import devsec.app.easykitchen.utils.services.Cart
 import devsec.app.easykitchen.utils.services.LoadingDialog
@@ -28,7 +31,7 @@ class FoodFragment : Fragment() {
     private lateinit var adapter : FoodAdapter
     private lateinit var recyclerView : RecyclerView
     private lateinit var foodArrayList: ArrayList<Food>
-
+    private lateinit var searchView: SearchView
 
 //    val loadingDialog = LoadingDialog(requireActivity())
     private lateinit var swiperRefreshLayout : SwipeRefreshLayout
@@ -45,6 +48,23 @@ class FoodFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loadingDialog = LoadingDialog(requireActivity())
+        searchView = view.findViewById(R.id.foodSearchBar)
+        searchView.clearFocus()
+
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                searchView.clearFocus()
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText != null) {
+                    filterList(newText)
+                }
+                return true
+            }
+        })
 
 
         swiperRefreshLayout = view.findViewById(R.id.foodIngredientSwipeRefresh)
@@ -54,6 +74,8 @@ class FoodFragment : Fragment() {
         recyclerView.layoutManager = layoutManager
         adapter = FoodAdapter(foodArrayList)
         recyclerView.adapter = adapter
+
+
 
         swiperRefreshLayout.setOnRefreshListener {
             initFoodList()
@@ -69,21 +91,35 @@ class FoodFragment : Fragment() {
             }
         })
 
-        val toolbar = view.findViewById<Toolbar>(R.id.foodIngredientBar)
-//        toolbar.menu.findItem(R.id.ingredientsCart).setOnMenuItemClickListener {
-//            val intent = Intent(context, IngredientsCartActivity::class.java)
-//            startActivity(intent)
-//            true
-//        }
-//        toolbar.menu.findItem(R.id.favorite_food).setOnMenuItemClickListener {
-//            val intent = Intent(context, FavoriteFoodActivity::class.java)
-//            startActivity(intent)
-//            true
-//        }
-//        toolbar.menu.findItem(R.id.favorite_food).setOnMenuItemClickListener {
-//            Log.d("Cart", Cart.cart.toString())
-//            true
-//        }
+
+    }
+
+    private fun filterList(newText: String) {
+        val filteredList = ArrayList<Food>()
+        for (item in foodArrayList) {
+            if (item.name.toLowerCase().contains(newText.toLowerCase())) {
+                filteredList.add(item)
+            }
+            else if (item.area.toLowerCase().contains(newText.toLowerCase())) {
+                filteredList.add(item)
+            }
+            else if (item.category.toLowerCase().contains(newText.toLowerCase())) {
+                filteredList.add(item)
+            }
+        }
+
+        if (filteredList.isEmpty()){
+            AlertDialog.Builder(requireContext())
+                .setTitle("No Result")
+                .setMessage("No food found with the keyword $newText")
+                .setPositiveButton("OK") { dialog, which ->
+                    dialog.dismiss()
+                }
+                .show()
+        } else {
+            adapter.filterList(filteredList)
+        }
+
     }
 
     private fun initFoodList(){
@@ -113,3 +149,30 @@ class FoodFragment : Fragment() {
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+//        val toolbar = view.findViewById<Toolbar>(R.id.foodSearchBar)
+//        toolbar.menu.findItem(R.id.ingredientsCart).setOnMenuItemClickListener {
+//            val intent = Intent(context, IngredientsCartActivity::class.java)
+//            startActivity(intent)
+//            true
+//        }
+//        toolbar.menu.findItem(R.id.favorite_food).setOnMenuItemClickListener {
+//            val intent = Intent(context, FavoriteFoodActivity::class.java)
+//            startActivity(intent)
+//            true
+//        }
+//        toolbar.menu.findItem(R.id.favorite_food).setOnMenuItemClickListener {
+//            Log.d("Cart", Cart.cart.toString())
+//            true
+//        }

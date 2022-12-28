@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
-import android.widget.Toast
+import android.widget.LinearLayout
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,11 +25,16 @@ class FoodByIngredientsActivity : AppCompatActivity(), SearchView.OnQueryTextLis
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: FoodAdapter
     private lateinit var foodArrayList: ArrayList<Food>
+    private lateinit var emptyRecipeLayout: LinearLayout
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_ingredient_filter_food)
-        toolbar = findViewById(R.id.foodIngredientBar)
+        emptyRecipeLayout = findViewById(R.id.noFoodByIngredientsLayout)
+        emptyRecipeLayout.visibility = LinearLayout.GONE
+        toolbar = findViewById(R.id.foodSearchBar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -42,7 +47,12 @@ class FoodByIngredientsActivity : AppCompatActivity(), SearchView.OnQueryTextLis
         recyclerView = findViewById(R.id.foodByIngredientsListView)
         recyclerView.layoutManager = layoutManager
         adapter = FoodAdapter(foodArrayList)
+        Log.d("FoodByIngredients", foodArrayList.toString())
         recyclerView.adapter = adapter
+
+        if (foodArrayList.size == 0) {
+//            emptyRecipeLayout.visibility = LinearLayout.VISIBLE
+        }
 
         adapter.setOnItemClickListener(object : FoodAdapter.OnItemClickListener {
             override fun onItemClick(position: Int) {
@@ -73,16 +83,16 @@ class FoodByIngredientsActivity : AppCompatActivity(), SearchView.OnQueryTextLis
                     val foodList = response.body()
                     for (food in foodList!!) {
                         if (foodFilter(food) == true) {
+                            Log.d("FoodFilter", foodFilter(food).toString())
                             foodArrayList.add(food)
                         }
                     }
+                    if (foodArrayList.size == 0) {
+                        emptyRecipeLayout.visibility = LinearLayout.VISIBLE
+                    }
+                    adapter.notifyDataSetChanged()
+                }
 
-                }
-                adapter.notifyDataSetChanged()
-                if (foodArrayList.isEmpty()) {
-                    Toast.makeText(this@FoodByIngredientsActivity, "No food found",
-                        Toast.LENGTH_SHORT).show()
-                }
             }
 
             override fun onFailure(call: Call<List<Food>>, t: Throwable) {
@@ -93,27 +103,28 @@ class FoodByIngredientsActivity : AppCompatActivity(), SearchView.OnQueryTextLis
 
     private fun foodFilter(food: Food): Boolean {
         val ingredients = ArrayList<String>()
-        if(!food?.strIngredient1.isNullOrEmpty() && food?.strIngredient1.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient1.toString()) }
-        if(!food?.strIngredient2.isNullOrEmpty() && food?.strIngredient2.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient2.toString()) }
-        if(!food?.strIngredient3.isNullOrEmpty() && food?.strIngredient3.toString().trim().isNotBlank()){ ingredients.add(food?.strIngredient3.toString()) }
-        if(!food?.strIngredient4.isNullOrEmpty() && food?.strIngredient4.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient4.toString()) }
-        if(!food?.strIngredient5.isNullOrEmpty() && food?.strIngredient5.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient5.toString()) }
-        if(!food?.strIngredient6.isNullOrEmpty() && food?.strIngredient6.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient6.toString()) }
-        if(!food?.strIngredient7.isNullOrEmpty() && food?.strIngredient7.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient7.toString()) }
-        if(!food?.strIngredient8.isNullOrEmpty() && food?.strIngredient8.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient8.toString()) }
-        if(!food?.strIngredient9.isNullOrEmpty() && food?.strIngredient9.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient9.toString()) }
-        if(!food?.strIngredient10.isNullOrEmpty() && food?.strIngredient10.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient10.toString()) }
-        if(!food?.strIngredient11.isNullOrEmpty() && food?.strIngredient11.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient11.toString()) }
-        if(!food?.strIngredient12.isNullOrEmpty() && food?.strIngredient12.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient12.toString()) }
-        if(!food?.strIngredient13.isNullOrEmpty() && food?.strIngredient13.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient13.toString()) }
-        if(!food?.strIngredient14.isNullOrEmpty() && food?.strIngredient14.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient14.toString()) }
-        if(!food?.strIngredient15.isNullOrEmpty() && food?.strIngredient15.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient15.toString()) }
-        if(!food?.strIngredient16.isNullOrEmpty() && food?.strIngredient16.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient16.toString()) }
-        if(!food?.strIngredient17.isNullOrEmpty() && food?.strIngredient17.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient17.toString()) }
-        if(!food?.strIngredient18.isNullOrEmpty() && food?.strIngredient18.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient18.toString()) }
-        if(!food?.strIngredient19.isNullOrEmpty() && food?.strIngredient19.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient19.toString()) }
-        if(!food?.strIngredient20.isNullOrEmpty() && food?.strIngredient20.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient20.toString()) }
+        if(!food.strIngredient1.isNullOrEmpty() && food.strIngredient1.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient1.toString()) }
+        if(!food.strIngredient2.isNullOrEmpty() && food.strIngredient2.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient2.toString()) }
+        if(!food.strIngredient3.isNullOrEmpty() && food.strIngredient3.toString().trim().isNotBlank()){ ingredients.add(food?.strIngredient3.toString()) }
+        if(!food.strIngredient4.isNullOrEmpty() && food.strIngredient4.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient4.toString()) }
+        if(!food.strIngredient5.isNullOrEmpty() && food.strIngredient5.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient5.toString()) }
+        if(!food.strIngredient6.isNullOrEmpty() && food.strIngredient6.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient6.toString()) }
+        if(!food.strIngredient7.isNullOrEmpty() && food.strIngredient7.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient7.toString()) }
+        if(!food.strIngredient8.isNullOrEmpty() && food?.strIngredient8.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient8.toString()) }
+        if(!food.strIngredient9.isNullOrEmpty() && food.strIngredient9.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient9.toString()) }
+        if(!food.strIngredient10.isNullOrEmpty() && food.strIngredient10.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient10.toString()) }
+        if(!food.strIngredient11.isNullOrEmpty() && food.strIngredient11.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient11.toString()) }
+        if(!food.strIngredient12.isNullOrEmpty() && food.strIngredient12.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient12.toString()) }
+        if(!food.strIngredient13.isNullOrEmpty() && food.strIngredient13.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient13.toString()) }
+        if(!food.strIngredient14.isNullOrEmpty() && food.strIngredient14.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient14.toString()) }
+        if(!food.strIngredient15.isNullOrEmpty() && food.strIngredient15.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient15.toString()) }
+        if(!food.strIngredient16.isNullOrEmpty() && food.strIngredient16.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient16.toString()) }
+        if(!food.strIngredient17.isNullOrEmpty() && food.strIngredient17.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient17.toString()) }
+        if(!food.strIngredient18.isNullOrEmpty() && food.strIngredient18.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient18.toString()) }
+        if(!food.strIngredient19.isNullOrEmpty() && food.strIngredient19.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient19.toString()) }
+        if(!food.strIngredient20.isNullOrEmpty() && food.strIngredient20.toString().trim().isNotBlank()) { ingredients.add(food?.strIngredient20.toString()) }
         if (ingredients.containsAll(Cart.cart)) {
+            Log.d("Food", Cart.cart.toString())
             return true
         }
         return false

@@ -214,7 +214,6 @@ class FoodByIngredientsActivity : AppCompatActivity(), SearchView.OnQueryTextLis
                     for (recette in recetteList!!) {
                         if (recetteFilter(recette)) {
                             recetteArrayList.add(recette)
-
                             Log.d("recetteArrayList",recetteArrayList.toString())
 
                         }
@@ -286,7 +285,7 @@ class FoodByIngredientsActivity : AppCompatActivity(), SearchView.OnQueryTextLis
         if(!recette.strIngredient20.isNullOrEmpty() && recette.strIngredient20.toString().trim().isNotBlank()) { ingredients.add(recette?.strIngredient20.toString()) }
 
         if (ingredients.containsAll(Cart.cart)) {
-            Log.d("recette", Cart.cart.toString())
+            Log.d("recette", ingredients.toString())
             return true
         }
         return false

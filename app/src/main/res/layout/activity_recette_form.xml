@@ -22,7 +22,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="65dp">
+        android:layout_marginTop="65dp"
+        >
 
         <LinearLayout
             android:id="@+id/linearLayout3"
@@ -69,12 +70,11 @@
                         android:layout_marginBottom="10dp"
                         android:background="@drawable/add_button"
                         android:drawableStart="@drawable/add_icon"
-                        android:elevation="20dp"
+                        android:elevation="4dp"
 
                         android:paddingStart="13dp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        tools:ignore="SpeakableTextPresentCheck" />
+                        app:layout_constraintEnd_toEndOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -190,16 +190,16 @@
                 android:buttonTint="@color/rosybrown"
                 android:text="@string/bioRecetteInput"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/difficultyInputLayout" />
-
+                app:layout_constraintTop_toBottomOf="@id/difficultyInputLayout"
+                />
             <LinearLayout
                 android:id="@+id/ingredientInputs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
+                android:orientation="vertical"
                 android:gravity="center_horizontal"
-                android:orientation="vertical">
-
+                >
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/ingredientInput1"
                     android:layout_width="match_parent"
@@ -224,12 +224,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:layout_marginStart="10dp"
                         android:hint="@string/MeasureTxt"
                         app:boxCornerRadiusBottomEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusTopStart="20dp"
+                        android:layout_marginStart="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/IngredientTxt1"
@@ -249,16 +249,15 @@
                         android:id="@+id/MeasureTxtType1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
-                        android:hint="Type"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:hint="Type"                android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+                        />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/ingredientInput2"
                     android:layout_width="match_parent"
@@ -283,12 +282,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:layout_marginStart="10dp"
                         android:hint="@string/MeasureTxt"
                         app:boxCornerRadiusBottomEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusTopStart="20dp"
+                        android:layout_marginStart="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/IngredientTxt2"
@@ -303,17 +302,16 @@
                             android:maxLength="30" />
 
                     </com.google.android.material.textfield.TextInputLayout>
-
                     <TextView
                         android:id="@+id/MeasureTxtType2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
-                        android:hint="Type"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:hint="Type"                    android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+                        />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -342,12 +340,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:layout_marginStart="10dp"
                         android:hint="@string/MeasureTxt"
                         app:boxCornerRadiusBottomEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusTopStart="20dp"
+                        android:layout_marginStart="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/IngredientTxt3"
@@ -362,17 +360,16 @@
                             android:maxLength="30" />
 
                     </com.google.android.material.textfield.TextInputLayout>
-
                     <TextView
                         android:id="@+id/MeasureTxtType3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
-                        android:hint="Type"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:hint="Type"                    android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+                        />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -401,12 +398,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:layout_marginStart="10dp"
                         android:hint="@string/MeasureTxt"
                         app:boxCornerRadiusBottomEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusTopStart="20dp"
+                        android:layout_marginStart="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/IngredientTxt4"
@@ -421,21 +418,19 @@
                             android:maxLength="30" />
 
                     </com.google.android.material.textfield.TextInputLayout>
-
                     <TextView
                         android:id="@+id/MeasureTxtType4"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
-                        android:hint="Type"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:hint="Type"                    android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+                        />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/ingredientInput5"
                     android:layout_width="match_parent"
@@ -460,12 +455,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:layout_marginStart="10dp"
                         android:hint="@string/MeasureTxt"
                         app:boxCornerRadiusBottomEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusTopStart="20dp"
+                        android:layout_marginStart="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/IngredientTxt5"
@@ -485,15 +480,14 @@
                         android:id="@+id/MeasureTxtType5"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
-                        android:hint="Type"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:hint="Type"                    android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+                        />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/ingredientInput6"
                     android:layout_width="match_parent"
@@ -518,12 +512,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:layout_marginStart="10dp"
                         android:hint="@string/MeasureTxt"
                         app:boxCornerRadiusBottomEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusTopStart="20dp"
+                        android:layout_marginStart="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/IngredientTxt6"
@@ -538,21 +532,19 @@
                             android:maxLength="30" />
 
                     </com.google.android.material.textfield.TextInputLayout>
-
                     <TextView
                         android:id="@+id/MeasureTxtType6"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
-                        android:hint="Type"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:hint="Type"                    android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+                        />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/ingredientInput7"
                     android:layout_width="match_parent"
@@ -577,12 +569,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:layout_marginStart="10dp"
                         android:hint="@string/MeasureTxt"
                         app:boxCornerRadiusBottomEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusTopStart="20dp"
+                        android:layout_marginStart="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/IngredientTxt7"
@@ -597,21 +589,19 @@
                             android:maxLength="30" />
 
                     </com.google.android.material.textfield.TextInputLayout>
-
                     <TextView
                         android:id="@+id/MeasureTxtType7"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
-                        android:hint="Type"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:hint="Type"                    android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+                        />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/ingredientInput8"
                     android:layout_width="match_parent"
@@ -636,12 +626,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:layout_marginStart="10dp"
                         android:hint="@string/MeasureTxt"
                         app:boxCornerRadiusBottomEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusTopStart="20dp"
+                        android:layout_marginStart="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/IngredientTxt8"
@@ -656,139 +646,131 @@
                             android:maxLength="30" />
 
                     </com.google.android.material.textfield.TextInputLayout>
-
                     <TextView
                         android:id="@+id/MeasureTxtType8"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
-                        android:hint="Type"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:hint="Type"                    android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/ingredientInput9"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/IngredientTxt9"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/rounded_edittext"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
-                        android:hint="Select an ingredient"
-                        android:padding="12dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/MeasureInputTxt9"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        />
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/MeasureInputTxt9"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="0dp"
+
+                </androidx.constraintlayout.widget.ConstraintLayout><androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ingredientInput9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/IngredientTxt9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_edittext"
+                    android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+                    android:hint="Select an ingredient"
+                    android:padding="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/MeasureInputTxt9"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/MeasureInputTxt9"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:hint="@string/MeasureTxt"
+                    app:boxCornerRadiusBottomEnd="20dp"
+                    app:boxCornerRadiusBottomStart="20dp"
+                    app:boxCornerRadiusTopEnd="20dp"
+                    app:boxCornerRadiusTopStart="20dp"
+                    android:layout_marginStart="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/IngredientTxt9"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/MeasureTxt9"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:inputType="number"
 
-                        android:layout_marginStart="10dp"
-                        android:hint="@string/MeasureTxt"
-                        app:boxCornerRadiusBottomEnd="20dp"
-                        app:boxCornerRadiusBottomStart="20dp"
-                        app:boxCornerRadiusTopEnd="20dp"
-                        app:boxCornerRadiusTopStart="20dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/IngredientTxt9"
-                        app:layout_constraintTop_toTopOf="parent">
+                        android:maxLength="30" />
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/MeasureTxt9"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="number"
+                </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    android:id="@+id/MeasureTxtType9"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Type"                android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+                    />
 
-                            android:maxLength="30" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout><androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ingredientInput10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/MeasureTxtType9"
-                        android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/IngredientTxt10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_edittext"
+                    android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+                    android:hint="Select an ingredient"
+                    android:padding="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/MeasureInputTxt10"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/MeasureInputTxt10"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:hint="@string/MeasureTxt"
+                    app:boxCornerRadiusBottomEnd="20dp"
+                    app:boxCornerRadiusBottomStart="20dp"
+                    app:boxCornerRadiusTopEnd="20dp"
+                    app:boxCornerRadiusTopStart="20dp"
+                    android:layout_marginStart="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/IngredientTxt10"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/MeasureTxt10"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
-                        android:hint="Type"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:inputType="number"
+
+                        android:maxLength="30" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    android:id="@+id/MeasureTxtType10"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Type"                android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+                    />
 
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/ingredientInput10"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/IngredientTxt10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/rounded_edittext"
-                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
-                        android:hint="Select an ingredient"
-                        android:padding="12dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/MeasureInputTxt10"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/MeasureInputTxt10"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-
-                        android:layout_marginStart="10dp"
-                        android:hint="@string/MeasureTxt"
-                        app:boxCornerRadiusBottomEnd="20dp"
-                        app:boxCornerRadiusBottomStart="20dp"
-                        app:boxCornerRadiusTopEnd="20dp"
-                        app:boxCornerRadiusTopStart="20dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/IngredientTxt10"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/MeasureTxt10"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="number"
-
-                            android:maxLength="30" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <TextView
-                        android:id="@+id/MeasureTxtType10"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
-                        android:hint="Type"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
+            </androidx.constraintlayout.widget.ConstraintLayout>
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/ingredientInput11"
                     android:layout_width="match_parent"
@@ -813,12 +795,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:layout_marginStart="10dp"
                         android:hint="@string/MeasureTxt"
                         app:boxCornerRadiusBottomEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusTopStart="20dp"
+                        android:layout_marginStart="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/IngredientTxt11"
@@ -838,15 +820,14 @@
                         android:id="@+id/MeasureTxtType11"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
-                        android:hint="Type"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:hint="Type"                    android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+                        />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/ingredientInput12"
                     android:layout_width="match_parent"
@@ -871,12 +852,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:layout_marginStart="10dp"
                         android:hint="@string/MeasureTxt"
                         app:boxCornerRadiusBottomEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusTopStart="20dp"
+                        android:layout_marginStart="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/IngredientTxt12"
@@ -886,25 +867,25 @@
                             android:id="@+id/MeasureTxt12"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:maxLength="30"
                             android:inputType="number"
-                            android:maxLength="30" />
+                            />
 
                     </com.google.android.material.textfield.TextInputLayout>
-
                     <TextView
                         android:id="@+id/MeasureTxtType12"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
                         android:hint="Type"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+                        />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/ingredientInput13"
                     android:layout_width="match_parent"
@@ -929,12 +910,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:layout_marginStart="10dp"
                         android:hint="@string/MeasureTxt"
                         app:boxCornerRadiusBottomEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusTopStart="20dp"
+                        android:layout_marginStart="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/IngredientTxt13"
@@ -949,21 +930,19 @@
                             android:maxLength="30" />
 
                     </com.google.android.material.textfield.TextInputLayout>
-
                     <TextView
                         android:id="@+id/MeasureTxtType13"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
-                        android:hint="Type"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:hint="Type"                    android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+                        />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/ingredientInput14"
                     android:layout_width="match_parent"
@@ -988,12 +967,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:layout_marginStart="10dp"
                         android:hint="@string/MeasureTxt"
                         app:boxCornerRadiusBottomEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusTopStart="20dp"
+                        android:layout_marginStart="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/IngredientTxt14"
@@ -1008,17 +987,16 @@
                             android:maxLength="30" />
 
                     </com.google.android.material.textfield.TextInputLayout>
-
                     <TextView
                         android:id="@+id/MeasureTxtType14"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
-                        android:hint="Type"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:hint="Type"                    android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+                        />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1047,12 +1025,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:layout_marginStart="10dp"
                         android:hint="@string/MeasureTxt"
                         app:boxCornerRadiusBottomEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusTopStart="20dp"
+                        android:layout_marginStart="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/IngredientTxt15"
@@ -1067,21 +1045,19 @@
                             android:maxLength="30" />
 
                     </com.google.android.material.textfield.TextInputLayout>
-
                     <TextView
                         android:id="@+id/MeasureTxtType15"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
-                        android:hint="Type"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:hint="Type"                    android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+                        />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/ingredientInput16"
                     android:layout_width="match_parent"
@@ -1106,12 +1082,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:layout_marginStart="10dp"
                         android:hint="@string/MeasureTxt"
                         app:boxCornerRadiusBottomEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusTopStart="20dp"
+                        android:layout_marginStart="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/IngredientTxt16"
@@ -1126,21 +1102,19 @@
                             android:maxLength="30" />
 
                     </com.google.android.material.textfield.TextInputLayout>
-
                     <TextView
                         android:id="@+id/MeasureTxtType16"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
-                        android:hint="Type"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:hint="Type"                    android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+                        />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/ingredientInput17"
                     android:layout_width="match_parent"
@@ -1165,12 +1139,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:layout_marginStart="10dp"
                         android:hint="@string/MeasureTxt"
                         app:boxCornerRadiusBottomEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusTopStart="20dp"
+                        android:layout_marginStart="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/IngredientTxt17"
@@ -1185,21 +1159,19 @@
                             android:maxLength="30" />
 
                     </com.google.android.material.textfield.TextInputLayout>
-
                     <TextView
                         android:id="@+id/MeasureTxtType17"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
-                        android:hint="Type"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:hint="Type"                    android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+                        />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/ingredientInput18"
                     android:layout_width="match_parent"
@@ -1224,12 +1196,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:layout_marginStart="10dp"
                         android:hint="@string/MeasureTxt"
                         app:boxCornerRadiusBottomEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusTopStart="20dp"
+                        android:layout_marginStart="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/IngredientTxt18"
@@ -1244,21 +1216,19 @@
                             android:maxLength="30" />
 
                     </com.google.android.material.textfield.TextInputLayout>
-
                     <TextView
                         android:id="@+id/MeasureTxtType18"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
-                        android:hint="Type"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:hint="Type"                    android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+                        />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/ingredientInput19"
                     android:layout_width="match_parent"
@@ -1283,12 +1253,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:layout_marginStart="10dp"
                         android:hint="@string/MeasureTxt"
                         app:boxCornerRadiusBottomEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusTopStart="20dp"
+                        android:layout_marginStart="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/IngredientTxt19"
@@ -1303,21 +1273,19 @@
                             android:maxLength="30" />
 
                     </com.google.android.material.textfield.TextInputLayout>
-
                     <TextView
                         android:id="@+id/MeasureTxtType19"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
-                        android:hint="Type"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:hint="Type"                    android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+                        />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/ingredientInput20"
                     android:layout_width="match_parent"
@@ -1342,12 +1310,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
 
-                        android:layout_marginStart="10dp"
                         android:hint="@string/MeasureTxt"
                         app:boxCornerRadiusBottomEnd="20dp"
                         app:boxCornerRadiusBottomStart="20dp"
                         app:boxCornerRadiusTopEnd="20dp"
                         app:boxCornerRadiusTopStart="20dp"
+                        android:layout_marginStart="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/IngredientTxt20"
@@ -1362,17 +1330,16 @@
                             android:maxLength="30" />
 
                     </com.google.android.material.textfield.TextInputLayout>
-
                     <TextView
                         android:id="@+id/MeasureTxtType20"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
-                        android:hint="Type"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:hint="Type"                    android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+                        />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1380,32 +1347,34 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     android:gravity="center_horizontal"
-                    android:orientation="horizontal">
-
+                    >
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/removeIngredient"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/long_rounded_button"
                         android:paddingHorizontal="10dp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/ourColor"
                         android:text="Remove"
-                        android:textColor="@color/ourColor" />
-
+                        android:background="@drawable/long_rounded_button"
+                        />
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/addIngredient"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/long_rounded_button_colored"
                         android:paddingHorizontal="10dp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/theWhite"
                         android:text="Add"
-                        android:textColor="@color/theWhite" />
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/long_rounded_button_colored"
+                        />
                 </LinearLayout>
 
             </LinearLayout>
+
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -1436,7 +1405,6 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-
                 android:id="@+id/submit_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -1448,43 +1416,5 @@
 
         </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/descInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/descRecetteInput"
-            app:boxCornerRadiusBottomEnd="20dp"
-            app:boxCornerRadiusBottomStart="20dp"
-            app:boxCornerRadiusTopEnd="20dp"
-            app:boxCornerRadiusTopStart="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/bioCheckBox">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/descEditText"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:gravity="top"
-                android:inputType="text|textMultiLine"
-                android:lines="8"
-                android:maxLines="10"
-                android:minLines="6"
-                android:scrollbars="vertical" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/submit_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/ajouter"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descInputLayout" />
-
-    </LinearLayout>
     </ScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

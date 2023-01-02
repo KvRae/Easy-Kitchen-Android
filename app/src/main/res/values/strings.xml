@@ -23,26 +23,16 @@
     <string name="previous" translatable="false">Previous</string>
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="accueilTxt">Hello,</string>
-    <string name="recomnandedRecette">Recettes des utilisateurs</string>
+
+
     <string name="category">Catégories</string>
     <string name="salade">Nos salades</string>
     <string name="expertRecette">Recette des experts</string>
-    <string name="veganRecette">Recette Vegan</string>
-    <string name="rechercheTxt">Recherche</string>
-    <string name="ojja">Ojja aux oeufs</string>
-    <string name="reccete_type">Recette généré</string>
+
     <string name="ingredients">Ingredients and mesures</string>
     <string name="instructions">Instructions</string>
     <string name="longLorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc diam augue, vestibulum bibendum faucibus id, imperdiet id diam. Nullam ex lorem, placerat in sem vel, ullamcorper consectetur lacus. Curabitur sodales urna nibh, sit amet iaculis ante dapibus vitae. Suspendisse et tortor at sem maximus consectetur a id nunc.</string>
-    <string name="ajoutRecette">Ajouter une recette</string>
-    <string name="titreRecetteInput">Titre de la recette</string>
-    <string name="dureeRecetteInput">Durée de la recette</string>
-    <string name="personRecetteInput">Nombre de personnes</string>
-    <string name="difficultyRecetteInput">Difficulté de la recette</string>
-    <string name="bioRecetteInput">Votre recette est elle Bio ?</string>
-    <string name="descRecetteInput">Veuillez specifier les instructions de votre recette</string>
-    <string name="ajouter">Submit</string>
+
     <string name="modifier">update</string>
     <string name="title_activity_ingredients">ingredients_Activity</string>
     <string name="BASE_URL">http://10.0.2.2:3000/api/</string>
@@ -65,10 +55,10 @@
     <string name="food_recipe">Food Recipe</string>
 
     <string name="upvote_number">50</string>
-    <string name="comment">Commentaire</string>
-    <string name="commentTitle">Laissez un Commentaire</string>
+
+
     <string name="commentTitleEdit">Commentaires</string>
-    <string name="blog_title">Recettes Utilisateurs</string>
+
     <string name="my_recipe">Mes Recettes</string>
     <string name="recetteFormTitle">Ajouter une recette</string>
     <string name="recetteFormEditTitle">Modifier la Recette</string>
@@ -123,6 +113,9 @@
     <string name="accueilTxt">Feed</string>
     <string name="about" translatable="false">About</string>
     <string name="about_description" translatable="false">Easy Kitchen is a smartphone application that prevents you from being hungry</string>
+    <string name="dateComment">10</string>
+    <string name="veganRecette">Recette vegan</string>
+    <string name="hello">"Hello, "</string>
 
 
 </resources>

@@ -123,9 +123,7 @@ class MainMenuActivity : AppCompatActivity() {
             true
         }
         session = SessionPref(this.applicationContext)
-        val username = binding.navView.getHeaderView(0).findViewById<TextView>(R.id.nav_header_title)
-        val user = session.getUserPref()
-        username.text = user.get(SessionPref.USER_NAME)
+
 
 
 

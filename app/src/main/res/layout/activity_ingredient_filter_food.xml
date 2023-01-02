@@ -6,6 +6,44 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.view.FoodByIngredientsActivity">
 
+    <LinearLayout
+        android:id="@+id/buttonLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/expertButton"
+            android:layout_width="160dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="20dp"
+            android:backgroundTint="@color/theWhite"
+            android:text="@string/expertRecette"
+            android:textAllCaps="false"
+            android:textColor="@color/rosybrown"
+            android:textSize="11sp"
+
+            app:cornerRadius="10dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/recetteUserButton"
+            android:layout_width="170dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="20dp"
+            android:backgroundTint="@color/theWhite"
+            android:text="@string/recomnandedRecette"
+            android:textAllCaps="false"
+            android:textColor="@color/rosybrown"
+            android:textSize="11sp"
+            app:cornerRadius="10dp" />
+    </LinearLayout>
+
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/foodIngredientSearchBar"
         android:layout_width="0dp"
@@ -19,7 +57,7 @@
         app:collapseIcon="@drawable/ic_baseline_shopping_basket_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonLayout"
         app:menu="@menu/food_menu"
         app:title="@string/food_toobar_title"
         app:titleTextColor="@color/theWhite" />
@@ -28,18 +66,31 @@
         android:id="@+id/foodIngredientSwipeRefresh"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="140dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
+        <LinearLayout
+            android:id="@+id/foodLL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/foodByIngredientsListView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="50dp"
             tools:listitem="@layout/list_row" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/recetteLL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recetteByIngredientsListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/blog_item" />
+        </LinearLayout>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

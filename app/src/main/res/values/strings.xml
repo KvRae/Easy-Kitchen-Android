@@ -25,10 +25,12 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="accueilTxt">Accueil</string>
-    <string name="recomnandedRecette">Recettes Recommandés</string>
+    <string name="accueilTxt">Hello,</string>
+    <string name="recomnandedRecette">Recettes des utilisateurs</string>
     <string name="category">Catégories</string>
+    <string name="salade">Nos salades</string>
     <string name="expertRecette">Recette des experts</string>
+    <string name="veganRecette">Recette Vegan</string>
     <string name="rechercheTxt">Recherche</string>
     <string name="ojja">Ojja aux oeufs</string>
     <string name="reccete_type">Recette généré</string>
@@ -42,7 +44,8 @@
     <string name="difficultyRecetteInput">Difficulté de la recette</string>
     <string name="bioRecetteInput">Votre recette est elle Bio ?</string>
     <string name="descRecetteInput">Veuillez specifier les instructions de votre recette</string>
-    <string name="ajouter">Ajouter</string>
+    <string name="ajouter">Submit</string>
+    <string name="modifier">update</string>
     <string name="title_activity_ingredients">ingredients_Activity</string>
     <string name="BASE_URL">http://10.0.2.2:3000/api/</string>
     <string name="action_settings">Settings</string>
@@ -64,9 +67,14 @@
     <string name="upvote_number">50</string>
     <string name="comment">Commentaire</string>
     <string name="commentTitle">Laissez un Commentaire</string>
+    <string name="commentTitleEdit">Commentaires</string>
     <string name="blog_title">Recettes Utilisateurs</string>
+    <string name="my_recipe">Mes Recettes</string>
     <string name="recetteFormTitle">Ajouter une recette</string>
+    <string name="recetteFormEditTitle">Modifier la Recette</string>
     <string name="dateComment">11/12/2022 16:28:20</string>
+    <string name="add">ADD</string>
+    <string name="remove">REMOVE</string>
 
     <string name="MeasureTxt">Mesure</string>
 
@@ -74,7 +82,11 @@
     <string name="meals_category_filter">Meals by category</string>
     <string name="profileimage">profileImage</string>
     <string name="greetings">Greetings</string>
+    <string name="quote">Don\'t forget to drink water!</string>
+
     <string name="rate_our_app">Rate Our App</string>
+    <string name="mes_recettes">My recipes</string>
+    <string name="healthy_mode">Healthy Mode</string>
     <string name="send_feedback">send feedback</string>
     <string name="open">Open</string>
     <string name="close">Close</string>

@@ -53,10 +53,15 @@ interface RestApiService {
 
 
     //***********************Recipe***********************//
-     @Headers("Content-Type:application/json")
     @GET("recettes")
     fun getRecette(): Call<List<Recette>>
 
+    @GET("recettes/bio")
+    fun getRecetteBio(): Call<List<Recette>>
+
+    @Headers("Content-Type:application/json")
+    @PATCH("recettes/{id}")
+    fun updateRecette(@Path("id") id: String, @Body info: Recette): Call<ResponseBody>
 
     @Headers("Content-Type:application/json")
     @GET("recettes/{id}")
@@ -85,6 +90,14 @@ interface RestApiService {
 
     ): Call<ResponseBody>
 
+    @DELETE("recettes/{id}")
+    fun deleteRecette(
+        @Path("id") id: String,
+    ): Call<ResponseBody>
+
+    @GET("recettes/{id}/recettes")
+    fun getRecetteByUser(@Path("id")id:String): Call<List<Recette>>
+
     @Multipart
     @POST("uploadfile")
     fun postImage(
@@ -101,6 +114,10 @@ interface RestApiService {
     //***********************Food***********************//
     @GET("food")
     fun getFoodsList(): Call<List<Food>>
+    @GET("food/vegan")
+    fun getFoodsVegan(): Call<List<Food>>
+    @GET("food/vegetarian")
+    fun getFoodsVegetarian(): Call<List<Food>>
 
     @GET("food/{id}")
     fun getFoodById(@Path("id") id: String): Call<Food>

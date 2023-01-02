@@ -1,6 +1,8 @@
 package devsec.app.easykitchen.ui.main.view
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
@@ -16,6 +18,8 @@ class MainMenuActivity : AppCompatActivity() {
     private lateinit var toggle: ActionBarDrawerToggle
     lateinit var drawerLayout: DrawerLayout
     private lateinit var navigationView: NavigationView
+    private lateinit var sideNav: Menu
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +31,18 @@ class MainMenuActivity : AppCompatActivity() {
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
+
+        //
+        navigationView.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.nav_recettes -> {
+                    val intent = Intent(this, MyRecipesActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> false
+            }
+        }
         if (intent.getStringExtra("openFragment") == "BasketFragment") {
             supportFragmentManager.beginTransaction().replace(R.id.fragments_container, BasketFragment())
                 .commit()

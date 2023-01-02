@@ -22,7 +22,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class BlogAdapter(private val blogList: ArrayList<Recette>):RecyclerView.Adapter<BlogAdapter.BlogViewHolder>() {
+class BlogBioAdapter(private val blogList: ArrayList<Recette>):RecyclerView.Adapter<BlogBioAdapter.BlogViewHolder>() {
 
     private lateinit var mListener: OnItemClickListener
     private lateinit var likeDiff: Number

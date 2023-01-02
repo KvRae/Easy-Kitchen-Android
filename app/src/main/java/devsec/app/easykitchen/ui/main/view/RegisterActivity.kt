@@ -156,26 +156,41 @@ class RegisterActivity : AppCompatActivity() {
             ) {
                 loadingDialog.dismissDialog()
                 if (response.code() == 200) {
-                    val msg =Gson().fromJson(response.body()?.string(), JsonObject::class.java).get("message").asString
-                    Toast.makeText(this@RegisterActivity,msg,  Toast.LENGTH_SHORT).show()
-                        val gson = Gson()
-                        val jsonSTRING = response.body()?.string()
-                        val jsonObject = gson.fromJson(jsonSTRING, JsonObject::class.java)
-                        val user = jsonObject.get("user").asJsonObject
+                    val gson = Gson()
+                    val jsonSTRING = response.body()?.string()
+                    val jsonObject = gson.fromJson(jsonSTRING, JsonObject::class.java)
+                    Toast.makeText(
+                        this@RegisterActivity,
+                        jsonObject.get("message").asString,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    val user = jsonObject.get("user")?.asJsonObject
+                    if (user != null) {
                         val id_user = user.get("_id").asString
                         val username_user = user.get("username").asString
                         val email_user = user.get("email").asString
                         val phone_user = user.get("phone").asString
-                        sessionPref.createRegisterSession(id_user, username_user, email_user,"", phone_user)
+                        sessionPref.createRegisterSession(
+                            id_user,
+                            username_user,
+                            email_user,
+                            "",
+                            phone_user
+                        )
+
                         val intent = Intent(this@RegisterActivity, MainMenuActivity::class.java)
                         startActivity(intent)
                         finish()
-
-
-                }
-                else{
-                    Toast.makeText(this@RegisterActivity, response.message(), Toast.LENGTH_SHORT)
-                        .show()
+                    } else {
+                        val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+                        startActivity(intent)
+                    }
+                }else{
+                    Toast.makeText(
+                        this@RegisterActivity,
+                        "Register failed",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         })

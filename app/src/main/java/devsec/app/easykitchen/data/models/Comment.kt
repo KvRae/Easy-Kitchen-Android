@@ -12,7 +12,9 @@ data class Comment (
     @SerializedName("recetteId")
     val recette:String,
     @SerializedName("userId")
-    val user: String
+    val user: String,
+    @SerializedName("username")
+    val username: String
 ){
-    constructor(text:String,recette:String,user:String):this("","",text,recette,user)
+    constructor(text:String,recette:String,user:String,username:String):this("","",text,recette,user,username)
 }

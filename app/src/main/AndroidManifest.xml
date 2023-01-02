@@ -8,7 +8,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
-
     <uses-permission android:name="usesCleartextTraffic=”true”" />
 
     <application
@@ -22,13 +21,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EasyKitchen"
         tools:targetApi="31">
-        <receiver android:name=".utils.services.Notification"
+        <activity
+            android:name=".ui.main.view.MySingleRecipeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.EasyKitchenNoAB">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.main.view.MyRecipesActivity"
+            android:exported="false"
+            android:theme="@style/Theme.EasyKitchenNoAB">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <receiver
+            android:name=".utils.services.Notification"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
+
         <activity
             android:name=".ui.main.view.CategoryRecipesFilterActivity"
-            android:theme="@style/Theme.EasyKitchenNoAB"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/Theme.EasyKitchenNoAB">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -36,9 +54,7 @@
         <activity
             android:name=".ui.main.view.FoodRecipeActivity"
             android:exported="false"
-            android:theme="@style/Theme.EasyKitchenNoAB">
-
-        </activity>
+            android:theme="@style/Theme.EasyKitchenNoAB" />
         <activity
             android:name=".ui.main.view.FoodByIngredientsActivity"
             android:exported="false"
@@ -49,6 +65,14 @@
         </activity>
         <activity
             android:name=".ui.main.view.RecetteFormActivity"
+            android:exported="false"
+            android:theme="@style/Theme.EasyKitchenNoAB">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.main.view.RecetteFormEditActivity"
             android:exported="false"
             android:theme="@style/Theme.EasyKitchenNoAB">
             <meta-data

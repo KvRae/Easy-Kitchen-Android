@@ -22,7 +22,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class BlogAdapter(private val blogList: ArrayList<Recette>):RecyclerView.Adapter<BlogAdapter.BlogViewHolder>() {
+class BlogBioAdapter(private val blogList: ArrayList<Recette>):RecyclerView.Adapter<BlogBioAdapter.BlogViewHolder>() {
 
     private lateinit var mListener: OnItemClickListener
     private lateinit var likeDiff: Number
@@ -38,7 +38,6 @@ class BlogAdapter(private val blogList: ArrayList<Recette>):RecyclerView.Adapter
         val blog_upvote = itemView.findViewById<AppCompatButton>(R.id.upvote)
         val blog_duration = itemView.findViewById<TextView>(R.id.blog_time)
         val blog_title = itemView.findViewById<TextView>(R.id.blog_titre)
-//        val blog_image = itemView.findViewById<ImageView>(R.id.)
 
 
         init {

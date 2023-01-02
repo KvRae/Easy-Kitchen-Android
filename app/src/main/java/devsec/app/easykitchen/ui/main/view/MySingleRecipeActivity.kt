@@ -1,5 +1,6 @@
 package devsec.app.easykitchen.ui.main.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -7,8 +8,10 @@ import android.widget.AutoCompleteTextView
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import devsec.app.easykitchen.R
@@ -27,7 +30,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class RecetteActivity : AppCompatActivity() {
+class MySingleRecipeActivity : AppCompatActivity() {
 
     private lateinit var recyclerViewIngredient: RecyclerView
     private lateinit var adapterIngredient: IngredientsRecetteTextAdapter
@@ -40,10 +43,10 @@ class RecetteActivity : AppCompatActivity() {
     private lateinit var instructionTxt: TextView
     private lateinit var recetteUser:TextView
     private lateinit var recetteLikes:TextView
-    private lateinit var likeButton:AppCompatImageButton
-    private lateinit var dislikeButton:AppCompatImageButton
+    private lateinit var edit:AppCompatImageButton
+    private lateinit var delete:AppCompatImageButton
     lateinit var commentInput:EditText
-//    lateinit var recette: Recette
+    //    lateinit var recette: Recette
     lateinit var sessionPref: SessionPref
     lateinit var idUser : String
     lateinit var username : String
@@ -51,7 +54,7 @@ class RecetteActivity : AppCompatActivity() {
     lateinit var idRecette : String
     lateinit var submitComment:AppCompatButton
     lateinit var user : HashMap<String, String>
-//    lateinit var userName:String
+    //    lateinit var userName:String
     lateinit var commentsList:ArrayList<Comment>
 
     lateinit var ingredientsList : ArrayList<String>
@@ -60,7 +63,7 @@ class RecetteActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_recette)
+        setContentView(R.layout.activity_my_single_recipe)
         sessionPref = SessionPref(this)
 
         idRecette = intent.getStringExtra("id").toString()
@@ -98,46 +101,56 @@ class RecetteActivity : AppCompatActivity() {
         adapter = CommentAdapter(commentsList,idUser)
         recyclerView.adapter = adapter
 
-        commentInput = findViewById(R.id.commentEditText)
         recetteTitre = findViewById(R.id.foodRecipeName)
         timeTxt = findViewById(R.id.timeTxt)
         peopleTxt = findViewById(R.id.peopleTxt)
         difficultyTxt = findViewById(R.id.difficultyTxt)
         instructionTxt = findViewById(R.id.foodRecipeInstructions)
         recetteUser = findViewById(R.id.foodRecipeCategory)
-        likeButton = findViewById(R.id.upvoteButton)
-        dislikeButton = findViewById(R.id.downvoteButton)
+        edit = findViewById(R.id.editRecette)
+        delete = findViewById(R.id.deleteRecette)
         recetteLikes=findViewById(R.id.recetteLikes)
-        submitComment=findViewById(R.id.submitComment)
 
-        likeButton.setOnClickListener{
-            likeRecette()
-            reloadActivity()
 
+//        submitComment.setOnClickListener {
+//            if (commentInput.text.isEmpty()){
+//                commentInput.error = "comment is required"
+//                commentInput.requestFocus()
+//            }else{
+//                postComment(commentInput.text.toString())
+//                commentInput.text.clear()
+//                reloadActivity()
+//            }
+//
+//        }
+
+        delete.setOnClickListener {
+            AlertDialog.Builder(this@MySingleRecipeActivity)
+                .setTitle("Are you sure?")
+                .setMessage("You want to Delete this recipe ?")
+                .setPositiveButton("Yes") { dialog, which ->
+                    deleteRecette(idRecette)
+                    val intent = Intent(this, MyRecipesActivity::class.java)
+                    startActivity(intent)
+                }
+                .setNegativeButton("No") { dialog, which ->
+                    dialog.dismiss()
+                }
+                .show()
+
+            Log.d("clicked","clicked!")
         }
-        dislikeButton.setOnClickListener{
-            dislikeRecette()
-            reloadActivity()
-
-
-        }
-        submitComment.setOnClickListener {
-        if (commentInput.text.isEmpty()){
-            commentInput.error = "comment is required"
-            commentInput.requestFocus()
-        }else{
-            postComment(commentInput.text.toString())
-            commentInput.text.clear()
-            reloadActivity()
-        }
-
+        edit.setOnClickListener {
+            val intent = Intent(this, RecetteFormEditActivity::class.java)
+            intent.putExtra("id", idRecette)
+            startActivity(intent)
         }
 
     }
     private fun initRecette() {
         val ingredients = ArrayList<String>()
         val measures = ArrayList<String>()
-        
+
         val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
         val call = retIn.getRecetteById(idRecette)
         call.enqueue(object : Callback<Recette> {
@@ -154,7 +167,7 @@ class RecetteActivity : AppCompatActivity() {
                 instructionTxt.text =response.body()!!.description
                 recetteUser.text = response.body()!!.username
                 recetteLikes.text = (response.body()!!.likes.toFloat() - response.body()!!.dislikes.toFloat()).toInt().toString()
-                
+
                 if(!recette?.strIngredient1.isNullOrEmpty() && recette?.strIngredient1.toString().trim().isNotBlank()) { ingredients.add(recette?.strIngredient1.toString()) }
                 if(!recette?.strIngredient2.isNullOrEmpty() && recette?.strIngredient2.toString().trim().isNotBlank()) { ingredients.add(recette?.strIngredient2.toString()) }
                 if(!recette?.strIngredient3.isNullOrEmpty() && recette?.strIngredient3.toString().trim().isNotBlank()){ ingredients.add(recette?.strIngredient3.toString()) }
@@ -217,44 +230,6 @@ class RecetteActivity : AppCompatActivity() {
         recreate()
     }
 
-    private fun likeRecette() {
-        val user = User(id=idUser)
-        Log.d("aaaaa","aaaaaaaaaaaaaa")
-        val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
-        val call = retIn.likeRecette(idRecette,user)
-        call.enqueue(object: Callback<ResponseBody>{
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                Toast.makeText(this@RecetteActivity, response.body()!!.toString(), Toast.LENGTH_SHORT).show()
-
-            }
-
-            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                Log.d("400","Failure = "+t.toString());
-            }
-
-        })
-    }
-
-    private fun dislikeRecette() {
-        val user = User(id = idUser)
-        val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
-        val call = retIn.dislikeRecette(idRecette, user)
-        call.enqueue(object : Callback<ResponseBody> {
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                Toast.makeText(
-                    this@RecetteActivity,
-                    response.body()!!.toString(),
-                    Toast.LENGTH_SHORT
-                ).show()
-
-            }
-
-            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                Log.d("400", "Failure = " + t.toString());
-            }
-
-        })
-    }
 
     private fun initComments() {
         commentsList = ArrayList()
@@ -273,34 +248,21 @@ class RecetteActivity : AppCompatActivity() {
 
         })
     }
-
-    private fun postComment(commentText:String) {
-
-        val commentInfo = Comment(
-            commentText,
-            idRecette,
-            idUser,
-            username
-        )
+    private fun deleteRecette(id:String ){
         val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
-        val call = retIn.postComment(commentInfo)
-        call.enqueue(object : Callback<ResponseBody> {
+        val call = retIn.deleteRecette(idRecette)
+        call.enqueue(object:Callback<ResponseBody>{
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                if (response.code() == 200) {
-                    Toast.makeText(this@RecetteActivity, "comment Added", Toast.LENGTH_SHORT)
-                        .show()
+                Log.d("200","success = "+response.body().toString());
 
-                } else {
-                    Toast.makeText(this@RecetteActivity, response.message(), Toast.LENGTH_SHORT)
-                        .show()
-                }
-                }
+            }
 
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 Log.d("400","Failure = "+t.toString());
             }
-
         })
     }
+
+
 
 }

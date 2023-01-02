@@ -21,16 +21,32 @@
     <string name="second_fragment_label" translatable="false">Second Fragment</string>
     <string name="next" translatable="false">Next</string>
     <string name="previous" translatable="false">Previous</string>
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="accueilTxt">Hello,</string>
+    <string name="recomnandedRecette">Recettes des utilisateurs</string>
+    <string name="category">Catégories</string>
+    <string name="salade">Nos salades</string>
+    <string name="expertRecette">Recette des experts</string>
+    <string name="veganRecette">Recette Vegan</string>
+    <string name="rechercheTxt">Recherche</string>
+    <string name="ojja">Ojja aux oeufs</string>
+    <string name="reccete_type">Recette généré</string>
+    <string name="ingredients">Ingredients and mesures</string>
+    <string name="instructions">Instructions</string>
+    <string name="longLorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc diam augue, vestibulum bibendum faucibus id, imperdiet id diam. Nullam ex lorem, placerat in sem vel, ullamcorper consectetur lacus. Curabitur sodales urna nibh, sit amet iaculis ante dapibus vitae. Suspendisse et tortor at sem maximus consectetur a id nunc.</string>
+    <string name="ajoutRecette">Ajouter une recette</string>
+    <string name="titreRecetteInput">Titre de la recette</string>
+    <string name="dureeRecetteInput">Durée de la recette</string>
+    <string name="personRecetteInput">Nombre de personnes</string>
+    <string name="difficultyRecetteInput">Difficulté de la recette</string>
+    <string name="bioRecetteInput">Votre recette est elle Bio ?</string>
+    <string name="descRecetteInput">Veuillez specifier les instructions de votre recette</string>
+    <string name="ajouter">Submit</string>
+    <string name="modifier">update</string>
+    <string name="title_activity_ingredients">ingredients_Activity</string>
+    <string name="BASE_URL">http://10.0.2.2:3000/api/</string>
 
-    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
-    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
-    <string name="category">Categories</string>
-    <string name="expertRecette">Experts recipes</string>
-    <string name="ingredients" translatable="false">Ingredients and mesures</string>
-    <string name="instructions" translatable="false">Instructions</string>
-    <string name="longLorem" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc diam augue, vestibulum bibendum faucibus id, imperdiet id diam. Nullam ex lorem, placerat in sem vel, ullamcorper consectetur lacus. Curabitur sodales urna nibh, sit amet iaculis ante dapibus vitae. Suspendisse et tortor at sem maximus consectetur a id nunc.</string>
-    <string name="title_activity_ingredients" translatable="false">ingredients_Activity</string>
-    <string name="BASE_URL" translatable="false">http://10.0.2.2:3000/api/</string>
     <string name="action_settings">Settings</string>
     <string name="hello_food_fragment" translatable="false">hello food fragment</string>
     <string name="hello_blog_frag" translatable="false">hello blog frag</string>
@@ -47,9 +63,18 @@
     <string name="add_ingredients">Add ingredients</string>
     <string name="food_toobar_title">Food list</string>
     <string name="food_recipe">Food Recipe</string>
-    <string name="upvote_number" translatable="false">50</string>
+
+    <string name="upvote_number">50</string>
+    <string name="comment">Commentaire</string>
+    <string name="commentTitle">Laissez un Commentaire</string>
+    <string name="commentTitleEdit">Commentaires</string>
+    <string name="blog_title">Recettes Utilisateurs</string>
+    <string name="my_recipe">Mes Recettes</string>
     <string name="recetteFormTitle">Ajouter une recette</string>
-    <string name="dateComment" translatable="false">11/12/2022 16:28:20</string>
+    <string name="recetteFormEditTitle">Modifier la Recette</string>
+    <string name="add">ADD</string>
+    <string name="remove">REMOVE</string>
+
 
     <string name="MeasureTxt">Mesure</string>
 
@@ -57,10 +82,16 @@
     <string name="meals_category_filter">Meals by category</string>
     <string name="profileimage" translatable="false">profileImage</string>
     <string name="greetings">Greetings</string>
+    <string name="quote">Don\'t forget to drink water!</string>
+
     <string name="rate_our_app">Rate Our App</string>
+
+    <string name="mes_recettes">My recipes</string>
+    <string name="healthy_mode">Healthy Mode</string>
     <string name="send_feedback">Send feedback</string>
     <string name="open" translatable="false">Open</string>
     <string name="close" translatable="false">Close</string>
+
     <string name="no_recipes_found">No recipes found</string>
     <string name="ingredients_basket">Ingredients basket</string>
     <string name="clear_cart" translatable="false">clear</string>

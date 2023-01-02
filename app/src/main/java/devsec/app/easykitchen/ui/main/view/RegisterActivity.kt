@@ -49,7 +49,7 @@ class RegisterActivity : AppCompatActivity() {
             val email = findViewById<EditText>(R.id.emailEditText)
             val phone = findViewById<EditText>(R.id.phoneEditText)
             if (validateRegister(username, password, verifPass, email, phone)) {
-                register(username.text.toString(), password.text.toString(), email.text.toString(), phone.text.toString())}
+                register(username.text.toString().trim(), password.text.toString().trim(), email.text.toString().trim(), phone.text.toString().trim())}
             }
 
         loginbtn = findViewById<Button>(R.id.loginBtn)
@@ -62,7 +62,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun validateRegister(username: EditText, password: EditText, verifPass: EditText, email: EditText, phone: EditText): Boolean {
-        if (username.text.isEmpty() || password.text.isEmpty() || verifPass.text.isEmpty() || email.text.isEmpty() || phone.text.isEmpty()) {
+        if (username.text.trim().isEmpty() || password.text.trim().isEmpty() || verifPass.text.trim().isEmpty() || email.text.trim().isEmpty() || phone.text.trim().isEmpty()) {
 
             if (phone.text.isEmpty()) {
                 phone.error = "Phone is required"
@@ -158,7 +158,6 @@ class RegisterActivity : AppCompatActivity() {
                 if (response.code() == 200) {
                     val msg =Gson().fromJson(response.body()?.string(), JsonObject::class.java).get("message").asString
                     Toast.makeText(this@RegisterActivity,msg,  Toast.LENGTH_SHORT).show()
-                    if(msg == "User created successfully"){
                         val gson = Gson()
                         val jsonSTRING = response.body()?.string()
                         val jsonObject = gson.fromJson(jsonSTRING, JsonObject::class.java)
@@ -169,10 +168,9 @@ class RegisterActivity : AppCompatActivity() {
                         val phone_user = user.get("phone").asString
                         sessionPref.createRegisterSession(id_user, username_user, email_user,"", phone_user)
                         val intent = Intent(this@RegisterActivity, MainMenuActivity::class.java)
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                         startActivity(intent)
                         finish()
-                    }
+
 
                 }
                 else{

@@ -59,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
         val loginBtn = findViewById<Button>(R.id.LoginBtn)
         loginBtn.setOnClickListener() {
             if (validateLogin(usernameEditText, passwordEditText,passwordLayout)) {
-                login(usernameEditText.text.toString(), passwordEditText.text.toString())
+                login(usernameEditText.text.trim().toString(), passwordEditText.text.trim().toString())
 
             }else{
                 val toast = Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT)

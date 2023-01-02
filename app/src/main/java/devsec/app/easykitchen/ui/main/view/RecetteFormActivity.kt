@@ -26,6 +26,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.net.toFile
 import com.google.android.material.textfield.TextInputLayout
 import devsec.app.easykitchen.R
 import devsec.app.easykitchen.api.RestApiService
@@ -34,10 +35,14 @@ import devsec.app.easykitchen.data.models.Ingredients
 import devsec.app.easykitchen.data.models.Recette
 import devsec.app.easykitchen.databinding.ActivityRecetteFormBinding
 import devsec.app.easykitchen.utils.session.SessionPref
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
@@ -161,6 +166,25 @@ class RecetteFormActivity : AppCompatActivity() {
         ingredientsTypeArray.addAll(measureType)
 
 
+        // Image Picker
+        addButton = findViewById(R.id.add_button)
+        imgView = findViewById(R.id.imageViewRecette)
+        addButton.setOnClickListener {
+
+            Log.d("TAG", "onClick: ")
+
+
+            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+                val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
+                requestPermissions(permissions, REQUEST_CODE)
+            } else {
+                pickImageFromGallery()
+            }
+        }
+
+
+
+
         difficultyDropDown = findViewById(R.id.difficultyDropDown)
 
         listDifficulty = ArrayList()
@@ -179,6 +203,24 @@ class RecetteFormActivity : AppCompatActivity() {
         setup()
 
 
+    }
+
+    private fun pickImageFromGallery() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(intent, IMAGE_PICK_CODE)
+
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE) {
+            imageUri = data?.data!!
+            imgView.setImageURI(imageUri)
+        }
     }
 
 
@@ -334,6 +376,7 @@ class RecetteFormActivity : AppCompatActivity() {
         }
 
         addButton.setOnClickListener {
+            pickImageFromGallery()
 
 
         }
@@ -364,7 +407,12 @@ class RecetteFormActivity : AppCompatActivity() {
                 submit(titreInput.text.toString(), descInput.text.toString(),bio, Integer.parseInt(dureeInput.text.toString()), Integer.parseInt(personInput.text.toString()),difficultyDropDown.text.toString(),idUser,username,
                     tv1.text.toString(),tv2.text.toString(),tv3.text.toString(),tv4.text.toString(),tv5.text.toString(),tv6.text.toString(),tv7.text.toString(),tv8.text.toString(),tv9.text.toString(),tv10.text.toString(),tv11.text.toString(),tv12.text.toString(),tv13.text.toString(),tv14.text.toString(),tv15.text.toString(),tv16.text.toString(),tv17.text.toString(),tv18.text.toString(),tv19.text.toString(),tv20.text.toString(),
                     measureFuse(et1,t1),measureFuse(et2,t2),measureFuse(et3,t3),measureFuse(et4,t4),measureFuse(et5,t5),measureFuse(et6,t6),measureFuse(et7,t7),measureFuse(et8,t8),measureFuse(et9,t9),measureFuse(et10,t10),measureFuse(et11,t11),measureFuse(et12,t12),measureFuse(et13,t13),measureFuse(et14,t14),measureFuse(et15,t15),measureFuse(et16,t16),measureFuse(et17,t17),measureFuse(et18,t18),measureFuse(et19,t19),measureFuse(et20,t20))
+
                 Log.d("checkSubmit","4")
+
+                retrofitUploadImage(imageUri)
+            }
+
 
             }
             val intent = Intent(this, FoodByIngredientsActivity::class.java)
@@ -443,7 +491,29 @@ class RecetteFormActivity : AppCompatActivity() {
 
 
     }
-    private fun upload() {
+    private fun retrofitUploadImage(imageUri: Uri) {
+        val file = File(imageUri.path)
+        val requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file)
+        val body = MultipartBody.Part.createFormData("myFile", file.name, requestFile)
+        val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
+        val call = retIn.uploadImage(body)
+        call.enqueue(object : Callback<ResponseBody> {
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                if (response.isSuccessful) {
+                    Toast.makeText(this@RecetteFormActivity, "Image Uploaded", Toast.LENGTH_SHORT)
+                        .show()
+                } else {
+                    Toast.makeText(this@RecetteFormActivity, "Image Not Uploaded", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                Toast.makeText(this@RecetteFormActivity, "Image Not Uploaded", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
+
 
 
     }
@@ -534,12 +604,12 @@ class RecetteFormActivity : AppCompatActivity() {
         username:String,
         strIngredient1: String,strIngredient2: String,strIngredient3: String,strIngredient4: String,strIngredient5: String,strIngredient6: String,strIngredient7: String,strIngredient8: String,strIngredient9: String,strIngredient10: String,strIngredient11: String,strIngredient12: String,strIngredient13: String,strIngredient14: String,strIngredient15: String,strIngredient16: String,strIngredient17: String,strIngredient18: String,strIngredient19: String,strIngredient20: String,
         strMeasure1: String,strMeasure2: String,strMeasure3: String,strMeasure4: String,strMeasure5: String,strMeasure6: String,strMeasure7: String,strMeasure8: String,strMeasure9: String,strMeasure10: String,strMeasure11: String,strMeasure12: String,strMeasure13: String,strMeasure14: String,strMeasure15: String,strMeasure16: String,strMeasure17: String,strMeasure18: String,strMeasure19: String,strMeasure20: String
-    ) {
-        Log.d("check","1")
+
+    )
+    {
+
         val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
-        Log.d("check","2")
-        val image: String = "test55"
-        Log.d("check","3")
+        val image =  imageUri.toString()
         val recetteInfo = Recette(
             name,
             description,

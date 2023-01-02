@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import devsec.app.easykitchen.R
 
-class IngredientsAdapter(private val ingredientsList: List<String>) : RecyclerView.Adapter<IngredientsAdapter.IngredientsViewHolder>()
+class IngredientsAdapter(private var ingredientsList: List<String>) : RecyclerView.Adapter<IngredientsAdapter.IngredientsViewHolder>()
 {
     private lateinit var mListener: OnItemClickListener
 
@@ -61,5 +61,11 @@ class IngredientsAdapter(private val ingredientsList: List<String>) : RecyclerVi
 
     override fun getItemCount(): Int {
         return ingredientsList.size
+    }
+
+    fun filterList(filteredList: ArrayList<String>) {
+        ingredientsList = filteredList
+        notifyDataSetChanged()
+
     }
 }

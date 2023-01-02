@@ -90,6 +90,7 @@ class CategoryRecipesFilterActivity : AppCompatActivity() {
     }
     private fun initFoodList() {
         val area = intent.getStringExtra("area")
+
         foodArrayList = ArrayList()
         val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
         val call = retIn.getFoodsList()

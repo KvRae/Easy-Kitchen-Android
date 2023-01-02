@@ -40,23 +40,20 @@ class RegisterActivity : AppCompatActivity() {
             finish()
         }
 
-
-
         registerbtn = findViewById<Button>(R.id.RegisterBTN)
 
         registerbtn.setOnClickListener {
-
             val username = findViewById<EditText>(R.id.loginEditText)
             val password = findViewById<EditText>(R.id.passwordInputEditText)
             val verifPass = findViewById<EditText>(R.id.passwordInputEditText2)
             val email = findViewById<EditText>(R.id.emailEditText)
             val phone = findViewById<EditText>(R.id.phoneEditText)
-
             if (validateRegister(username, password, verifPass, email, phone)) {
-                register(username.text.toString(), password.text.toString(), email.text.toString(), phone.text.toString())}
+                register(username.text.toString().trim(), password.text.toString().trim(), email.text.toString().trim(), phone.text.toString().trim())}
             }
 
         loginbtn = findViewById<Button>(R.id.loginBtn)
+
         loginbtn.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
@@ -65,7 +62,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun validateRegister(username: EditText, password: EditText, verifPass: EditText, email: EditText, phone: EditText): Boolean {
-        if (username.text.isEmpty() || password.text.isEmpty() || verifPass.text.isEmpty() || email.text.isEmpty() || phone.text.isEmpty()) {
+        if (username.text.trim().isEmpty() || password.text.trim().isEmpty() || verifPass.text.trim().isEmpty() || email.text.trim().isEmpty() || phone.text.trim().isEmpty()) {
 
             if (phone.text.isEmpty()) {
                 phone.error = "Phone is required"
@@ -135,8 +132,6 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun register(username: String, password: String, email: String, phone: String) {
-        loginbtn.isEnabled = false
-        registerbtn.isEnabled = false
         loadingDialog.startLoadingDialog()
 
         val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
@@ -145,6 +140,7 @@ class RegisterActivity : AppCompatActivity() {
 
         retIn.registerUser(registerInfo).enqueue(object :
             Callback<ResponseBody> {
+
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 loadingDialog.dismissDialog()
                 Toast.makeText(
@@ -160,33 +156,45 @@ class RegisterActivity : AppCompatActivity() {
             ) {
                 loadingDialog.dismissDialog()
                 if (response.code() == 200) {
-                    Toast.makeText(this@RegisterActivity, "Registration success!", Toast.LENGTH_SHORT)
-                        .show()
-
                     val gson = Gson()
                     val jsonSTRING = response.body()?.string()
                     val jsonObject = gson.fromJson(jsonSTRING, JsonObject::class.java)
-                    val user = jsonObject.get("user").asJsonObject
-                    val id_user = user.get("_id").asString
-                    val username_user = user.get("username").asString
-                    val email_user = user.get("email").asString
-                    val phone_user = user.get("phone").asString
-                    sessionPref.createRegisterSession(id_user, username_user, email_user,"", phone_user)
+                    Toast.makeText(
+                        this@RegisterActivity,
+                        jsonObject.get("message").asString,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    val user = jsonObject.get("user")?.asJsonObject
+                    if (user != null) {
+                        val id_user = user.get("_id").asString
+                        val username_user = user.get("username").asString
+                        val email_user = user.get("email").asString
+                        val phone_user = user.get("phone").asString
+                        sessionPref.createRegisterSession(
+                            id_user,
+                            username_user,
+                            email_user,
+                            "",
+                            phone_user
+                        )
 
-                    val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
-                    startActivity(intent)
-
-                    finish()
-
-                }
-                else{
-                    Toast.makeText(this@RegisterActivity, response.message(), Toast.LENGTH_SHORT)
-                        .show()
+                        val intent = Intent(this@RegisterActivity, MainMenuActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                }else{
+                    Toast.makeText(
+                        this@RegisterActivity,
+                        "Register failed",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         })
-        loginbtn.isEnabled = true
-        registerbtn.isEnabled = true
     }
 
 }

@@ -35,7 +35,6 @@
         app:counterEnabled="true"
         app:counterMaxLength="30"
         app:endIconMode="clear_text"
-        app:helperText="required*"
         app:helperTextTextColor="@color/rosybrown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,7 +67,6 @@
         app:boxCornerRadiusTopStart="20dp"
         app:counterEnabled="true"
 
-        app:helperText="required*"
         app:helperTextTextColor="@color/rosybrown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -88,6 +86,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
+        android:background="@drawable/button_with_radius"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="40dp"
         android:text="@string/loginTxt"

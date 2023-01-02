@@ -35,8 +35,6 @@ class IngredientsCartActivity : AppCompatActivity() {
     lateinit var recyclerView: RecyclerView
     private lateinit var ingredientsArrayList: ArrayList<String>
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ingredients)
@@ -49,11 +47,12 @@ class IngredientsCartActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
 
-
         adapter.setOnItemClickListener(object : IngredientCartAdapter.OnItemClickListener {
             override fun onItemClick(position: Int) {
                 Cart.cart.minus(ingredientsArrayList[position])
+                Cart.cartRemovedItems.add(ingredientsArrayList[position])
                 ingredientsArrayList.removeAt(position)
+
                 adapter.notifyItemRemoved(position)
                 adapter.notifyItemRangeChanged(position, ingredientsArrayList.size)
 
@@ -62,17 +61,13 @@ class IngredientsCartActivity : AppCompatActivity() {
 
          toolbar = findViewById(R.id.ingredientsToolbar)
         setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+
+
         toolbar.setNavigationOnClickListener {
-
-            if (Cart.cart.size == 0) {
-
-                val intent = Intent(this, MainMenuActivity::class.java)
-                intent.putExtra("openFragment", "BasketFragment")
-                startActivity(intent)
-            }
             onBackPressed()
         }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -114,6 +109,21 @@ class IngredientsCartActivity : AppCompatActivity() {
         if (Cart.cart.size > 0) {
             ingredientsArrayList = Cart.cart
         }
+    }
+    override fun onBackPressed() {
+
+        if (Cart.cart.size == 0) {
+
+            val intent = Intent(this, MainMenuActivity::class.java)
+            intent.putExtra("openFragment", "BasketFragment")
+            startActivity(intent)
+        }else
+            if (Cart.cartRemovedItems.size > 0) {
+                val intent = Intent(this, MainMenuActivity::class.java)
+                intent.putExtra("openFragment", "BasketFragment")
+                startActivity(intent)
+            }
+        finish()
     }
 
 }

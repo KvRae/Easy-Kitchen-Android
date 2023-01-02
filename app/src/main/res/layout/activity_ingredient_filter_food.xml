@@ -46,10 +46,10 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/foodIngredientSearchBar"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/custom_input"
         android:minHeight="?attr/actionBarSize"
@@ -66,6 +66,7 @@
         android:id="@+id/foodIngredientSwipeRefresh"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:layout_marginTop="140dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -77,6 +78,7 @@
             android:layout_height="wrap_content">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/foodByIngredientsListView"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:listitem="@layout/list_row" />
@@ -98,6 +100,7 @@
         android:id="@+id/noFoodByIngredientsLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"

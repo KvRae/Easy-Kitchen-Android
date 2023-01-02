@@ -13,6 +13,7 @@
 
     <ImageView
         android:id="@+id/nav_header_image"
+
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:src="@drawable/android_icon"
@@ -38,7 +39,6 @@
         android:textSize="18dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="0.5dp"

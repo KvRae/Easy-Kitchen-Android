@@ -33,5 +33,7 @@ class GuideActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+
     }
 }

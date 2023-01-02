@@ -184,6 +184,7 @@ class RegisterActivity : AppCompatActivity() {
                     } else {
                         val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                         startActivity(intent)
+                        finish()
                     }
                 }else{
                     Toast.makeText(

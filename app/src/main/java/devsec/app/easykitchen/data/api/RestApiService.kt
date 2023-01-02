@@ -108,6 +108,12 @@ interface RestApiService {
     @GET("areas")
     fun getAreasList(): Call<List<Area>>
 
+    @Multipart
+    @POST("uploadfile")
+    fun uploadImage(
+        @Part myFile: MultipartBody.Part
+    ): Call<ResponseBody>
+
 
 
 

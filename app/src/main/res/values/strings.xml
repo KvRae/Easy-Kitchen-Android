@@ -52,7 +52,7 @@
     <string name="updateBTN">update Profile</string>
     <string name="authorusername">AuthorUsername</string>
     <string name="recommended_recipes">Recommended Recipes</string>
-    <string name="delete_my_account">Delete My Account</string>
+    <string name="delete_my_account">Delete my account</string>
     <string name="ingredient_name">IngredientName</string>
     <string name="loading_text">Loading…</string>
     <string name="password_holder">*************</string>
@@ -75,13 +75,21 @@
     <string name="profileimage">profileImage</string>
     <string name="greetings">Greetings</string>
     <string name="rate_our_app">Rate Our App</string>
-    <string name="send_feedback">send feedback</string>
+    <string name="send_feedback">Send feedback</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="no_recipes_found">No recipes found</string>
     <string name="ingredients_basket">Ingredients basket</string>
     <string name="clear_cart">clear</string>
     <string name="search_food">Search food</string>
+    <string name="store_preferences">Store preferences</string>
+    <string name="visit_our_website">Visit our website</string>
+    <string name="community_space">Community space</string>
+    <string name="dev_newsletter">Dev. newsletter</string>
+    <string name="read_documentation">Read documentation</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="logout">Logout</string>
+    <string name="user_preferences">User preferences</string>
 
 
 </resources>

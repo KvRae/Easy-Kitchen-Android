@@ -19,5 +19,13 @@ class RecipesListActivity : AppCompatActivity() {
 
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
         recyclerView.adapter = adapter
+
+//        adapter.setOnclickListener(object : RecipesAdapter.OnItemClickListener{
+//            override fun onItemClick(position: Int) {
+//                TODO("Not yet implemented")
+//            }
+//        })
+
+
     }
 }

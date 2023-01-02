@@ -104,11 +104,12 @@ class LoginActivity : AppCompatActivity() {
             val signInInfo = User(username, password)
 
             retIn.loginUser(signInInfo).enqueue(object : Callback<ResponseBody> {
+
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                     loadingDialog.dismissDialog()
                     Toast.makeText(
                         this@LoginActivity,
-                        t.message,
+                        "Login Failed",
                         Toast.LENGTH_SHORT
                     ).show()
 
@@ -127,15 +128,18 @@ class LoginActivity : AppCompatActivity() {
                         val email_user = user.get("email").asString
                         val phone_user = user.get("phone").asString
                         sessionPref.createRegisterSession(id_user, username_user, email_user, "",phone_user)
-
                         Toast.makeText(this@LoginActivity, "Welcome!", Toast.LENGTH_SHORT).show()
-
                         val intent = Intent(this@LoginActivity, MainMenuActivity::class.java)
                         startActivity(intent)
                         finish()
-                    } else {
+
+                    } else if(response.code() == 401){
                         loadingDialog.dismissDialog()
-                        Toast.makeText(this@LoginActivity, response.message(), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@LoginActivity, "Invalid credentials", Toast.LENGTH_SHORT).show()
+                    }
+                    else{
+                        loadingDialog.dismissDialog()
+                        Toast.makeText(this@LoginActivity, "Login failed", Toast.LENGTH_SHORT).show()
                     }
                 }
             })

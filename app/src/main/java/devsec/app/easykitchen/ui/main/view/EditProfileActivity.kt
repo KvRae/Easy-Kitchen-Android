@@ -1,6 +1,7 @@
 package devsec.app.easykitchen.ui.main.view
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -41,6 +42,7 @@ class EditProfileActivity : AppCompatActivity() {
         username.text = user.get(SessionPref.USER_NAME)
         email.text = user.get(SessionPref.USER_EMAIL)
         password.text = user.get(SessionPref.USER_PASSWORD)
+        password.visibility = TextView.INVISIBLE
         phone.text = user.get(SessionPref.USER_PHONE)
 
         val toolbar = findViewById<Toolbar>(R.id.editProfileToolbar)
@@ -64,7 +66,9 @@ class EditProfileActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<User>, response: Response<User>) {
                     if (response.isSuccessful) {
                         Toast.makeText(this@EditProfileActivity, "Profile Updated", Toast.LENGTH_SHORT).show()
-                        sessionPref.setUserPref(username.text.toString(), email.text.toString(), password.text.toString(), phone.text.toString())
+                        sessionPref.setUserPref(username.text.toString(), email.text.toString(), password.text.toString() ,phone.text.toString())
+                        val intent = Intent(this@EditProfileActivity, MainMenuActivity::class.java)
+                        startActivity(intent)
                         finish()
                     } else {
                         Toast.makeText(this@EditProfileActivity, "Failed to update profile", Toast.LENGTH_SHORT).show()

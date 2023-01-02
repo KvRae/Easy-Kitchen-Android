@@ -40,23 +40,20 @@ class RegisterActivity : AppCompatActivity() {
             finish()
         }
 
-
-
         registerbtn = findViewById<Button>(R.id.RegisterBTN)
 
         registerbtn.setOnClickListener {
-
             val username = findViewById<EditText>(R.id.loginEditText)
             val password = findViewById<EditText>(R.id.passwordInputEditText)
             val verifPass = findViewById<EditText>(R.id.passwordInputEditText2)
             val email = findViewById<EditText>(R.id.emailEditText)
             val phone = findViewById<EditText>(R.id.phoneEditText)
-
             if (validateRegister(username, password, verifPass, email, phone)) {
                 register(username.text.toString(), password.text.toString(), email.text.toString(), phone.text.toString())}
             }
 
         loginbtn = findViewById<Button>(R.id.loginBtn)
+
         loginbtn.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
@@ -135,8 +132,6 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun register(username: String, password: String, email: String, phone: String) {
-        loginbtn.isEnabled = false
-        registerbtn.isEnabled = false
         loadingDialog.startLoadingDialog()
 
         val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
@@ -145,6 +140,7 @@ class RegisterActivity : AppCompatActivity() {
 
         retIn.registerUser(registerInfo).enqueue(object :
             Callback<ResponseBody> {
+
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 loadingDialog.dismissDialog()
                 Toast.makeText(
@@ -160,23 +156,23 @@ class RegisterActivity : AppCompatActivity() {
             ) {
                 loadingDialog.dismissDialog()
                 if (response.code() == 200) {
-                    Toast.makeText(this@RegisterActivity, "Registration success!", Toast.LENGTH_SHORT)
-                        .show()
-
-                    val gson = Gson()
-                    val jsonSTRING = response.body()?.string()
-                    val jsonObject = gson.fromJson(jsonSTRING, JsonObject::class.java)
-                    val user = jsonObject.get("user").asJsonObject
-                    val id_user = user.get("_id").asString
-                    val username_user = user.get("username").asString
-                    val email_user = user.get("email").asString
-                    val phone_user = user.get("phone").asString
-                    sessionPref.createRegisterSession(id_user, username_user, email_user,"", phone_user)
-
-                    val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
-                    startActivity(intent)
-
-                    finish()
+                    val msg =Gson().fromJson(response.body()?.string(), JsonObject::class.java).get("message").asString
+                    Toast.makeText(this@RegisterActivity,msg,  Toast.LENGTH_SHORT).show()
+                    if(msg == "User created successfully"){
+                        val gson = Gson()
+                        val jsonSTRING = response.body()?.string()
+                        val jsonObject = gson.fromJson(jsonSTRING, JsonObject::class.java)
+                        val user = jsonObject.get("user").asJsonObject
+                        val id_user = user.get("_id").asString
+                        val username_user = user.get("username").asString
+                        val email_user = user.get("email").asString
+                        val phone_user = user.get("phone").asString
+                        sessionPref.createRegisterSession(id_user, username_user, email_user,"", phone_user)
+                        val intent = Intent(this@RegisterActivity, MainMenuActivity::class.java)
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        startActivity(intent)
+                        finish()
+                    }
 
                 }
                 else{
@@ -185,8 +181,6 @@ class RegisterActivity : AppCompatActivity() {
                 }
             }
         })
-        loginbtn.isEnabled = true
-        registerbtn.isEnabled = true
     }
 
 }

@@ -63,6 +63,7 @@ class FoodByIngredientsActivity : AppCompatActivity(), SearchView.OnQueryTextLis
 
         emptyRecipeLayout = findViewById(R.id.noFoodByIngredientsLayout)
         emptyRecipeLayout.visibility = LinearLayout.GONE
+
         toolbar = findViewById(R.id.foodIngredientSearchBar)
         setSupportActionBar(toolbar)
         toolbar.setTitle("")
@@ -98,11 +99,7 @@ class FoodByIngredientsActivity : AppCompatActivity(), SearchView.OnQueryTextLis
             adapter = FoodAdapter(foodArrayList)
             Log.d("FoodByIngredients", foodArrayList.toString())
             recyclerView.adapter = adapter
-
-            if (foodArrayList.size == 0) {
-//            emptyRecipeLayout.visibility = LinearLayout.VISIBLE
-            }
-
+            adapter.notifyDataSetChanged()
             adapter.setOnItemClickListener(object : FoodAdapter.OnItemClickListener {
                 override fun onItemClick(position: Int) {
                     val intent = Intent(this@FoodByIngredientsActivity , FoodRecipeActivity::class.java)
@@ -166,9 +163,6 @@ class FoodByIngredientsActivity : AppCompatActivity(), SearchView.OnQueryTextLis
         val search = menu?.findItem(R.id.food_search)
         val searchView = search?.actionView as SearchView
         searchView.setOnQueryTextListener(this)
-
-
-
 
         return super.onCreateOptionsMenu(menu)
 

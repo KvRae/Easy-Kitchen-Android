@@ -71,6 +71,7 @@ class BlogFragment : Fragment() {
         formButton.setOnClickListener {
             val intent = Intent(context, RecetteFormActivity::class.java)
             startActivity(intent)
+            activity?.finish()
         }
 
 

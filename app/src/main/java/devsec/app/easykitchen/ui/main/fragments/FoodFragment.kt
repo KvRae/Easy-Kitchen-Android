@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -31,6 +32,7 @@ class FoodFragment : Fragment() {
     private lateinit var recyclerView : RecyclerView
     private lateinit var foodArrayList: ArrayList<Food>
     private lateinit var searchView: SearchView
+    private lateinit var noFoodLayout: LinearLayout
 
 //    val loadingDialog = LoadingDialog(requireActivity())
     private lateinit var swiperRefreshLayout : SwipeRefreshLayout
@@ -67,12 +69,17 @@ class FoodFragment : Fragment() {
 
 
         swiperRefreshLayout = view.findViewById(R.id.foodIngredientSwipeRefresh)
+        noFoodLayout = view.findViewById(R.id.noFoodLayout)
         initFoodList()
         val layoutManager = LinearLayoutManager(context)
         recyclerView = view.findViewById(R.id.foodListView)
         recyclerView.layoutManager = layoutManager
         adapter = FoodAdapter(foodArrayList)
         recyclerView.adapter = adapter
+
+        noFoodLayout.visibility = if (foodArrayList.isEmpty()) View.VISIBLE else View.GONE
+
+
 
 
 
@@ -147,14 +154,22 @@ class FoodFragment : Fragment() {
                     Log.d("FoodList", foodArrayList.toString())
                     Log.d("Cart", Cart.cart.toString())
                     Log.d("Ingredients", ingredients.toString())
+
+                    if (foodArrayList.isEmpty()){
+                        noFoodLayout.visibility = View.VISIBLE
+                    } else {
+                        noFoodLayout.visibility = View.GONE
+                    }
                 }
             }
 
             override fun onFailure(call: Call<List<Food>>, t: Throwable) {
                 Log.d("Error", t.message.toString())
                 loadingDialog.dismissDialog()
+                noFoodLayout.visibility = View.VISIBLE
             }
         })
+
 
     }
 }

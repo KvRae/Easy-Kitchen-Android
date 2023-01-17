@@ -65,9 +65,10 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/foodIngredientSwipeRefresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
 
         android:layout_marginTop="140dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -76,45 +77,50 @@
             android:id="@+id/foodLL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/foodByIngredientsListView"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/list_row" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/foodByIngredientsListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                tools:listitem="@layout/list_row" />
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/recetteLL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recetteByIngredientsListView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/blog_item" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recetteByIngredientsListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/blog_item" />
         </LinearLayout>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <LinearLayout
-        android:id="@+id/noFoodByIngredientsLayout"
+        android:id="@+id/noIngredientFilterFoodLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="invisible"
         android:layout_marginTop="50dp"
         android:gravity="center"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/foodByIngredientsNotfoundimage"
+            android:id="@+id/noIngredientFilterNotfoundimage"
             android:layout_width="200dp"
             android:layout_height="200dp"
             app:srcCompat="@drawable/ic_baseline_block_24" />
 
         <TextView
-            android:id="@+id/foodByIngredientsNotFoundText"
+            android:id="@+id/noIngredientFilterFoundText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="No recipes found"

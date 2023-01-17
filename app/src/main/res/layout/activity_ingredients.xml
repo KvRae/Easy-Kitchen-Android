@@ -6,6 +6,35 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.view.IngredientsCartActivity">
 
+    <LinearLayout
+        android:id="@+id/noIngredientCartLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/noIngredientCartNotfoundimage"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:srcCompat="@drawable/ic_baseline_block_24" />
+
+        <TextView
+            android:id="@+id/noIngredientCartNotFoundText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="@string/no_ingredients_in_basket"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+    </LinearLayout>
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/ingredientsToolbar"
         app:title="@string/ingredients_basket"

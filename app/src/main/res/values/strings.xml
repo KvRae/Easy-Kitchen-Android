@@ -116,6 +116,8 @@
     <string name="dateComment">10</string>
     <string name="veganRecette">Recette vegan</string>
     <string name="hello">"Hello, "</string>
+    <string name="no_ingredients_found">No Ingredients found</string>
+    <string name="no_ingredients_in_basket">No ingredients in basket</string>
 
 
 </resources>

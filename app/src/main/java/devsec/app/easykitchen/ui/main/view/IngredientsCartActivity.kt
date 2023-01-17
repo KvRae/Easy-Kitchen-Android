@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -34,10 +35,12 @@ class IngredientsCartActivity : AppCompatActivity() {
     private lateinit var adapter: IngredientCartAdapter
     lateinit var recyclerView: RecyclerView
     private lateinit var ingredientsArrayList: ArrayList<String>
+    private lateinit var noIngredientsLayout: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ingredients)
+        noIngredientsLayout = findViewById(R.id.noIngredientCartLayout)
 
         initIngredientsList()
         val layoutManager = LinearLayoutManager(this)
@@ -55,6 +58,9 @@ class IngredientsCartActivity : AppCompatActivity() {
 
                 adapter.notifyItemRemoved(position)
                 adapter.notifyItemRangeChanged(position, ingredientsArrayList.size)
+                if (ingredientsArrayList.size == 0) {
+                    noIngredientsLayout.visibility = LinearLayout.VISIBLE
+                }
 
             }
         })
@@ -83,6 +89,7 @@ class IngredientsCartActivity : AppCompatActivity() {
                 .setPositiveButton("Yes") { dialog, which ->
                     Cart.cart.clear()
                     adapter.notifyDataSetChanged()
+                    noIngredientsLayout.visibility = LinearLayout.VISIBLE
                     dialog.dismiss()
                 }
                 .setNegativeButton("No") { dialog, which ->
@@ -108,8 +115,14 @@ class IngredientsCartActivity : AppCompatActivity() {
         ingredientsArrayList = ArrayList()
         if (Cart.cart.size > 0) {
             ingredientsArrayList = Cart.cart
+            noIngredientsLayout.visibility = LinearLayout.GONE
+        }
+        else{
+            noIngredientsLayout.visibility = LinearLayout.VISIBLE
         }
     }
+
+
     override fun onBackPressed() {
 
         if (Cart.cart.size == 0) {

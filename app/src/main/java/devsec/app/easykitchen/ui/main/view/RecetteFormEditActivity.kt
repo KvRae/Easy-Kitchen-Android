@@ -48,7 +48,7 @@ class RecetteFormEditActivity : AppCompatActivity() {
     lateinit var imgView: ImageView
     lateinit var addButton: AppCompatButton
     lateinit var submitButton: Button
-    lateinit var imageUri: Uri
+//    lateinit var imageUri: Uri
     lateinit var titreInput: EditText
     lateinit var descInput: EditText
     lateinit var dureeInput: EditText
@@ -376,8 +376,8 @@ class RecetteFormEditActivity : AppCompatActivity() {
                 Log.d("checkSubmit","4")
 
             }
-            val intent = Intent(this, FoodByIngredientsActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, FoodByIngredientsActivity::class.java)
+//            startActivity(intent)
         }
     }
 
@@ -568,6 +568,7 @@ class RecetteFormEditActivity : AppCompatActivity() {
                 if (response.code() == 200) {
                     val intent = Intent(this@RecetteFormEditActivity, MyRecipesActivity::class.java)
                     startActivity(intent)
+                    finish()
 
                 } else {
                     Log.d("check","6")

@@ -34,6 +34,7 @@ import devsec.app.easykitchen.api.RetrofitInstance
 import devsec.app.easykitchen.data.models.Ingredients
 import devsec.app.easykitchen.data.models.Recette
 import devsec.app.easykitchen.databinding.ActivityRecetteFormBinding
+import devsec.app.easykitchen.ui.main.fragments.BlogFragment
 import devsec.app.easykitchen.utils.session.SessionPref
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -53,7 +54,7 @@ class RecetteFormActivity : AppCompatActivity() {
     lateinit var imgView: ImageView
     lateinit var addButton: AppCompatButton
     lateinit var submitButton: Button
-    lateinit var imageUri: Uri
+//    lateinit var imageUri: Uri
     lateinit var titreInput: EditText
     lateinit var descInput: EditText
     lateinit var dureeInput: EditText
@@ -163,7 +164,7 @@ class RecetteFormActivity : AppCompatActivity() {
         username = user.get(SessionPref.USER_NAME).toString()
         initIngredients()
         ingredientsTypeArray = ArrayList()
-        val measureType: List<String> = Arrays.asList("Mg", "G", "Kg", "Ml", "L", "unit")
+        val measureType: List<String> = Arrays.asList("Mg", "Gr", "Kg", "Ml", "Li", "Un")
         ingredientsTypeArray.addAll(measureType)
 
 
@@ -214,15 +215,15 @@ class RecetteFormActivity : AppCompatActivity() {
 
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE) {
-            imageUri = data?.data!!
-            imgView.setImageURI(imageUri)
-        }
-    }
+//    @Deprecated("Deprecated in Java")
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//
+//        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE) {
+//            imageUri = data?.data!!
+//            imgView.setImageURI(imageUri)
+//        }
+//    }
 
 
     private fun setup() {
@@ -465,13 +466,13 @@ class RecetteFormActivity : AppCompatActivity() {
 
                 Log.d("checkSubmit", "4")
 
-                retrofitUploadImage(imageUri)
+//                retrofitUploadImage(imageUri)
             }
 
 
         }
-        val intent = Intent(this, FoodByIngredientsActivity::class.java)
-        startActivity(intent)
+//        val intent = Intent(this, FoodByIngredientsActivity::class.java)
+//        startActivity(intent)
     }
 
     private fun measureFuse(et: EditText, t: TextView): String {
@@ -545,32 +546,32 @@ class RecetteFormActivity : AppCompatActivity() {
 
 
     }
-    private fun retrofitUploadImage(imageUri: Uri) {
-        val file = File(imageUri.path)
-        val requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file)
-        val body = MultipartBody.Part.createFormData("myFile", file.name, requestFile)
-        val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
-        val call = retIn.uploadImage(body)
-        call.enqueue(object : Callback<ResponseBody> {
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                if (response.isSuccessful) {
-                    Toast.makeText(this@RecetteFormActivity, "Image Uploaded", Toast.LENGTH_SHORT)
-                        .show()
-                } else {
-                    Toast.makeText(this@RecetteFormActivity, "Image Not Uploaded", Toast.LENGTH_SHORT)
-                        .show()
-                }
-            }
-
-            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                Toast.makeText(this@RecetteFormActivity, "Image Not Uploaded", Toast.LENGTH_SHORT)
-                    .show()
-            }
-        })
-
-
-
-    }
+//    private fun retrofitUploadImage(imageUri: Uri) {
+//        val file = File(imageUri.path)
+//        val requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file)
+//        val body = MultipartBody.Part.createFormData("myFile", file.name, requestFile)
+//        val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
+//        val call = retIn.uploadImage(body)
+//        call.enqueue(object : Callback<ResponseBody> {
+//            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+//                if (response.isSuccessful) {
+//                    Toast.makeText(this@RecetteFormActivity, "Image Uploaded", Toast.LENGTH_SHORT)
+//                        .show()
+//                } else {
+//                    Toast.makeText(this@RecetteFormActivity, "Image Not Uploaded", Toast.LENGTH_SHORT)
+//                        .show()
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+//                Toast.makeText(this@RecetteFormActivity, "Image Not Uploaded", Toast.LENGTH_SHORT)
+//                    .show()
+//            }
+//        })
+//
+//
+//
+//    }
 
 
     private fun checkDrop(a:String,b:ArrayList<String>):Boolean
@@ -663,7 +664,7 @@ class RecetteFormActivity : AppCompatActivity() {
     {
 
         val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
-        val image =  imageUri.toString()
+        val image =  "test"+Random()
         val recetteInfo = Recette(
             name,
             description,
@@ -684,14 +685,14 @@ class RecetteFormActivity : AppCompatActivity() {
             Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 if (response.code() == 200) {
-                    Log.d("check","5")
-                    Toast.makeText(this@RecetteFormActivity, "Recette Added", Toast.LENGTH_SHORT)
-                        .show()
+                    val intent = Intent(this@RecetteFormActivity, MainMenuActivity::class.java)
+                    startActivity(intent)
+                    finish()
 
                 } else {
-                    Log.d("check","6")
-                    Toast.makeText(this@RecetteFormActivity, response.message(), Toast.LENGTH_SHORT)
-                        .show()
+                    val intent = Intent(this@RecetteFormActivity, MainMenuActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 }
 
             }

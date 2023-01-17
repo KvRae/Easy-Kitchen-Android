@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.LinearLayout
 
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
@@ -18,12 +19,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import devsec.app.easykitchen.R
 import devsec.app.easykitchen.api.RestApiService
 import devsec.app.easykitchen.api.RetrofitInstance
-import devsec.app.easykitchen.data.models.Food
 import devsec.app.easykitchen.data.models.Ingredients
-import devsec.app.easykitchen.ui.main.adapter.FoodAdapter
 import devsec.app.easykitchen.ui.main.adapter.IngredientsAdapter
 import devsec.app.easykitchen.ui.main.view.FoodByIngredientsActivity
-import devsec.app.easykitchen.ui.main.view.FoodRecipeActivity
 import devsec.app.easykitchen.ui.main.view.IngredientsCartActivity
 import devsec.app.easykitchen.utils.services.Cart
 import retrofit2.Call
@@ -39,6 +37,8 @@ class BasketFragment : Fragment() {
     private lateinit var badge : BadgeDrawable
     lateinit var toolbar: Toolbar
     lateinit var searchView: SearchView
+
+    lateinit var noIngredientsLayout: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +56,9 @@ class BasketFragment : Fragment() {
     @SuppressLint("UnsafeOptInUsageError")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        noIngredientsLayout = view.findViewById(R.id.noIngredientBasketLayout)
+
         initIngredientsList()
 
         val layoutManager = LinearLayoutManager(context)
@@ -63,6 +66,8 @@ class BasketFragment : Fragment() {
         recyclerView.layoutManager = layoutManager
         adapter = IngredientsAdapter(ingredientsArrayList)
         recyclerView.adapter = adapter
+
+        noIngredientsLayout.visibility = if (ingredientsArrayList.isEmpty()) View.VISIBLE else View.GONE
 
         badge = BadgeDrawable.create(requireContext())
         badge.isVisible = true
@@ -184,16 +189,22 @@ class BasketFragment : Fragment() {
                         for (ingredient in ingredientsList) {
                             ingredientsArrayList.add(ingredient.name)
                         }
-                        Log.d("TAG", "onResponse: $ingredientsArrayList")
                     }
                     ingredientsArrayList.removeAll(Cart.cart)
                     ingredientsArrayList.addAll(Cart.cartRemovedItems)
                     adapter.notifyDataSetChanged()
+
+                    if (ingredientsArrayList.isEmpty()) {
+                        noIngredientsLayout.visibility = View.VISIBLE
+                    } else {
+                        noIngredientsLayout.visibility = View.GONE
+                    }
                 }
             }
 
             override fun onFailure(call: Call<List<Ingredients>>, t: Throwable) {
                 Log.d("Error", t.message.toString())
+                noIngredientsLayout.visibility = View.VISIBLE
             }
         })
     }

@@ -8,22 +8,6 @@
     tools:context=".ui.main.fragments.FoodFragment">
 
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/foodIngredientSearchBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/custom_input"
-        android:minHeight="?attr/actionBarSize"
-        app:iconifiedByDefault="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:queryHint="@string/search_food" />
-
-
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/foodIngredientSwipeRefresh"
         android:layout_width="match_parent"
@@ -42,4 +26,49 @@
             tools:listitem="@layout/list_row" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/foodIngredientSearchBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/custom_input"
+        android:minHeight="?attr/actionBarSize"
+        app:iconifiedByDefault="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:queryHint="@string/search_food" />
+
+    <LinearLayout
+        android:id="@+id/noFoodLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        android:visibility="invisible"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/foodNotfoundimage"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:srcCompat="@drawable/ic_baseline_block_24" />
+
+        <TextView
+            android:id="@+id/foodNotFoundText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No recipes found"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

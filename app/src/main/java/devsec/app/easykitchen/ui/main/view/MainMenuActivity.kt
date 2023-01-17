@@ -70,12 +70,23 @@ class MainMenuActivity : AppCompatActivity() {
                 
                 R.id.nav_rating -> {
                     Toast.makeText(this, "Comming soon!", Toast.LENGTH_SHORT).show()
+//                    val url = ""
+//                    val i = Intent(Intent.ACTION_VIEW)
+//                    i.data = Uri.parse(url)
+//                    startActivity(i)
                 }
                 R.id.nav_feedback -> {
                     Toast.makeText(this, "Comming soon!", Toast.LENGTH_SHORT).show()
+//                    val url = ""
+//                    val i = Intent(Intent.ACTION_VIEW)
+//                    i.data = Uri.parse(url)
+//                    startActivity(i)
                 }
                 R.id.nav_website -> {
-                    Toast.makeText(this, "Comming soon!", Toast.LENGTH_SHORT).show()
+                    val url = "https://kvrae.github.io/EasyKitchenWebsite/"
+                    val i = Intent(Intent.ACTION_VIEW)
+                    i.data = Uri.parse(url)
+                    startActivity(i)
                 }
                 R.id.nav_discussion -> {
                     val url = "https://github.com/KvRae/Easy-Kitchen-Android/discussions"

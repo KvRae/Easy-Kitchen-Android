@@ -169,7 +169,7 @@ class HomeFragment : Fragment() {
             recommendedFoodAdapter.setOnItemClickListener(object : BlogAdapter.OnItemClickListener {
                 override fun onItemClick(position: Int) {
                     val intent = Intent(context, RecetteActivity::class.java)
-                    intent.putExtra("Blog", recetteArray[position].name)
+                    intent.putExtra("id", recetteArray[position].id)
                     startActivity(intent)
                 }
             })
@@ -222,7 +222,7 @@ class HomeFragment : Fragment() {
             recommendedBioFoodAdapter.setOnItemClickListener(object : BlogBioAdapter.OnItemClickListener {
                 override fun onItemClick(position: Int) {
                     val intent = Intent(context, RecetteActivity::class.java)
-                    intent.putExtra("Blog", recetteArray[position].name)
+                    intent.putExtra("id", recetteArray[position].id)
                     startActivity(intent)
                 }
             })

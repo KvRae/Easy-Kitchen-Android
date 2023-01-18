@@ -1,4 +1,4 @@
-package devsec.app.easykitchen.viewmodel
+package devsec.app.easykitchen.ui.main.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

@@ -15,7 +15,7 @@
   - [Credits](#credits)
   - [Contributing](#contributing)
   - [License](#license)
-  - [Policy] (#Policy)
+  - [Policy](#Policy)
   - [Questions](#questions)
 
   ## Installation

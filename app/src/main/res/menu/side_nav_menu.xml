@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="@layout/nav_header"
-    >
-
-
+    tools:showIn="@layout/nav_header">
     <item
 
         android:id="@+id/nav_recettes"
         android:icon="@drawable/ic_baseline_menu_book_24"
         android:title="@string/mes_recettes" />
-    <item
-        android:id="@+id/nav_edit_profile"
-        android:title="@string/edit_profile"
-        android:icon="@drawable/ic_baseline_edit_24" />
+
 
     <item android:title="@string/store_preferences">
         <menu>
@@ -51,14 +45,14 @@
     <item android:title="@string/user_preferences">
         <menu>
             <item
+                android:id="@+id/nav_edit_profile"
+                android:title="@string/edit_profile"
+                android:icon="@drawable/ic_baseline_settings_24" />
+            <item
                 android:id="@+id/nav_logout"
                 android:title="@string/logout"
                 android:icon="@drawable/ic_baseline_logout_24"/>
 
-            <item
-                android:id="@+id/nav_delete_profile"
-                android:title="@string/delete_my_account"
-                android:icon="@drawable/ic_baseline_delete_24"/>
         </menu>
     </item>
 

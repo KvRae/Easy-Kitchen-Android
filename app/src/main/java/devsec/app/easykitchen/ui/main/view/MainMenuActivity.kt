@@ -16,17 +16,22 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 import devsec.app.easykitchen.R
 import devsec.app.easykitchen.api.RestApiService
 import devsec.app.easykitchen.api.RetrofitInstance
 import devsec.app.easykitchen.databinding.ActivityMainMenuBinding
 import devsec.app.easykitchen.ui.main.fragments.*
+import devsec.app.easykitchen.utils.services.ConnectivityObserver
 import devsec.app.easykitchen.utils.services.LoadingDialog
+import devsec.app.easykitchen.utils.services.NetworkConnectivityObserver
 import devsec.app.easykitchen.utils.session.SessionPref
+import kotlinx.coroutines.flow.onEach
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlinx.coroutines.flow.subscribe
 
 
 class MainMenuActivity : AppCompatActivity() {
@@ -34,6 +39,8 @@ class MainMenuActivity : AppCompatActivity() {
     private lateinit var toggle: ActionBarDrawerToggle
     lateinit var drawerLayout: DrawerLayout
     private lateinit var navigationView: NavigationView
+
+    private lateinit var connectivityObserver: ConnectivityObserver
 
     private lateinit var sideNav: Menu
 
@@ -44,6 +51,17 @@ class MainMenuActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        connectivityObserver = NetworkConnectivityObserver(applicationContext)
+        connectivityObserver.observe().onEach {
+            when (it) {
+                ConnectivityObserver.Status.AVAILABLE -> Snackbar.make(binding.root, "Internet Connected", Snackbar.LENGTH_SHORT)
+                    .setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE).show()
+                ConnectivityObserver.Status.UNAVAILABLE -> Snackbar.make(binding.root, "No Internet Connection", Snackbar.LENGTH_INDEFINITE)
+                    .setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE).show()
+            }
+        }
+
         binding = ActivityMainMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
         loadingDialog = LoadingDialog (this)
@@ -56,8 +74,8 @@ class MainMenuActivity : AppCompatActivity() {
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-        val deleteitem = navigationView.menu.findItem(R.id.nav_delete_profile)
-        deleteitem.actionView
+//        val deleteitem = navigationView.menu.findItem(R.id.nav_delete_profile)
+//        deleteitem.actionView
 
         navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
@@ -114,22 +132,22 @@ class MainMenuActivity : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 }
-                R.id.nav_delete_profile -> {
-                    val builder = AlertDialog.Builder(this)
-                    builder.setTitle("Delete Account")
-                    builder.setMessage("Are you sure you want to delete your account?")
-                    builder.setPositiveButton("Yes") { dialog, which ->
-                        loadingDialog.startLoadingDialog()
-                        deleteAccount()
-                        Toast.makeText(applicationContext, "Account deleted", Toast.LENGTH_SHORT).show()
-                    }
-                    builder.setNegativeButton("No") { dialog, which ->
-                        Toast.makeText(applicationContext, "Account not deleted", Toast.LENGTH_SHORT).show()
-                    }
-                    builder.show()
-
-
-                }
+//                R.id.nav_delete_profile -> {
+//                    val builder = AlertDialog.Builder(this)
+//                    builder.setTitle("Delete Account")
+//                    builder.setMessage("Are you sure you want to delete your account?")
+//                    builder.setPositiveButton("Yes") { dialog, which ->
+//                        loadingDialog.startLoadingDialog()
+//                        deleteAccount()
+//                        Toast.makeText(applicationContext, "Account deleted", Toast.LENGTH_SHORT).show()
+//                    }
+//                    builder.setNegativeButton("No") { dialog, which ->
+//                        Toast.makeText(applicationContext, "Account not deleted", Toast.LENGTH_SHORT).show()
+//                    }
+//                    builder.show()
+//
+//
+//                }
             }
             true
         }
@@ -164,26 +182,26 @@ class MainMenuActivity : AppCompatActivity() {
         }
     }
 
-    private fun deleteAccount() {
-        val apiService = RetrofitInstance.getRetrofitInstance().create(
-            RestApiService::class.java)
-        val call = apiService.deleteUser(session.getUserPref().get(SessionPref.USER_ID).toString())
-        call.enqueue(object : Callback<ResponseBody> {
-
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                if (response.isSuccessful) {
-                    loadingDialog.dismissDialog()
-                    Toast.makeText( applicationContext, "Account deleted", Toast.LENGTH_SHORT).show()
-                    session.logoutUser()
-                }
-            }
-
-            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                loadingDialog.dismissDialog()
-                Toast.makeText(applicationContext, "Error deleting account", Toast.LENGTH_SHORT).show()
-            }
-        })
-    }
+//    private fun deleteAccount() {
+//        val apiService = RetrofitInstance.getRetrofitInstance().create(
+//            RestApiService::class.java)
+//        val call = apiService.deleteUser(session.getUserPref().get(SessionPref.USER_ID).toString())
+//        call.enqueue(object : Callback<ResponseBody> {
+//
+//            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+//                if (response.isSuccessful) {
+//                    loadingDialog.dismissDialog()
+//                    Toast.makeText( applicationContext, "Account deleted", Toast.LENGTH_SHORT).show()
+//                    session.logoutUser()
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+//                loadingDialog.dismissDialog()
+//                Toast.makeText(applicationContext, "Error deleting account", Toast.LENGTH_SHORT).show()
+//            }
+//        })
+//    }
 
     fun replaceFragment(fragment: Fragment) {
          val fragmentTransaction = supportFragmentManager.beginTransaction()

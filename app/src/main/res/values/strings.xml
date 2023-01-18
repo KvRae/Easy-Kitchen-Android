@@ -25,9 +25,9 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
 
-    <string name="category">Catégories</string>
-    <string name="salade">Nos salades</string>
-    <string name="expertRecette">Recette des experts</string>
+    <string name="category">Categories</string>
+    <string name="salade">Our salads</string>
+    <string name="expertRecette">Recipes from the experts</string>
 
     <string name="ingredients">Ingredients and mesures</string>
     <string name="instructions">Instructions</string>
@@ -57,11 +57,11 @@
     <string name="upvote_number">50</string>
 
 
-    <string name="commentTitleEdit">Commentaires</string>
+    <string name="commentTitleEdit">Comments</string>
 
-    <string name="my_recipe">Mes Recettes</string>
-    <string name="recetteFormTitle">Ajouter une recette</string>
-    <string name="recetteFormEditTitle">Modifier la Recette</string>
+    <string name="my_recipe">My Recipes</string>
+    <string name="recetteFormTitle">Add a recipe</string>
+    <string name="recetteFormEditTitle">Edit Recipe</string>
     <string name="add">ADD</string>
     <string name="remove">REMOVE</string>
 
@@ -91,7 +91,7 @@
     <string name="community_space">Community space</string>
     <string name="dev_newsletter">Dev. newsletter</string>
     <string name="read_documentation">Read documentation</string>
-    <string name="edit_profile">Edit profile</string>
+    <string name="edit_profile">Account settings</string>
     <string name="logout">Logout</string>
     <string name="user_preferences">User preferences</string>
     <string name="RepeatPasswordTxt" translatable="false">Repeat Password</string>
@@ -103,7 +103,7 @@
     <string name="dureeRecetteInput">Recipe duration</string>
     <string name="personRecetteInput">Number of people</string>
     <string name="difficultyRecetteInput">Difficulty of the recipe</string>
-    <string name="bioRecetteInput">Votre recette est elle Bio ?</string>
+    <string name="bioRecetteInput">Is your recipe organic?</string>
     <string name="descRecetteInput">Please specify the instructions of your recipe</string>
     <string name="ajouter">Add</string>
     <string name="comment">Comment</string>
@@ -114,7 +114,7 @@
     <string name="about" translatable="false">About</string>
     <string name="about_description" translatable="false">Easy Kitchen is a smartphone application that prevents you from being hungry</string>
     <string name="dateComment">10</string>
-    <string name="veganRecette">Recette vegan</string>
+    <string name="veganRecette">Vegan recipe</string>
     <string name="hello">"Hello, "</string>
     <string name="no_ingredients_found">No Ingredients found</string>
     <string name="no_ingredients_in_basket">No ingredients in basket</string>

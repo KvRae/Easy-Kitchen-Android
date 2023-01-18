@@ -4,17 +4,11 @@ import android.content.Context
 import kotlinx.coroutines.flow.Flow
 
 
-class ConnectivityManager(private val context: Context)  {
-
-
-
-
-
-interface IConnectivityManager {
-    fun isNetworkAvailable(): Flow<Status>
+interface ConnectivityObserver {
+    fun observe(): Flow<Status>
 
     enum class Status {
         AVAILABLE, UNAVAILABLE
     }
-}
+
 }

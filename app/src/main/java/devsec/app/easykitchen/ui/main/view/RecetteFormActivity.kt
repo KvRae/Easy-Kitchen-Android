@@ -190,9 +190,9 @@ class RecetteFormActivity : AppCompatActivity() {
         difficultyDropDown = findViewById(R.id.difficultyDropDown)
 
         listDifficulty = ArrayList()
-        listDifficulty.add("Facile")
-        listDifficulty.add("Moyenne")
-        listDifficulty.add("Difficile")
+        listDifficulty.add("Easy")
+        listDifficulty.add("Average")
+        listDifficulty.add("Hard")
 
         val difficultyAdapter =
             ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, listDifficulty)
@@ -611,7 +611,7 @@ class RecetteFormActivity : AppCompatActivity() {
         if (titreInput.text.isEmpty() || descInput.text.isEmpty() || dureeInput.text.isEmpty() || personInput.text.isEmpty() || !checkDrop(difficulty.text.toString(),listDifficulty)) {
 
             if (titreInput.text.isEmpty()) {
-                titreInput.error = "titre is required"
+                titreInput.error = "title is required"
                 titreInput.requestFocus()
             }
 

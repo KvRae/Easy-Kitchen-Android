@@ -77,7 +77,7 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun validateLogin(username: EditText, password: EditText,passwordlayout : TextInputLayout): Boolean {
-        if(username.text.isEmpty() || password.text.isEmpty()){
+        if(username.text.trim().isEmpty() || password.text.trim().isEmpty()){
 
             if (password.text.isEmpty()) {
                 password.error = "Password is required"

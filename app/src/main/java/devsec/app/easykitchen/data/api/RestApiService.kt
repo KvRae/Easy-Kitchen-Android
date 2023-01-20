@@ -138,6 +138,7 @@ interface RestApiService {
 
 class RetrofitInstance {
     companion object {
+
 //        const val BASE_URL: String = "http://10.0.2.2:3000/api/"
 //        const val BASE_URL: String = "http://192.168.1.14:3000/api/"
         const val BASE_URL: String = "https://easykitchenbackend.onrender.com/api/"

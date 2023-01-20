@@ -109,7 +109,7 @@
     <string name="comment">Comment</string>
     <string name="commentTitle">Leave a Comment</string>
     <string name="blog_title">User Recipes</string>
-    <string name="recomnandedRecette">Recommended recipes</string>
+    <string name="recomnandedRecette">Recipes from Users</string>
     <string name="accueilTxt">Feed</string>
     <string name="about" translatable="false">About</string>
     <string name="about_description" translatable="false">Easy Kitchen is a smartphone application that prevents you from being hungry</string>

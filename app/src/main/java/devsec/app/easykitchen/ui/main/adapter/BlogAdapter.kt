@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import devsec.app.easykitchen.R
 import devsec.app.easykitchen.api.RestApiService
 import devsec.app.easykitchen.api.RetrofitInstance
+import devsec.app.easykitchen.data.models.Food
 import devsec.app.easykitchen.data.models.Recette
 import devsec.app.easykitchen.data.models.User
 import retrofit2.Call
@@ -22,7 +23,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class BlogAdapter(private val blogList: ArrayList<Recette>):RecyclerView.Adapter<BlogAdapter.BlogViewHolder>() {
+class BlogAdapter(private var blogList: ArrayList<Recette>):RecyclerView.Adapter<BlogAdapter.BlogViewHolder>() {
 
     private lateinit var mListener: OnItemClickListener
     private lateinit var likeDiff: Number
@@ -74,6 +75,10 @@ class BlogAdapter(private val blogList: ArrayList<Recette>):RecyclerView.Adapter
     override fun getItemCount(): Int {
         return blogList.size
     }
+    fun filterList(filteredList: ArrayList<Recette>) {
+        blogList = filteredList
+        notifyDataSetChanged()
 
+    }
 
 }

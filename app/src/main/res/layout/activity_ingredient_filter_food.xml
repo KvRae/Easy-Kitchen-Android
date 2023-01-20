@@ -41,91 +41,16 @@
             android:textColor="@color/rosybrown"
             android:textSize="11sp"
             app:cornerRadius="10dp" />
+
     </LinearLayout>
-
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/foodIngredientSearchBar"
+    <FrameLayout
+        android:id="@+id/fragments_container"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/custom_input"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:collapseIcon="@drawable/ic_baseline_shopping_basket_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonLayout"
-        app:menu="@menu/food_menu"
-        app:title="@string/food_toobar_title"
-        app:titleTextColor="@color/theWhite" />
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLayout">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/foodIngredientSwipeRefresh"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    </FrameLayout>
 
-        android:layout_marginTop="140dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:id="@+id/foodLL"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/foodByIngredientsListView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                tools:listitem="@layout/list_row" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/recetteLL"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recetteByIngredientsListView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:listitem="@layout/blog_item" />
-        </LinearLayout>
-
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-    <LinearLayout
-        android:id="@+id/noIngredientFilterFoodLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible"
-        android:layout_marginTop="50dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/noIngredientFilterNotfoundimage"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            app:srcCompat="@drawable/ic_baseline_block_24" />
-
-        <TextView
-            android:id="@+id/noIngredientFilterFoundText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="No recipes found"
-            android:textAlignment="center"
-            android:textSize="24sp" />
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

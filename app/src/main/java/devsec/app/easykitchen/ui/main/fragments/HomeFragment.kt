@@ -37,7 +37,11 @@ class HomeFragment : Fragment() {
     //************* Recommended food *************//
     private lateinit var recommendedFoodRecyclerView: RecyclerView
     private lateinit var recommendedFoodAdapter: BlogAdapter
+
+
     private lateinit var recetteArray:ArrayList<Recette>
+    private lateinit var recetteArrayHeader: TextView
+
     //************* Category **********************//
     private lateinit var categoryRecyclerView: RecyclerView
     private lateinit var categoryAdapter: CategoryAdapter
@@ -47,8 +51,14 @@ class HomeFragment : Fragment() {
     private lateinit var title: TextView
     //***************** Recycler View lists *************//
     private lateinit var recetteList: ArrayList<Recette>
+    private lateinit var recetteListHeader: TextView
+
     private lateinit var categoryList: ArrayList<Category>
+    private lateinit var categoryListHeader: TextView
+
     private lateinit var foodList: ArrayList<Food>
+
+
     private lateinit var username: TextView
     lateinit var usernameString : String
     lateinit var sessionPref: SessionPref
@@ -118,7 +128,7 @@ class HomeFragment : Fragment() {
         }
 
         //*********** Category Recycler View Implementation ***********//
-        username.text=usernameString
+        username.text="$usernameString"
 
             initCategoryList()
             val categoryLayoutManager =
@@ -159,6 +169,8 @@ class HomeFragment : Fragment() {
 
             initRecetteList()
 
+
+
             val recommendedLayoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             recommendedFoodRecyclerView = view.findViewById(R.id.recommendedView)
@@ -175,6 +187,7 @@ class HomeFragment : Fragment() {
             })
 
             initSaladeFoodList()
+
             val veganLayoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             saladeFoodRecyclerView = view.findViewById(R.id.saladeView)
@@ -212,13 +225,13 @@ class HomeFragment : Fragment() {
 
             initBioRecetteList()
 
+
             val recommendedBioLayoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             recommendedBioFoodRecyclerView = view.findViewById(R.id.recommendedBioView)
             recommendedBioFoodRecyclerView.layoutManager = recommendedBioLayoutManager
             recommendedBioFoodAdapter = BlogBioAdapter(recetteBioArray)
             recommendedBioFoodRecyclerView.adapter = recommendedBioFoodAdapter
-
             recommendedBioFoodAdapter.setOnItemClickListener(object : BlogBioAdapter.OnItemClickListener {
                 override fun onItemClick(position: Int) {
                     val intent = Intent(context, RecetteActivity::class.java)

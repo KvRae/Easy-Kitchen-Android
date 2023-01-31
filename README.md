@@ -20,7 +20,7 @@ as its name implies, is a user-friendly and informative food mobile app that wil
   - [Questions](#questions)
 
   ## Installation
-   You can clone this repository, or download via AppGallery, and follow one of the ways mentioned below to install the app.
+   You can clone this repository, or download via AppGallery.
 
   NOTE: The links mentioned above refers to the latest release. Since this app is in BETA phase, therefore the REST API changes a lot.
 

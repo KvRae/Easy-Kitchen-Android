@@ -1,0 +1,41 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.EasyKitchen" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/rosybrown</item>
+        <item name="colorPrimaryVariant">@color/rosybrown</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/rosybrown</item>
+        <item name="colorSecondaryVariant">@color/rosybrown</item>
+        <item name="colorOnSecondary">@color/theWhite</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Theme.EasyKitchenNoAB" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/rosybrown</item>
+        <item name="colorPrimaryVariant">@color/rosybrown</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/rosybrown</item>
+        <item name="colorSecondaryVariant">@color/rosybrown</item>
+        <item name="colorOnSecondary">@color/theWhite</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Theme.EasyKitchen.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.EasyKitchen.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.EasyKitchen.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>

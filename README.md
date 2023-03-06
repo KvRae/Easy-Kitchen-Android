@@ -7,7 +7,7 @@
   ## Description
 
 "Roses are Red, Violets are Blue, so you're Hungry and you Don't Know What to Do!",
-as its name implies, is a user-friendly and informative food mobile app that will provide recipes and tips on healthy food. It adopts graphic elements and correspondent color solutions to showcase the listed healthy dishes or recipes in an intuitive and visual way.
+as its name implies,user-friendly and informative food mobile app that will provide recipes and tips on healthy food. It adopts graphic elements and correspondent color solutions to showcase the listed healthy dishes or recipes in an intuitive and visual way.
 
   ## Table of Contents
   - [Description](#description)

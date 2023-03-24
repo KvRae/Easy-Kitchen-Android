@@ -11,7 +11,7 @@ as its name implies,user-friendly and informative food mobile app that will prov
 
   ## Table of Contents
   - [Description](#description)
-  - [Specifications](#specifications)
+  - [Requirements](#requirements)
   - [Installation](#installation)
   - [Usage](#usage)
   - [Credits](#credits)
@@ -20,7 +20,7 @@ as its name implies,user-friendly and informative food mobile app that will prov
   - [Policy](#Policy)
   - [Questions](#questions)
 
-  ## Specifications
+  ## Requirements
   To get more into our application, here is the link of our project's specifications : [Link](https://docs.google.com/document/d/1JPOoeVi4zhh0dRaGI5FAmBIi-SBxxCzN/edit?usp=sharing&ouid=105148018597387491435&rtpof=true&sd=true)
 
   ## Installation

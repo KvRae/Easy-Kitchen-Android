@@ -21,7 +21,7 @@ as its name implies,user-friendly and informative food mobile app that will prov
   - [Questions](#questions)
 
   ## Specifications
-  to get more into the app here is the link of our project's specifications : [Link](https://docs.google.com/document/d/1JPOoeVi4zhh0dRaGI5FAmBIi-SBxxCzN/edit?usp=sharing&ouid=105148018597387491435&rtpof=true&sd=true)
+  To get more into our application, here is the link of our project's specifications : [Link](https://docs.google.com/document/d/1JPOoeVi4zhh0dRaGI5FAmBIi-SBxxCzN/edit?usp=sharing&ouid=105148018597387491435&rtpof=true&sd=true)
 
   ## Installation
    You can clone this repository, or download via AppGallery.
